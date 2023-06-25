@@ -1,0 +1,30 @@
+@use 'src/styles/mixins';
+
+.header {
+  @include mixins.flex(row, center, center);
+
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-dark-700);
+
+  .header_container {
+    @include mixins.flex(row, space-between, center);
+
+    width: 80%;
+
+    .header_btn {
+      padding: 6px 28px;
+    }
+
+    .header_dropdown_block {
+      @include mixins.flex(row, center, center);
+
+      gap: 10px;
+
+      .header_username {
+        color: var(--color-light-100);
+        border-bottom: 1px dashed var(--color-light-100);
+      }
+    }
+  }
+}

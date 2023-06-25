@@ -10,7 +10,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
 } & ComponentPropsWithoutRef<T>
 
 export const Button = <T extends ElementType = 'button'>(
-  props: ButtonProps & Omit<ButtonProps<T>, keyof ComponentPropsWithoutRef<T>>
+  props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
 ) => {
   const { variant = 'primary', fullWidth, className, as: Component = 'button', ...rest } = props
 
