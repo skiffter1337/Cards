@@ -1,0 +1,123 @@
+@use 'src/styles/mixins';
+
+.large {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-xxl),
+    var(--font-weight-bold),
+    var(--color-dark-900),
+    var(--line-height-l)
+  );
+}
+
+.h1 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-xl),
+    var(--font-weight-bold),
+    var(--color-dark-900),
+    var(--line-height-l)
+  );
+}
+
+.h2 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-l),
+    var(--font-weight-bold),
+    var(--color-dark-900),
+    var(--line-height-m)
+  );
+}
+
+.h3 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-m),
+    var(--font-weight-bold),
+    var(--color-dark-900),
+    var(--line-height-m)
+  );
+}
+
+.body1 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-m),
+    null,
+    var(--color-dark-900),
+    var(--line-height-m)
+  );
+}
+
+.subtitle1 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-m),
+    var(--font-weight-bold),
+    var(--color-dark-900),
+    var(--line-height-m)
+  );
+}
+
+.body2 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-s),
+    null,
+    var(--color-dark-900),
+    var(--line-height-m)
+  );
+}
+
+.subtitle2 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-s),
+    var(--font-weight-bold),
+    var(--color-dark-900),
+    var(--line-height-m)
+  );
+}
+
+.caption {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-xs),
+    null,
+    var(--color-dark-900),
+    var(--line-height-s)
+  );
+}
+
+.overline {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-xs),
+    var(--font-weight-bold),
+    var(--color-dark-900),
+    var(--line-height-s)
+  );
+}
+
+.link1 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-s),
+    null,
+    var(--color-info-500),
+    var(--line-height-m),
+    underline
+  );
+}
+
+.link2 {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-xs),
+    null,
+    var(--color-info-500),
+    var(--line-height-s),
+    underline
+  );
+}
