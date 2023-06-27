@@ -1,9 +1,13 @@
 @use 'src/styles/mixins';
 
 .primary {
+  @include mixins.flex(row, center, center);
+
   cursor: pointer;
 
-  padding: 6px 28px;
+  gap: 10px;
+
+  padding: 0.375rem 1.75rem;
 
   color: var(--color-light-100);
 
@@ -32,7 +36,7 @@
 .secondary {
   cursor: pointer;
 
-  padding: 6px 28px;
+  padding: 0.375rem 1.75rem;
 
   color: var(--color-light-100);
 
@@ -62,7 +66,7 @@
 .tertiary {
   cursor: pointer;
 
-  padding: 8px 28px;
+  padding: 0.5rem 1.75rem;
 
   color: var(--color-accent-500);
 
@@ -94,7 +98,7 @@
 
   cursor: pointer;
 
-  padding: 6px;
+  padding: 0.375rem;
 
   color: var(--color-accent-500);
 
