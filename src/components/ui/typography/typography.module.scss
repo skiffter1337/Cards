@@ -145,3 +145,15 @@
 
   margin: 0;
 }
+
+.error {
+  @include mixins.text-styles(
+    var(--font-family-primary),
+    var(--font-size-xs),
+    null,
+    var(--color-danger-300),
+    var(--line-height-s)
+  );
+
+  margin: 0;
+}

@@ -16,6 +16,7 @@ type PropsType<T extends ElementType = 'p'> = {
     | 'overline'
     | 'link1'
     | 'link2'
+    | 'error'
   children: ReactNode
   className?: string
   as?: T
