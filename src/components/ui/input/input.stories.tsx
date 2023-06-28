@@ -14,7 +14,7 @@ const meta = {
     search: { control: 'boolean' },
     type: { control: 'text' },
     onClearClick: {},
-    placeholder: { control: 'text', description: 'string' },
+    placeholder: { control: 'text' },
     disabled: { control: 'boolean' },
   },
 } satisfies Meta<typeof Input>
@@ -24,13 +24,15 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    label: 'Input',
+    label: 'Default',
+    placeholder: 'Input',
   },
 }
 
 export const WithIconsRight: Story = {
   args: {
-    label: 'Input',
+    label: 'WithIconsRight',
+    placeholder: 'Input',
     type: 'password',
   },
 }
@@ -43,7 +45,8 @@ export const Search = {
       <>
         <Input
           search={true}
-          label={'Input'}
+          label="Search"
+          placeholder="Input"
           value={text}
           onChange={e => setText(e.currentTarget.value)}
           onClearClick={() => setText('')}
@@ -52,8 +55,7 @@ export const Search = {
     )
   },
   args: {
-    label: 'Input',
-    placeholder: 'Search...',
+    placeholder: '',
     search: true,
   },
 }

@@ -18,6 +18,8 @@ export type InputPropsType = {
   onClearClick?: () => void
   onChange: (text: ChangeEvent<HTMLInputElement>) => void
   value?: string
+  disabled?: boolean
+  placeholder?: string
 } & ComponentProps<'input'>
 
 export const Input: React.FC<InputPropsType> = ({
@@ -30,6 +32,8 @@ export const Input: React.FC<InputPropsType> = ({
   onClearClick,
   value,
   onChange,
+  disabled,
+  placeholder,
   ...rest
 }) => {
   // test logic
@@ -41,7 +45,7 @@ export const Input: React.FC<InputPropsType> = ({
   const [showPass, setShowPass] = useState<boolean>(false)
 
   const showError = !!errorMessage && errorMessage.length > 0
-
+  const eyeIconColor = disabled ? 'var(--color-dark-300)' : 'var(--color-light-100)'
   const onMouseDownHandler = () => {
     if (type === 'password') {
       setShowPass(true)
@@ -71,9 +75,9 @@ export const Input: React.FC<InputPropsType> = ({
   }
   if (type === 'password') {
     iconEnd = showPass ? (
-      <EyeOffOutlined color={'var(--color-light-100)'} onMouseUp={onMouseUpHandler} />
+      <EyeOffOutlined color={eyeIconColor} onMouseUp={onMouseUpHandler} />
     ) : (
-      <EyeOutlined color={'var(--color-light-100)'} onMouseDown={onMouseDownHandler} />
+      <EyeOutlined color={eyeIconColor} onMouseDown={onMouseDownHandler} />
     )
   }
   const inputType = showPass ? 'text' : type
@@ -96,8 +100,8 @@ export const Input: React.FC<InputPropsType> = ({
           onChange={onChangeHandler}
           type={inputType}
           className={`${s.input} ${showError ? s.error : ''} ${search ? s.search : ''}`}
-          placeholder={'Input'}
-          disabled={false}
+          placeholder={placeholder}
+          disabled={disabled}
           {...rest}
         />
         {!!iconEnd && <span className={s.input_icon_end}>{iconEnd}</span>}

@@ -23,6 +23,8 @@ export function App() {
           value={value}
           label={'Input'}
           search={true}
+          disabled={false}
+          placeholder={'Input'}
           onChange={onChangeHandler}
           onClearClick={clearInputValue}
         />
