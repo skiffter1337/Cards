@@ -1,0 +1,55 @@
+@use 'src/styles/mixins';
+
+.checkbox_container {
+  @include mixins.flex(row, center);
+
+  .checkbox_wrapper {
+    @include mixins.flex(row, center, center);
+
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    &:active {
+      background-color: var(--color-dark-100);
+    }
+
+    &:hover {
+      background-color: var(--color-dark-500);
+    }
+
+    &:focus-within {
+      background-color: var(--color-dark-100);
+    }
+
+    .checkbox_root {
+      @include mixins.flex(row, center, center);
+
+      cursor: pointer;
+
+      width: 18px;
+      height: 18px;
+
+      background-color: transparent;
+      border: 2px solid var(--color-light-900);
+      border-radius: 2px;
+
+      &:focus {
+        outline: none;
+      }
+
+      .checkbox_indicator {
+        @include mixins.flex(row, center, center);
+      }
+    }
+  }
+
+  .label {
+    padding-left: 8px;
+    color: var(--color-light-100);
+  }
+
+  .disabled {
+    color: var(--color-dark-100);
+  }
+}

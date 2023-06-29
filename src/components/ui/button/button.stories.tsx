@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Logout } from '../../../images/svg/icons/logout/logout.tsx'
+import { Logout } from '../../../images/svg/icons/logout'
 
 import { Button } from './'
 
@@ -42,6 +42,17 @@ export const Secondary: Story = {
   args: {
     variant: 'secondary',
     children: 'Secondary Button',
+    disabled: false,
+  },
+}
+export const SecondaryWithIcon: Story = {
+  args: {
+    variant: 'secondary',
+    children: (
+      <>
+        <Logout /> Secondary Button
+      </>
+    ),
     disabled: false,
   },
 }

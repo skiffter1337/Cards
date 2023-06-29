@@ -20,11 +20,13 @@ export type InputPropsType = {
   value?: string
   disabled?: boolean
   placeholder?: string
+  error?: boolean
 } & ComponentProps<'input'>
 
 export const Input: React.FC<InputPropsType> = ({
   label,
   errorMessage,
+  error,
   search,
   iconStart,
   iconEnd,
