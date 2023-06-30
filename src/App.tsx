@@ -3,6 +3,7 @@ import { ChangeEvent, useState } from 'react'
 import { Header } from './components/header'
 import { Input } from './components/ui/input'
 import { Slider } from './components/ui/slider'
+import { TabSwitcher } from './components/ui/tabSwitcher'
 
 export function App() {
   // input test logic
@@ -51,6 +52,21 @@ export function App() {
           }}
         >
           <Slider min={18} max={100} step={1} />
+        </div>
+        <div
+          style={{
+            padding: '300px',
+            // background: 'gray',
+          }}
+        >
+          <TabSwitcher
+            label={'Title'}
+            tabs={[
+              { value: 'tab1', text: 'Switcher' },
+              { value: 'tab2', text: 'Switcher' },
+              { value: 'tab3', text: 'Switcher' },
+            ]}
+          />
         </div>
       </div>
     </div>
