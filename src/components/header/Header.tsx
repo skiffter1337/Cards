@@ -13,7 +13,7 @@ export const Header = () => {
   const onClickHandler = () => {
     setIsLoggedIn(!isLoggedIn)
   }
-  // useState and onClickHandler are temporary logic to test UI
+  // useState and onClickHandler are temporary logic to test UI //
 
   return (
     <div className={s.header}>
