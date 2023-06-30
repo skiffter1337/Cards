@@ -1,0 +1,77 @@
+@use 'src/styles/mixins';
+
+.slider_container {
+  @include mixins.flex(row, center, center);
+
+  gap: 12px;
+}
+
+.slider_root {
+  touch-action: none;
+  user-select: none;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 155px;
+  height: 16px;
+}
+
+.slider_track {
+  position: relative;
+
+  flex-grow: 1;
+
+  height: 5px;
+
+  background-color: var(--color-accent-900);
+  border-radius: 9999px;
+}
+
+.slider_range {
+  position: absolute;
+  height: 100%;
+  background-color: var(--color-accent-500);
+  border-radius: 9999px;
+}
+
+.slider_thumb {
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  background-color: var(--color-accent-500);
+  border-radius: 10px;
+
+  &:focus {
+    outline: none;
+  }
+
+  .thumb_inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 8px;
+    height: 8px;
+
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}
+
+.slider_values {
+  @include mixins.flex(row, center, center);
+
+  width: 36px;
+  height: 36px;
+
+  color: white;
+
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+}

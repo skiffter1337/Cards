@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react'
 
 import { Header } from './components/header'
-import { CheckboxItem } from './components/ui/checkbox'
 import { Input } from './components/ui/input'
+import { Slider } from './components/ui/slider'
 
 export function App() {
   // input test logic
@@ -40,8 +40,17 @@ export function App() {
             onClearClick={clearInputValue}
           />
         </div>
-        <div style={{ margin: '100px' }}>
-          <CheckboxItem label={'Check me'} disabled={false} />
+        <div
+          style={{
+            margin: '100px',
+            width: '100%',
+            height: '120px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Slider min={18} max={100} step={1} />
         </div>
       </div>
     </div>
