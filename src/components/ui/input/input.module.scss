@@ -105,7 +105,12 @@
   color: var(--color-danger-300);
 }
 
-.input_label {
+.label {
   margin-left: 1px;
   color: var(--color-dark-100);
+  white-space: nowrap;
+}
+
+.disabled {
+  color: var(--color-dark-300);
 }

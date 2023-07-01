@@ -21,11 +21,9 @@ export const TabSwitcher: FC<TabSwitcherPropsType> = ({ tabs, label }) => {
   return (
     <>
       <label>
-        {
-          <Typography variant={'body2'} className={s.label}>
-            {label}
-          </Typography>
-        }
+        <Typography variant={'body2'} className={s.label}>
+          {label}
+        </Typography>
       </label>
       <Tabs.Root className={s.tabs_root} defaultValue="tab1">
         <Tabs.List className={s.tabs_list} aria-label="Manage your account">

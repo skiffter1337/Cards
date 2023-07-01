@@ -1,0 +1,66 @@
+@use 'src/styles/mixins';
+
+button {
+  all: unset;
+}
+
+.radioGroup_root {
+  @include mixins.flex(column);
+
+  gap: 16px;
+
+  .radioGroup_wrapper {
+    @include mixins.flex(row, center, center);
+
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: var(--color-dark-500);
+    }
+
+    &:focus-within {
+      background-color: var(--color-dark-700);
+    }
+
+    &:active {
+      background-color: var(--color-accent-900);
+    }
+
+    .radioGroup_item {
+      width: 16px;
+      height: 16px;
+
+      background-color: transparent;
+      border: 2px solid var(--color-accent-500);
+      border-radius: 100%;
+
+      .radioGroup_indicator {
+        @include mixins.flex(row, center, center);
+
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .radioGroup_indicator::after {
+        content: '';
+
+        display: block;
+
+        width: 10px;
+        height: 10px;
+
+        background-color: var(--color-accent-500);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .label {
+    margin-left: 3px;
+    color: white;
+    white-space: nowrap;
+  }
+}

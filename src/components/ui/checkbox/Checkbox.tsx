@@ -3,7 +3,7 @@ import { FC } from 'react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 
 import { Check } from '../../../images/svg/icons/check'
-import { Typography } from '../typography'
+import { Label } from '../label/label.tsx'
 
 import s from './checkbox.module.scss'
 
@@ -41,11 +41,12 @@ export const CheckboxItem: FC<CheckBoxPropstype> = ({
           </Checkbox.Indicator>
         </Checkbox.Root>
       </div>
-      <label htmlFor="c1">
-        <Typography variant={'body2'} className={`${s.label} ${disabled ? s.disabled : ''}`}>
-          {label}
-        </Typography>
-      </label>
+      <Label
+        label={label}
+        htmlFor={'c1'}
+        variant={'body2'}
+        classname={`${s.label} ${disabled ? s.disabled : ''}`}
+      />
     </div>
   )
 }

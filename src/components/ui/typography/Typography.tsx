@@ -2,21 +2,23 @@ import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import s from './typography.module.scss'
 
+export type TypographyType =
+  | 'large'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'body1'
+  | 'subtitle1'
+  | 'body2'
+  | 'subtitle2'
+  | 'caption'
+  | 'overline'
+  | 'link1'
+  | 'link2'
+  | 'error'
+
 type PropsType<T extends ElementType = 'p'> = {
-  variant:
-    | 'large'
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'body1'
-    | 'subtitle1'
-    | 'body2'
-    | 'subtitle2'
-    | 'caption'
-    | 'overline'
-    | 'link1'
-    | 'link2'
-    | 'error'
+  variant: TypographyType
   children: ReactNode
   className?: string
   as?: T

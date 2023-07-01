@@ -4,6 +4,7 @@ import { Close } from '../../../images/svg/icons/close'
 import { EyeOffOutlined } from '../../../images/svg/icons/eyeOffOutlined'
 import { EyeOutlined } from '../../../images/svg/icons/eyeOutlined'
 import { Search } from '../../../images/svg/icons/search'
+import { Label } from '../label/label.tsx'
 import { Typography } from '../typography'
 
 import s from './input.module.scss'
@@ -87,13 +88,13 @@ export const Input: React.FC<InputPropsType> = ({
   return (
     <div>
       {label && (
-        <label>
-          {
-            <Typography variant={'body2'} className={s.input_label}>
-              {label}
-            </Typography>
-          }
-        </label>
+        <>
+          <Label
+            label={label}
+            variant={'body2'}
+            classname={`${s.label} ${disabled ? s.disabled : ''}`}
+          />
+        </>
       )}
       <div className={s.input_container}>
         {!!iconStart && <span className={s.input_icon_start}>{iconStart}</span>}

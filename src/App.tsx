@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react'
 
 import { Header } from './components/header'
 import { Input } from './components/ui/input'
+import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Slider } from './components/ui/slider'
 import { TabSwitcher } from './components/ui/tabSwitcher'
 
@@ -67,6 +68,14 @@ export function App() {
               { value: 'tab3', text: 'Switcher' },
             ]}
           />
+        </div>
+        <div
+          style={{
+            padding: '300px',
+            // background: 'gray',
+          }}
+        >
+          <RadioGroup label={'Radio Group'} disabled={false} />
         </div>
       </div>
     </div>
