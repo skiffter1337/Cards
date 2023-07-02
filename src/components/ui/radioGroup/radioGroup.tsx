@@ -6,43 +6,55 @@ import { Label } from '../label/label.tsx'
 
 import s from './radioGroup.module.scss'
 
-type RadioGroupPropsType = {
-  label?: string
-  disabled?: boolean
+type RadioGroupType = {
+  id: string
+  value: string
+  title: string
+  disabled: boolean
+  required: boolean
 }
-export const RadioGroup: FC<RadioGroupPropsType> = ({ label, disabled }) => {
+
+type RadioGroupPropsType = {
+  radioGroup: RadioGroupType[]
+  ariaLabel: string
+  defaultValue: string
+  callback: () => void
+}
+export const RadioGroup: FC<RadioGroupPropsType> = ({
+  radioGroup,
+  ariaLabel,
+  defaultValue,
+  callback,
+}) => {
   return (
     <RadioGroupRadix.Root
-      className={s.radioGroup_root}
-      defaultValue="default"
-      aria-label="View density"
+      className={s.root}
+      defaultValue={defaultValue}
+      aria-label={ariaLabel}
+      onValueChange={callback}
     >
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div className={s.radioGroup_wrapper}>
-          <RadioGroupRadix.Item className={s.radioGroup_item} value="default" id="r1">
-            <RadioGroupRadix.Indicator className={s.radioGroup_indicator} />
-          </RadioGroupRadix.Item>
-        </div>
-        <Label
-          label={label}
-          variant={'body2'}
-          classname={`${s.label} ${disabled ? s.disabled : ''}`}
-          htmlFor={'r1'}
-        />
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div className={s.radioGroup_wrapper}>
-          <RadioGroupRadix.Item className={s.radioGroup_item} value="comfortable" id="r2">
-            <RadioGroupRadix.Indicator className={s.radioGroup_indicator} />
-          </RadioGroupRadix.Item>
-        </div>
-        <Label
-          label={label}
-          variant={'body2'}
-          classname={`${s.label} ${disabled ? s.disabled : ''}`}
-          htmlFor={'r2'}
-        />
-      </div>
+      {radioGroup.map(radio => {
+        return (
+          <div className={s.container} key={radio.id}>
+            <div className={`${s.wrapper} ${radio.disabled ? s.disabled : ''}`}>
+              <RadioGroupRadix.Item
+                className={s.item}
+                value={radio.value}
+                id={radio.id}
+                disabled={radio.disabled}
+              >
+                <RadioGroupRadix.Indicator className={s.indicator} />
+              </RadioGroupRadix.Item>
+            </div>
+            <Label
+              title={radio.title}
+              variant={'body2'}
+              classname={`${s.label} ${radio.disabled ? s.disabled : ''}`}
+              htmlFor={radio.id}
+            />
+          </div>
+        )
+      })}
     </RadioGroupRadix.Root>
   )
 }

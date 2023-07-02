@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { CheckboxItem } from './Checkbox.tsx'
+import { CheckboxItem } from './checkbox.tsx'
 
 const meta = {
   title: 'Components/Checkbox',

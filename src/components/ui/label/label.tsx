@@ -3,17 +3,21 @@ import { FC } from 'react'
 import { Typography, TypographyType } from '../typography'
 
 type LabelPropsType = {
-  label: string | undefined
+  title: string
   classname?: string
   variant: TypographyType
-  htmlFor?: string
+  htmlFor: string
 }
-export const Label: FC<LabelPropsType> = ({ label, htmlFor, variant, classname }) => {
+export const Label: FC<LabelPropsType> = ({ title, variant, classname, htmlFor }) => {
   return (
-    <label htmlFor={htmlFor}>
-      <Typography variant={variant} className={classname}>
-        {label}
-      </Typography>
-    </label>
+    <Typography
+      as={'label'}
+      variant={variant}
+      className={classname}
+      htmlFor={htmlFor}
+      title={title}
+    >
+      {title}
+    </Typography>
   )
 }

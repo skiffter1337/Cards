@@ -4,63 +4,82 @@ button {
   all: unset;
 }
 
-.radioGroup_root {
+.root {
   @include mixins.flex(column);
 
   gap: 16px;
 
-  .radioGroup_wrapper {
+  .container {
     @include mixins.flex(row, center, center);
 
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
+    .wrapper {
+      @include mixins.flex(row, center, center);
 
-    &:hover {
-      background-color: var(--color-dark-500);
-    }
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
 
-    &:focus-within {
-      background-color: var(--color-dark-700);
-    }
+      &:not(.disabled) {
+        &:hover {
+          background-color: var(--color-dark-500);
+        }
 
-    &:active {
-      background-color: var(--color-accent-900);
-    }
+        &:focus-within {
+          background-color: var(--color-dark-700);
+        }
 
-    .radioGroup_item {
-      width: 16px;
-      height: 16px;
-
-      background-color: transparent;
-      border: 2px solid var(--color-accent-500);
-      border-radius: 100%;
-
-      .radioGroup_indicator {
-        @include mixins.flex(row, center, center);
-
-        position: relative;
-        width: 100%;
-        height: 100%;
+        &:active {
+          background-color: var(--color-accent-900);
+        }
       }
 
-      .radioGroup_indicator::after {
-        content: '';
+      .item {
+        width: 16px;
+        height: 16px;
 
-        display: block;
+        background-color: transparent;
+        border: 2px solid var(--color-accent-500);
+        border-radius: 100%;
 
-        width: 10px;
-        height: 10px;
+        &:disabled {
+          border-color: var(--color-accent-900);
 
-        background-color: var(--color-accent-500);
-        border-radius: 50%;
+          .indicator::after {
+            background-color: var(--color-accent-900);
+          }
+        }
+
+        .indicator {
+          @include mixins.flex(row, center, center);
+
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .indicator::after {
+          content: '';
+
+          display: block;
+
+          width: 10px;
+          height: 10px;
+
+          background-color: var(--color-accent-500);
+          border-radius: 50%;
+        }
       }
     }
-  }
 
-  .label {
-    margin-left: 3px;
-    color: white;
-    white-space: nowrap;
+    .label {
+      user-select: none;
+      padding-left: 3px;
+      color: var(--color-light-100);
+      white-space: nowrap;
+    }
+
+    .disabled {
+      color: var(--color-light-900);
+    }
   }
 }

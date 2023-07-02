@@ -22,6 +22,7 @@ export type InputPropsType = {
   disabled?: boolean
   placeholder?: string
   error?: boolean
+  id: string
 } & ComponentProps<'input'>
 
 export const Input: React.FC<InputPropsType> = ({
@@ -37,6 +38,7 @@ export const Input: React.FC<InputPropsType> = ({
   onChange,
   disabled,
   placeholder,
+  id,
   ...rest
 }) => {
   // test logic
@@ -60,9 +62,7 @@ export const Input: React.FC<InputPropsType> = ({
     }
   }
   const onClearClickHandler = () => {
-    if (onClearClick) {
-      onClearClick()
-    }
+    onClearClick?.()
   }
 
   if (search) {
@@ -88,16 +88,17 @@ export const Input: React.FC<InputPropsType> = ({
   return (
     <div>
       {label && (
-        <>
+        <div>
           <Label
-            label={label}
+            title={label}
             variant={'body2'}
             classname={`${s.label} ${disabled ? s.disabled : ''}`}
+            htmlFor={'test'}
           />
-        </>
+        </div>
       )}
-      <div className={s.input_container}>
-        {!!iconStart && <span className={s.input_icon_start}>{iconStart}</span>}
+      <div className={s.container}>
+        {!!iconStart && <span className={s.icon_start}>{iconStart}</span>}
         <input
           value={value}
           onChange={onChangeHandler}
@@ -105,9 +106,10 @@ export const Input: React.FC<InputPropsType> = ({
           className={`${s.input} ${showError ? s.error : ''} ${search ? s.search : ''}`}
           placeholder={placeholder}
           disabled={disabled}
+          id={id}
           {...rest}
         />
-        {!!iconEnd && <span className={s.input_icon_end}>{iconEnd}</span>}
+        {!!iconEnd && <span className={s.icon_end}>{iconEnd}</span>}
       </div>
       {showError && (
         <Typography variant={'error'} className={s.error_message}>

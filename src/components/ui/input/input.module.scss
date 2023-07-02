@@ -1,6 +1,6 @@
 @use 'src/styles/mixins';
 
-.input_container {
+.container {
   position: relative;
   display: inline-block;
 
@@ -71,7 +71,7 @@
     }
   }
 
-  .input_icon_start {
+  .icon_start {
     position: absolute;
     top: 50%;
     left: 12px;
@@ -81,7 +81,7 @@
     height: 20px;
   }
 
-  .input_icon_end {
+  .icon_end {
     position: absolute;
     top: 50%;
     right: 12px;
@@ -106,6 +106,7 @@
 }
 
 .label {
+  user-select: none;
   margin-left: 1px;
   color: var(--color-dark-100);
   white-space: nowrap;

@@ -1,7 +1,8 @@
 import { Meta } from '@storybook/react'
 
-import { Dropdown } from './Dropdown.tsx'
+import AvatarImg from '../../../images/png/Ellipse 54.png'
 
+import { Dropdown } from './dropdown.tsx'
 const meta = {
   title: 'Components/Dropdown',
   component: Dropdown,
@@ -22,7 +23,12 @@ export const DefaultDropdown = {
           height: '300px',
         }}
       >
-        <Dropdown />
+        <Dropdown
+          changeIsLoggedIn={() => {}}
+          email={'example@gmail.com'}
+          userName={'Ivan'}
+          avatar={AvatarImg}
+        />
       </div>
     )
   },

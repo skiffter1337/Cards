@@ -7,9 +7,13 @@
   height: 60px;
   background-color: var(--color-dark-700);
 
-  .header_container {
+  .container {
     @include mixins.flex(row, space-between, center);
 
     width: 80%;
+
+    .user_avatar {
+      display: flex;
+    }
   }
 }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { TabSwitcher } from './TabSwitcher.tsx'
+import { TabSwitcher } from './tabSwitcher.tsx'
 
 const meta = {
   title: 'Components/TabSwitcher',

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Input } from './Input.tsx'
+import { Input } from './input.tsx'
 
 const meta = {
   title: 'Components/Input',
@@ -44,6 +44,7 @@ export const Search = {
     return (
       <>
         <Input
+          id={'input1'}
           search={true}
           label="Search"
           placeholder="Input"

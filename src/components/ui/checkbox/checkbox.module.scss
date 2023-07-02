@@ -1,13 +1,13 @@
 @use 'src/styles/mixins';
 
-.checkbox_container {
-  @include mixins.flex(row, center);
+.container {
+  @include mixins.flex(row, center, center);
 
-  .checkbox_wrapper {
+  .wrapper {
     @include mixins.flex(row, center, center);
 
-    width: 38px;
-    height: 38px;
+    width: 2.375rem;
+    height: 2.375rem;
     border-radius: 50%;
 
     &:active {
@@ -22,13 +22,13 @@
       background-color: var(--color-dark-100);
     }
 
-    .checkbox_root {
+    .root {
       @include mixins.flex(row, center, center);
 
       cursor: pointer;
 
-      width: 18px;
-      height: 18px;
+      width: 1.125rem;
+      height: 1.125rem;
 
       background-color: transparent;
       border: 2px solid var(--color-light-900);
@@ -38,14 +38,15 @@
         outline: none;
       }
 
-      .checkbox_indicator {
+      .indicator {
         @include mixins.flex(row, center, center);
       }
     }
   }
 
   .label {
-    padding-left: 8px;
+    user-select: none;
+    margin-left: 0.1875rem;
     color: var(--color-light-100);
   }
 
