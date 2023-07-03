@@ -3,6 +3,7 @@ import { ChangeEvent, useState } from 'react'
 import { Header } from './components/header'
 import { Input } from './components/ui/input'
 import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
+import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
 import { TabSwitcher } from './components/ui/tabSwitcher'
 
@@ -118,6 +119,23 @@ export function App() {
             callback={onRadioValuesChange}
           />
         </div>
+        <Select
+          placeholder={'Select-box'}
+          ariaLabel={'Food selector'}
+          selectItems={[
+            { id: '1', value: 'apple', title: 'Apple' },
+            { id: '2', value: 'banana', title: 'Banana' },
+            { id: '3', value: 'blueberry', title: 'Blueberry' },
+            { id: '4', value: 'grapes', title: 'Grapes' },
+            { id: '5', value: 'pineapple', title: 'Pineapple' },
+          ]}
+        />
+        <div
+          style={{
+            padding: '300px',
+            // background: 'gray',
+          }}
+        ></div>
       </div>
     </div>
   )

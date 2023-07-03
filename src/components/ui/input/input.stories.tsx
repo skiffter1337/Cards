@@ -24,6 +24,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
+    id: 'input',
     label: 'Default',
     placeholder: 'Input',
   },
@@ -31,6 +32,7 @@ export const Default: Story = {
 
 export const WithIconsRight: Story = {
   args: {
+    id: 'input',
     label: 'WithIconsRight',
     placeholder: 'Input',
     type: 'password',
