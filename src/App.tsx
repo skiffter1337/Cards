@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from 'react'
 
 import { Header } from './components/header'
 import { Input } from './components/ui/input'
-import { Pagination } from './components/ui/pagination'
 import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
@@ -141,6 +140,7 @@ export function App() {
           ]}
           disabled={false}
           callback={onSelectChange}
+          size={'large'}
         />
         <div
           style={{

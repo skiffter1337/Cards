@@ -12,7 +12,8 @@ export type PaginationPropsType = {
   totalCount: number
   currentPage: number
   pageSize: number
-  onPageChange: (page: any) => void
+  onPageChange: (page: number) => void
+  onPageSizeChange: (size: number) => void
   siblingCount?: number
   className?: string
 }
@@ -22,6 +23,7 @@ export const Pagination: FC<PaginationPropsType> = ({
   currentPage,
   pageSize,
   onPageChange,
+  onPageSizeChange,
   siblingCount = 1,
 }) => {
   const paginationRange = usePagination({ currentPage, totalCount, siblingCount, pageSize })
@@ -30,6 +32,7 @@ export const Pagination: FC<PaginationPropsType> = ({
   if (currentPage === 0 || !paginationRange || paginationRange.length < 2) {
     return null
   }
+  const onPageSizeChangeHandler = (size: string) => onPageSizeChange(Number(size))
 
   const onNext = () => onPageChange(currentPage + 1)
   const onPrevious = () => onPageChange(currentPage - 1)
@@ -38,70 +41,72 @@ export const Pagination: FC<PaginationPropsType> = ({
   let firstPage = paginationRange[0]
 
   return (
-    <ul className={s.container}>
-      {/* Left navigation arrow */}
-      <li className={s.item}>
-        <button onClick={onPrevious} className={s.arrow} disabled={currentPage === firstPage}>
-          <KeyboardArrowLeft
-            color={currentPage === firstPage ? 'var(--color-dark-100)' : 'var(--color-light-100)'}
-          />
-        </button>
-      </li>
-      {paginationRange.map(pageNumber => {
-        // If the pageItem is a DOT, render the DOTS unicode character
-        if (pageNumber === DOTS) {
+    <div className={s.pagination}>
+      <ul className={s.container}>
+        <li className={s.item}>
+          <button onClick={onPrevious} className={s.arrow} disabled={currentPage === firstPage}>
+            <KeyboardArrowLeft
+              color={currentPage === firstPage ? 'var(--color-dark-100)' : 'var(--color-light-100)'}
+            />
+          </button>
+        </li>
+        {paginationRange.map((pageNumber, index) => {
+          if (pageNumber === DOTS) {
+            return (
+              <li key={index} className={`${s.item} ${s.dots}`}>
+                &#8230;
+              </li>
+            )
+          }
+
           return (
-            <li key={pageNumber} className={`${s.item} ${s.dots}`}>
-              &#8230;
+            <li
+              key={index}
+              className={`${s.item} ${pageNumber === currentPage ? s.selected : ''}`}
+              onClick={() => onPageChange(Number(pageNumber))}
+            >
+              <Typography
+                variant={'body2'}
+                className={`${s.item_content} ${pageNumber === currentPage ? s.selected : ''}`}
+              >
+                {pageNumber}
+              </Typography>
             </li>
           )
-        }
+        })}
 
-        // Render our Page Pills
-        return (
-          <li
-            key={pageNumber}
-            className={`${s.item} ${pageNumber === currentPage ? s.selected : ''}`}
-            onClick={() => onPageChange(pageNumber)}
-          >
-            <Typography
-              variant={'body2'}
-              className={`${s.item_content} ${pageNumber === currentPage ? s.selected : ''}`}
-            >
-              {pageNumber}
-            </Typography>
-          </li>
-        )
-      })}
-      {/*  Right Navigation arrow */}
-      <li className={s.item}>
-        <button onClick={onNext} className={s.arrow} disabled={currentPage === lastPage}>
-          <KeyBoardArrowRight
-            color={currentPage === lastPage ? 'var(--color-dark-100)' : 'var(--color-light-100)'}
-          />
-        </button>
-      </li>
+        <li className={s.item}>
+          <button onClick={onNext} className={s.arrow} disabled={currentPage === lastPage}>
+            <KeyBoardArrowRight
+              color={currentPage === lastPage ? 'var(--color-dark-100)' : 'var(--color-light-100)'}
+            />
+          </button>
+        </li>
+      </ul>
       <div className={s.page_size_panel}>
-        <span>
-          <Typography variant={'body2'}>{'Показать'}</Typography>
+        <Typography variant={'body2'} className={s.page_size_panel_text}>
+          {'Показать '}
+        </Typography>
+        <div className={s.select}>
+          <Select
+            ariaLabel={'pagination page size select'}
+            selectItems={[
+              { id: '1', value: '10', title: '10', disabled: false },
+              { id: '2', value: '20', title: '20', disabled: false },
+              { id: '3', value: '30', title: '30', disabled: false },
+              { id: '4', value: '40', title: '40', disabled: false },
+              { id: '5', value: '50', title: '50', disabled: false },
+              { id: '5', value: '100', title: '100', disabled: false },
+            ]}
+            size={'small'}
+            callback={onPageSizeChangeHandler}
+          ></Select>
+        </div>
 
-          {/*<Select*/}
-          {/*  ariaLabel={'pagination page size select'}*/}
-          {/*  selectItems={[*/}
-          {/*    { id: '1', value: 'apple', title: 'Apple', disabled: true },*/}
-          {/*    { id: '2', value: 'banana', title: 'Banana', disabled: false },*/}
-          {/*    { id: '3', value: 'blueberry', title: 'Blueberry', disabled: false },*/}
-          {/*    { id: '4', value: 'grapes', title: 'Grapes', disabled: true },*/}
-          {/*    { id: '5', value: 'pineapple', title: 'Pineapple', disabled: false },*/}
-          {/*  ]}*/}
-          {/*  callback={() => {}}*/}
-          {/*></Select>*/}
-
-          <Typography variant={'body2'} className={s.item_content}>
-            {'на странице'}
-          </Typography>
-        </span>
+        <Typography variant={'body2'} className={s.page_size_panel_text}>
+          {'на странице'}
+        </Typography>
       </div>
-    </ul>
+    </div>
   )
 }

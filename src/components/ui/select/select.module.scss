@@ -11,12 +11,11 @@
 .trigger {
   @include mixins.flex(row, space-between, center);
 
+  user-select: none;
+
   gap: 5px;
 
-  width: 100%;
-  max-width: 210px;
-  max-height: 36px;
-  padding: 6px 12px;
+  box-sizing: border-box;
 
   color: var(--color-light-100);
 
@@ -28,17 +27,36 @@
     background-color: var(--color-dark-100);
   }
 
-  &:focus {
-    border: 2px solid var(--color-info-700);
-  }
+  //&:focus {
+  //  border: 2px solid var(--color-info-700);
+  //}
 
   .placeholder {
     color: var(--color-light-100);
   }
-}
 
-.opened {
-  border-radius: 2px 2px 0 0;
+  &.large {
+    width: 100%;
+    max-width: 210px;
+    max-height: 36px;
+    padding: 6px 12px;
+  }
+
+  &.small {
+    width: 100%;
+    max-width: 50px;
+    max-height: 24px;
+    padding-right: 2px;
+    padding-left: 6px;
+  }
+
+  &.opened {
+    border-radius: 2px 2px 0 0;
+  }
+
+  .icon {
+    @include mixins.flex(row, center, center);
+  }
 }
 
 .content {
@@ -60,8 +78,6 @@
 
   .item {
     user-select: none;
-    height: 36px;
-    padding: 6px 12px;
     color: var(--color-light-100);
 
     &[data-disabled] {
@@ -73,6 +89,15 @@
       color: var(--color-accent-300);
       background-color: var(--color-accent-900);
       outline: none;
+    }
+
+    &.large {
+      height: 36px;
+      padding: 6px 12px;
+    }
+
+    &.small {
+      padding-left: 6px;
     }
   }
 }

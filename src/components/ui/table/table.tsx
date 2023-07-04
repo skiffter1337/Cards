@@ -5,19 +5,20 @@ import { Pagination } from '../pagination'
 import data from './data/mock-data.json'
 
 export const Table = () => {
-  let PageSize = 10
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [pageSize, setPageSize] = useState<number>(10)
 
   const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize
-    const lastPageIndex = firstPageIndex + PageSize
+    const firstPageIndex = (currentPage - 1) * pageSize
+    const lastPageIndex = firstPageIndex + pageSize
 
     return data.slice(firstPageIndex, lastPageIndex)
   }, [currentPage])
 
+  // To Do: Add rerender when pageSize changing
   return (
     <>
-      <table style={{ width: '600px' }}>
+      <table style={{ width: '600px', marginBottom: '60px' }}>
         <thead>
           <tr>
             <th>ID</th>
@@ -42,11 +43,11 @@ export const Table = () => {
         </tbody>
       </table>
       <Pagination
-        className="pagination-bar"
         currentPage={currentPage}
         totalCount={data.length}
-        pageSize={PageSize}
-        onPageChange={(page: any) => setCurrentPage(page)}
+        pageSize={pageSize}
+        onPageChange={(page: number) => setCurrentPage(page)}
+        onPageSizeChange={(size: number) => setPageSize(size)}
       />
     </>
   )

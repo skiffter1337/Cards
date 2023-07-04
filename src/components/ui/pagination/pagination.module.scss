@@ -1,12 +1,16 @@
 @use 'src/styles/mixins';
 
+.pagination {
+  @include mixins.flex(row, center, center);
+
+  gap: 24px;
+  height: 24px;
+}
+
 .container {
   @include mixins.flex(row, center, center);
 
   gap: 12px;
-  width: 100%;
-  list-style-type: none;
-  border: 1px solid lime;
 
   .item {
     @include mixins.flex(row, center, center);
@@ -54,7 +58,6 @@
     .arrow {
       @include mixins.flex(row, center, center);
 
-      all: unset;
       cursor: pointer;
 
       &:disabled {
@@ -65,10 +68,15 @@
 }
 
 .page_size_panel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  @include mixins.flex(row, center, center);
+}
 
-  width: 100%;
+.page_size_panel_text {
+  color: var(--color-light-100);
+  white-space: nowrap;
+}
+
+.select {
+  margin-right: 9px;
+  margin-left: 6px;
 }
