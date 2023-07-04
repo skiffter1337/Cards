@@ -1,0 +1,74 @@
+@use 'src/styles/mixins';
+
+.container {
+  @include mixins.flex(row, center, center);
+
+  gap: 12px;
+  width: 100%;
+  list-style-type: none;
+  border: 1px solid lime;
+
+  .item {
+    @include mixins.flex(row, center, center);
+
+    user-select: none;
+
+    box-sizing: border-box;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+
+    &:focus {
+      border: 2px solid var(--color-info-900);
+    }
+
+    &:hover:not(:has(.arrow, .selected)) {
+      cursor: pointer;
+      background-color: var(--color-dark-500);
+      border-radius: 2px;
+    }
+
+    &.selected {
+      color: var(--color-dark-900);
+      background-color: var(--color-light-100);
+      border-radius: 2px;
+    }
+
+    .item_content {
+      color: var(--color-light-100);
+
+      &.selected {
+        color: var(--color-dark-900);
+      }
+    }
+
+    &.dots {
+      color: var(--color-light-100);
+
+      &:hover {
+        cursor: default;
+        background-color: transparent;
+      }
+    }
+
+    .arrow {
+      @include mixins.flex(row, center, center);
+
+      all: unset;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+  }
+}
+
+.page_size_panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}

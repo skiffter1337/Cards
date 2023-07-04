@@ -2,9 +2,11 @@ import { ChangeEvent, useState } from 'react'
 
 import { Header } from './components/header'
 import { Input } from './components/ui/input'
+import { Pagination } from './components/ui/pagination'
 import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
+import { Table } from './components/ui/table/table.tsx'
 import { TabSwitcher } from './components/ui/tabSwitcher'
 
 export function App() {
@@ -47,6 +49,13 @@ export function App() {
   }
 
   // radio test logic
+
+  // select test logic
+  const onSelectChange = () => {
+    console.log('select changed')
+  }
+
+  // select test logic
   return (
     <div style={{ background: 'black' }}>
       <Header isLoggedIn={isLoggedIn} changeIsLoggedIn={changeIsLoggedIn} />
@@ -122,13 +131,16 @@ export function App() {
         <Select
           placeholder={'Select-box'}
           ariaLabel={'Food selector'}
+          label={'Select'}
           selectItems={[
-            { id: '1', value: 'apple', title: 'Apple' },
-            { id: '2', value: 'banana', title: 'Banana' },
-            { id: '3', value: 'blueberry', title: 'Blueberry' },
-            { id: '4', value: 'grapes', title: 'Grapes' },
-            { id: '5', value: 'pineapple', title: 'Pineapple' },
+            { id: '1', value: 'apple', title: 'Apple', disabled: true },
+            { id: '2', value: 'banana', title: 'Banana', disabled: false },
+            { id: '3', value: 'blueberry', title: 'Blueberry', disabled: false },
+            { id: '4', value: 'grapes', title: 'Grapes', disabled: true },
+            { id: '5', value: 'pineapple', title: 'Pineapple', disabled: false },
           ]}
+          disabled={false}
+          callback={onSelectChange}
         />
         <div
           style={{
@@ -136,6 +148,14 @@ export function App() {
             // background: 'gray',
           }}
         ></div>
+        <div
+          style={{
+            background: 'purple',
+            padding: '100px',
+          }}
+        >
+          <Table />
+        </div>
       </div>
     </div>
   )

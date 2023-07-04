@@ -14,8 +14,16 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    id: 'input',
-    label: 'Default',
-    placeholder: 'Input',
+    selectItems: [
+      { id: '1', value: 'apple', title: 'Apple', disabled: false },
+      { id: '2', value: 'banana', title: 'Banana', disabled: true },
+      { id: '3', value: 'blueberry', title: 'Blueberry', disabled: false },
+      { id: '4', value: 'grapes', title: 'Grapes', disabled: false },
+      { id: '5', value: 'pineapple', title: 'Pineapple', disabled: true },
+    ],
+    placeholder: 'Select-box',
+    ariaLabel: 'Food selector',
+    label: 'Select',
+    disabled: false,
   },
 }

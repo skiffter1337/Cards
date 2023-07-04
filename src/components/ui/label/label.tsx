@@ -6,7 +6,7 @@ type LabelPropsType = {
   title: string
   classname?: string
   variant: TypographyType
-  htmlFor: string
+  htmlFor?: string
 }
 export const Label: FC<LabelPropsType> = ({ title, variant, classname, htmlFor }) => {
   return (
