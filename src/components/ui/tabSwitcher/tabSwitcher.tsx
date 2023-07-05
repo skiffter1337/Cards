@@ -2,7 +2,6 @@ import { FC } from 'react'
 
 import * as Tabs from '@radix-ui/react-tabs'
 
-import { Label } from '../label/label.tsx'
 import { Typography } from '../typography'
 
 import s from './tabSwitcher.module.scss'
@@ -30,7 +29,9 @@ export const TabSwitcher: FC<TabSwitcherPropsType> = ({
 }) => {
   return (
     <>
-      <Label title={label} htmlFor={''} variant={'body2'} classname={s.label} />
+      <Typography variant={'body2'} className={s.label}>
+        {label}
+      </Typography>
       <Tabs.Root className={s.root} defaultValue={defaultValue} onValueChange={callback}>
         <Tabs.List className={s.list} aria-label={ariaLabel}>
           {tabs.map(tab => (
@@ -40,7 +41,7 @@ export const TabSwitcher: FC<TabSwitcherPropsType> = ({
               value={tab.value}
               disabled={tab.disabled}
             >
-              <Typography variant={'body1'} className={s.trigger_text}>
+              <Typography as={'label'} variant={'body1'} className={s.trigger_text}>
                 {tab.title}
               </Typography>
             </Tabs.Trigger>

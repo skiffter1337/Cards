@@ -1,12 +1,14 @@
 import { ChangeEvent, useState } from 'react'
 
 import { Header } from './components/header'
+import { CheckboxItem } from './components/ui/checkbox'
 import { Input } from './components/ui/input'
 import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
 import { Table } from './components/ui/table/table.tsx'
 import { TabSwitcher } from './components/ui/tabSwitcher'
+import AvatarImg from './images/png/Ellipse 54.png'
 
 export function App() {
   // useState and onClickHandler are temporary logic to test UI
@@ -30,8 +32,13 @@ export function App() {
   // input test logic
 
   // slider test logic
+
+  const [sliderValues, setSliderValues] = useState<[number, number]>([18, 100])
+
+  const changeSliderValues = (values: [number, number]) => setSliderValues(values)
+
   const showSliderValues = (values: [number, number]) => {
-    console.log(values)
+    console.log(`Slider values are: ${values}`)
   }
   // slider test logic
 
@@ -49,6 +56,15 @@ export function App() {
 
   // radio test logic
 
+  //checkbox logic test
+  const [checked, setChecked] = useState(false)
+
+  const onCheckedChange = (checked: boolean) => setChecked(checked)
+
+  console.log(checked)
+
+  //checkbox logic test
+
   // select test logic
   const onSelectChange = () => {
     console.log('select changed')
@@ -57,7 +73,13 @@ export function App() {
   // select test logic
   return (
     <div style={{ background: 'black' }}>
-      <Header isLoggedIn={isLoggedIn} changeIsLoggedIn={changeIsLoggedIn} />
+      <Header
+        isLoggedIn={isLoggedIn}
+        changeIsLoggedIn={changeIsLoggedIn}
+        email={'example@gmail.com'}
+        userName={'Ivan'}
+        avatar={AvatarImg}
+      />
       <div
         style={{
           display: 'flex',
@@ -90,7 +112,17 @@ export function App() {
             alignItems: 'center',
           }}
         >
-          <Slider min={18} max={100} step={1} onValueCommit={showSliderValues} />
+          <Slider
+            min={18}
+            max={100}
+            step={1}
+            sliderValues={sliderValues}
+            onValueCommit={showSliderValues}
+            changeSliderValues={changeSliderValues}
+          />
+        </div>
+        <div>
+          <CheckboxItem onChange={onCheckedChange} checked={checked} label={'Check me'} />
         </div>
         <div
           style={{

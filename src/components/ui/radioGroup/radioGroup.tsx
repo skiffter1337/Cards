@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import * as RadioGroupRadix from '@radix-ui/react-radio-group'
 
-import { Label } from '../label/label.tsx'
+import { Typography } from '../typography'
 
 import s from './radioGroup.module.scss'
 
@@ -46,12 +46,14 @@ export const RadioGroup: FC<RadioGroupPropsType> = ({
                 <RadioGroupRadix.Indicator className={s.indicator} />
               </RadioGroupRadix.Item>
             </div>
-            <Label
-              title={radio.title}
+            <Typography
+              as={'label'}
               variant={'body2'}
-              classname={`${s.label} ${radio.disabled ? s.disabled : ''}`}
+              className={`${s.label} ${radio.disabled ? s.disabled : ''}`}
               htmlFor={radio.id}
-            />
+            >
+              {radio.title}
+            </Typography>
           </div>
         )
       })}

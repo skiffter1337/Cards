@@ -1,10 +1,9 @@
-import { ChangeEvent, ComponentProps, ReactNode, useState } from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, ReactNode, useState } from 'react'
 
 import { Close } from '../../../images/svg/icons/close'
 import { EyeOffOutlined } from '../../../images/svg/icons/eyeOffOutlined'
 import { EyeOutlined } from '../../../images/svg/icons/eyeOutlined'
 import { Search } from '../../../images/svg/icons/search'
-import { Label } from '../label/label.tsx'
 import { Typography } from '../typography'
 
 import s from './input.module.scss'
@@ -17,13 +16,13 @@ export type InputPropsType = {
   iconEnd?: ReactNode
   type?: 'text' | 'password'
   onClearClick?: () => void
-  onChange: (text: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (text: ChangeEvent<HTMLInputElement>) => void
   value?: string
   disabled?: boolean
   placeholder?: string
   error?: boolean
   id: string
-} & ComponentProps<'input'>
+} & ComponentPropsWithoutRef<'input'>
 
 export const Input: React.FC<InputPropsType> = ({
   label,
@@ -43,7 +42,7 @@ export const Input: React.FC<InputPropsType> = ({
 }) => {
   // test logic
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event)
+    onChange?.(event)
   }
   // test logic
 
@@ -89,12 +88,14 @@ export const Input: React.FC<InputPropsType> = ({
     <div>
       {label && (
         <div>
-          <Label
-            title={label}
+          <Typography
+            as={'label'}
             variant={'body2'}
-            classname={`${s.label} ${disabled ? s.disabled : ''}`}
-            htmlFor={'test'}
-          />
+            className={`${s.label} ${disabled ? s.disabled : ''}`}
+            htmlFor={id}
+          >
+            {label}
+          </Typography>
         </div>
       )}
       <div className={s.container}>

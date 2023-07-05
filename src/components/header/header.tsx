@@ -1,6 +1,5 @@
 import { FC } from 'react'
 
-import AvatarImg from '../../images/png/Ellipse 54.png'
 import { Logo } from '../../images/svg/incubator'
 import { Button } from '../ui/button'
 import { Dropdown } from '../ui/dropdown'
@@ -12,8 +11,17 @@ import s from './header.module.scss'
 type HeaderPropsType = {
   isLoggedIn: boolean
   changeIsLoggedIn: () => void
+  userName: string
+  email: string
+  avatar: string
 }
-export const Header: FC<HeaderPropsType> = ({ isLoggedIn, changeIsLoggedIn }) => {
+export const Header: FC<HeaderPropsType> = ({
+  isLoggedIn,
+  changeIsLoggedIn,
+  userName,
+  email,
+  avatar,
+}) => {
   return (
     <div className={s.header}>
       <div className={s.container}>
@@ -23,9 +31,9 @@ export const Header: FC<HeaderPropsType> = ({ isLoggedIn, changeIsLoggedIn }) =>
         {isLoggedIn ? (
           <Dropdown
             changeIsLoggedIn={changeIsLoggedIn}
-            email={'example@gmail.com'}
-            userName={'Ivan'}
-            avatar={AvatarImg}
+            email={email}
+            userName={userName}
+            avatar={avatar}
           />
         ) : (
           <Button variant="primary" onClick={changeIsLoggedIn}>

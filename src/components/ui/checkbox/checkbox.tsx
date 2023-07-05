@@ -3,16 +3,16 @@ import { FC } from 'react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 
 import { Check } from '../../../images/svg/icons/check'
-import { Label } from '../label/label.tsx'
+import { Typography } from '../typography'
 
 import s from './checkbox.module.scss'
 
-type CheckBoxPropsType = {
+export type CheckBoxPropsType = {
   label?: string
   checked?: boolean
   required?: boolean
   disabled?: boolean
-  onChange?: () => void
+  onChange: (checked: boolean) => void
 }
 export const CheckboxItem: FC<CheckBoxPropsType> = ({
   label,
@@ -29,7 +29,7 @@ export const CheckboxItem: FC<CheckBoxPropsType> = ({
           defaultChecked
           id="c1"
           checked={checked}
-          onChange={onChange}
+          onCheckedChange={onChange}
           disabled={disabled}
           required={required}
         >
@@ -41,12 +41,15 @@ export const CheckboxItem: FC<CheckBoxPropsType> = ({
           </Checkbox.Indicator>
         </Checkbox.Root>
       </div>
-      <Label
+      <Typography
+        as={'label'}
         title={label ?? ''}
         htmlFor={'c1'}
         variant={'body2'}
-        classname={`${s.label} ${disabled ? s.disabled : ''}`}
-      />
+        className={`${s.label} ${disabled ? s.disabled : ''}`}
+      >
+        {label ?? ''}
+      </Typography>
     </div>
   )
 }

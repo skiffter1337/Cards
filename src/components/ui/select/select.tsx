@@ -3,7 +3,6 @@ import { FC, ReactNode, useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 
-import { Label } from '../label'
 import { Typography } from '../typography'
 
 import s from './select.module.scss'
@@ -47,11 +46,9 @@ export const Select: FC<SelectPropsType> = ({
     <>
       <div>
         {label && (
-          <Label
-            title={label}
-            variant={'body1'}
-            classname={`${s.label} ${disabled ? s.disabled : ''}`}
-          />
+          <Typography variant={'body2'} className={`${s.label} ${disabled ? s.disabled : ''}`}>
+            {label}
+          </Typography>
         )}
       </div>
       <SelectRadix.Root onOpenChange={onChangeHandler} disabled={disabled} onValueChange={callback}>

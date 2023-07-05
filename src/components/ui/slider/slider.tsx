@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 
 import * as SliderRadix from '@radix-ui/react-slider'
 
@@ -10,13 +10,21 @@ type SliderPropsType = {
   min: number
   max: number
   step: number
+  sliderValues: [number, number]
   onValueCommit: (values: [number, number]) => void
+  changeSliderValues: (values: [number, number]) => void
 }
-export const Slider: FC<SliderPropsType> = ({ min, max, step, onValueCommit }) => {
-  const [sliderValues, setSliderValues] = useState<[number, number]>([min, max])
 
+export const Slider: FC<SliderPropsType> = ({
+  min,
+  max,
+  step,
+  sliderValues,
+  onValueCommit,
+  changeSliderValues,
+}) => {
   const changeSliderValuesHandler = (values: [number, number]) => {
-    setSliderValues(values)
+    changeSliderValues(values)
   }
 
   return (
@@ -27,7 +35,7 @@ export const Slider: FC<SliderPropsType> = ({ min, max, step, onValueCommit }) =
       <SliderRadix.Root
         minStepsBetweenThumbs={1}
         className={s.root}
-        defaultValue={sliderValues}
+        defaultValue={[min, max]}
         min={min}
         max={max}
         step={step}
