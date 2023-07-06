@@ -13,6 +13,7 @@ export type CheckBoxPropsType = {
   required?: boolean
   disabled?: boolean
   onChange: (checked: boolean) => void
+  className?: string
 }
 export const CheckboxItem: FC<CheckBoxPropsType> = ({
   label,
@@ -20,9 +21,10 @@ export const CheckboxItem: FC<CheckBoxPropsType> = ({
   required,
   disabled,
   onChange,
+  className,
 }) => {
   return (
-    <div className={s.container}>
+    <div className={` ${s.container} ${className} `}>
       <div className={s.wrapper}>
         <Checkbox.Root
           className={s.root}
@@ -46,7 +48,7 @@ export const CheckboxItem: FC<CheckBoxPropsType> = ({
         title={label ?? ''}
         htmlFor={'c1'}
         variant={'body2'}
-        className={`${s.label} ${disabled ? s.disabled : ''}`}
+        className={`${s.label} ${disabled ? s.disabled : ''} ${className ? s[className] : ''}`}
       >
         {label ?? ''}
       </Typography>

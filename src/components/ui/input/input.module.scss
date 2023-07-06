@@ -2,7 +2,6 @@
 
 .container {
   position: relative;
-  display: inline-block;
 
   .input {
     @include mixins.text-styles(
@@ -16,7 +15,7 @@
     all: unset;
 
     box-sizing: border-box;
-    max-width: 284px;
+    width: 100%;
     padding: 6px 36px 6px 12px;
 
     color: var(--color-dark-100);

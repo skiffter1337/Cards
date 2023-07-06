@@ -1,0 +1,64 @@
+@use 'src/styles/mixins';
+
+.card {
+  max-width: 420px;
+  padding: 33px 36px 29px;
+}
+
+.title {
+  margin-bottom: 27px;
+  color: var(--color-light-100);
+  text-align: center;
+}
+
+.text_field {
+  margin-bottom: 24px;
+}
+
+.text_field:not(:first-of-type) {
+  margin-bottom: 12px;
+}
+
+.checkbox {
+  margin-bottom: 12px;
+  margin-left: -10px;
+}
+
+.forgot_password_block {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 66px;
+
+  .forgot_password {
+    color: var(--color-light-100);
+  }
+}
+
+.submit_button {
+  margin-bottom: 20px;
+
+  .submit_button_text {
+    color: var(--color-light-100);
+  }
+}
+
+.dont_have_account {
+  margin-bottom: 11px;
+  color: var(--color-light-900);
+  text-align: center;
+}
+
+.sign_up_button_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign_up_button {
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.5rem;
+  text-decoration-line: underline;
+  text-decoration-skip-ink: none;
+}

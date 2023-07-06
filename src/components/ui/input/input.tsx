@@ -22,6 +22,7 @@ export type InputPropsType = {
   placeholder?: string
   error?: boolean
   id: string
+  className?: string
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input: React.FC<InputPropsType> = ({
@@ -38,6 +39,7 @@ export const Input: React.FC<InputPropsType> = ({
   disabled,
   placeholder,
   id,
+  className,
   ...rest
 }) => {
   // test logic
@@ -85,38 +87,40 @@ export const Input: React.FC<InputPropsType> = ({
   const inputType = showPass ? 'text' : type
 
   return (
-    <div>
-      {label && (
-        <div>
-          <Typography
-            as={'label'}
-            variant={'body2'}
-            className={`${s.label} ${disabled ? s.disabled : ''}`}
-            htmlFor={id}
-          >
-            {label}
-          </Typography>
+    <div className={className}>
+      <div>
+        {label && (
+          <div>
+            <Typography
+              as={'label'}
+              variant={'body2'}
+              className={`${s.label} ${disabled ? s.disabled : ''}`}
+              htmlFor={id}
+            >
+              {label}
+            </Typography>
+          </div>
+        )}
+        <div className={`${s.container}`}>
+          {!!iconStart && <span className={s.icon_start}>{iconStart}</span>}
+          <input
+            value={value}
+            onChange={onChangeHandler}
+            type={inputType}
+            className={` ${s.input}  ${showError ? s.error : ''} ${search ? s.search : ''} `}
+            placeholder={placeholder}
+            disabled={disabled}
+            id={id}
+            {...rest}
+          />
+          {!!iconEnd && <span className={s.icon_end}>{iconEnd}</span>}
         </div>
-      )}
-      <div className={s.container}>
-        {!!iconStart && <span className={s.icon_start}>{iconStart}</span>}
-        <input
-          value={value}
-          onChange={onChangeHandler}
-          type={inputType}
-          className={`${s.input} ${showError ? s.error : ''} ${search ? s.search : ''}`}
-          placeholder={placeholder}
-          disabled={disabled}
-          id={id}
-          {...rest}
-        />
-        {!!iconEnd && <span className={s.icon_end}>{iconEnd}</span>}
+        {showError && (
+          <Typography variant={'error'} className={s.error_message}>
+            {errorMessage}
+          </Typography>
+        )}
       </div>
-      {showError && (
-        <Typography variant={'error'} className={s.error_message}>
-          {errorMessage}
-        </Typography>
-      )}
     </div>
   )
 }

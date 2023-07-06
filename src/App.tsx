@@ -89,19 +89,19 @@ export function App() {
           alignItems: 'center',
         }}
       >
-        <div>
-          <Input
-            value={value}
-            label={'Input'}
-            error={false}
-            search={true}
-            disabled={false}
-            placeholder={'Input'}
-            onChange={onChangeHandler}
-            onClearClick={clearInputValue}
-            id={'test'}
-          />
-        </div>
+        <Input
+          type={'password'}
+          //search={true}
+          value={value}
+          label={'Input'}
+          error={false}
+          disabled={false}
+          placeholder={'Input'}
+          onChange={onChangeHandler}
+          onClearClick={clearInputValue}
+          id={'test'}
+        />
+
         <div
           style={{
             margin: '100px',
