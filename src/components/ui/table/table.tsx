@@ -1,21 +1,22 @@
-import { useMemo, useState } from 'react'
+import { FC } from 'react'
 
 import { Pagination } from '../pagination'
+import { usePaginationValues } from '../pagination/usePaginationValues/usePaginationValues.ts'
 
-import data from './data/mock-data.json'
+type TableType = {
+  data: TableDataType[]
+}
+export type TableDataType = {
+  id: number
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+}
+export const Table: FC<TableType> = ({ data }) => {
+  const { currentTableData, setCurrentPage, setPageSize, pageSize, currentPage } =
+    usePaginationValues(data, 1, 10)
 
-export const Table = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [pageSize, setPageSize] = useState<number>(10)
-
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * pageSize
-    const lastPageIndex = firstPageIndex + pageSize
-
-    return data.slice(firstPageIndex, lastPageIndex)
-  }, [currentPage])
-
-  // To Do: Add rerender when pageSize changing
   return (
     <>
       <table style={{ width: '600px', marginBottom: '60px' }}>
@@ -29,12 +30,12 @@ export const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {currentTableData.map(item => {
+          {currentTableData.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{item.id}</td>
-                <td>{item.first_name}</td>
-                <td>{item.last_name}</td>
+                <td>{item.firstName}</td>
+                <td>{item.lastName}</td>
                 <td>{item.email}</td>
                 <td>{item.phone}</td>
               </tr>

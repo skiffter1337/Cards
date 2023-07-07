@@ -8,8 +8,8 @@ import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
 import { Table } from './components/ui/table/table.tsx'
 import { TabSwitcher } from './components/ui/tabSwitcher'
+import data from './data/mock-data.json'
 import AvatarImg from './images/png/Ellipse 54.png'
-
 export function App() {
   // useState and onClickHandler are temporary logic to test UI
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -186,7 +186,7 @@ export function App() {
             padding: '100px',
           }}
         >
-          <Table />
+          <Table data={data} />
         </div>
       </div>
     </div>

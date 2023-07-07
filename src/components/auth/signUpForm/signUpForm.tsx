@@ -1,37 +1,13 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
 import { Typography } from '../../ui/typography'
 
 import s from './signUpForm.module.scss'
+import { useSignUpFrom } from './useSignUpFrom.ts'
 
-const schema = z
-  .object({
-    email: z.string().trim().email('Invalid email').nonempty('Enter email'),
-    password: z
-      .string()
-      .trim()
-      .nonempty('Enter password')
-      .min(8, 'Password must be at least 8 symbols'),
-    confirmPassword: z.string().trim().min(8),
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'The passwords did not match',
-    path: ['confirmPassword'],
-  })
-
-type Form = z.infer<typeof schema>
 export const SignUpForm = () => {
-  const { handleSubmit, control, formState } = useForm<Form>({
-    resolver: zodResolver(schema),
-    mode: 'onSubmit',
-  })
-
-  console.log(formState.errors)
+  const { handleSubmit, control } = useSignUpFrom()
   const onSubmit = handleSubmit(data => console.log(data))
 
   return (

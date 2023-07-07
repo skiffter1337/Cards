@@ -1,9 +1,5 @@
 import { FC, useState } from 'react'
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { Logout } from '../../../images/svg/icons/logout'
 import { Button } from '../../ui/button'
@@ -12,6 +8,7 @@ import { ControlledInput } from '../../ui/controlled'
 import { Typography } from '../../ui/typography'
 
 import s from './editProfile.module.scss'
+import { useEditProfile } from './useEditProfile.ts'
 
 type EditProfilePropsType = {
   avatar: string
@@ -19,29 +16,14 @@ type EditProfilePropsType = {
   email: string
 }
 
-const schema = z.object({
-  nickName: z
-    .string()
-    .trim()
-    .nonempty('Enter nickname')
-    .min(3, 'Nickname must be at least 8 symbols'),
-})
-
-type Form = z.infer<typeof schema>
 export const EditProfile: FC<EditProfilePropsType> = ({ avatar, userName, email }) => {
-  const { handleSubmit, control } = useForm<Form>({
-    resolver: zodResolver(schema),
-    mode: 'onSubmit',
-  })
-
+  const { handleSubmit, control } = useEditProfile()
   const onSubmit = handleSubmit(data => {
     setEditMode(false)
     console.log(data)
   })
 
   const [editMode, setEditMode] = useState<boolean>(false)
-
-  console.log(editMode)
 
   return (
     <Card className={s.card}>

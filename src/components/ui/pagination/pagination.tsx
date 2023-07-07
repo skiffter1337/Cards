@@ -1,12 +1,12 @@
 import { FC } from 'react'
 
-import { DOTS, usePagination } from '../../../hooks/usePagination'
 import { KeyboardArrowLeft } from '../../../images/svg/icons/keyboardAwrrowLeft'
 import { KeyBoardArrowRight } from '../../../images/svg/icons/keyboardAwrrowRight'
 import { Select } from '../select'
 import { Typography } from '../typography'
 
 import s from './pagination.module.scss'
+import { DOTS, usePagination } from './usePagination'
 
 export type PaginationPropsType = {
   totalCount: number
@@ -28,7 +28,6 @@ export const Pagination: FC<PaginationPropsType> = ({
 }) => {
   const paginationRange = usePagination({ currentPage, totalCount, siblingCount, pageSize })
 
-  // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || !paginationRange || paginationRange.length < 2) {
     return null
   }

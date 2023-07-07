@@ -1,30 +1,14 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
 import { Typography } from '../../ui/typography'
 
 import s from './createNewPassword.module.scss'
+import { useCreateNewPassword } from './useCreateNewPassword.ts'
 
-const schema = z.object({
-  password: z
-    .string()
-    .trim()
-    .nonempty('Enter password')
-    .min(8, 'Password must be at least 8 symbols'),
-})
-
-type Form = z.infer<typeof schema>
 export const CreateNewPassword = () => {
-  const { handleSubmit, control, formState } = useForm<Form>({
-    resolver: zodResolver(schema),
-    mode: 'onSubmit',
-  })
+  const { handleSubmit, control } = useCreateNewPassword()
 
-  console.log(formState.errors)
   const onSubmit = handleSubmit(data => console.log(data))
 
   return (

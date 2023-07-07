@@ -1,31 +1,13 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
-import { ControlledInput } from '../../ui/controlled'
-import { ControlledCheckbox } from '../../ui/controlled/controlledCheckbox.tsx'
+import { ControlledInput, ControlledCheckbox } from '../../ui/controlled'
 import { Typography } from '../../ui/typography'
 
 import s from './loginForm.module.scss'
+import { useLoginForm } from './useLoginForm.ts'
 
-const schema = z.object({
-  email: z.string().trim().email('Invalid email').nonempty('Enter email'),
-  password: z
-    .string()
-    .trim()
-    .nonempty('Enter password')
-    .min(8, 'Password must be at least 8 symbols'),
-  rememberMe: z.boolean().optional(),
-})
-
-type Form = z.infer<typeof schema>
 export const LoginForm = () => {
-  const { handleSubmit, control, formState } = useForm<Form>({
-    resolver: zodResolver(schema),
-    mode: 'onSubmit',
-  })
+  const { handleSubmit, control } = useLoginForm()
 
   const onSubmit = handleSubmit(data => console.log(data))
 
