@@ -5,35 +5,29 @@ import { z } from 'zod'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
-import { ControlledCheckbox } from '../../ui/controlled/controlledCheckbox.tsx'
 import { Typography } from '../../ui/typography'
 
-import s from './loginForm.module.scss'
+import s from './forgotPasswordForm.module.scss'
 
 const schema = z.object({
   email: z.string().trim().email('Invalid email').nonempty('Enter email'),
-  password: z
-    .string()
-    .trim()
-    .nonempty('Enter password')
-    .min(8, 'Password must be at least 8 symbols'),
-  rememberMe: z.boolean().optional(),
 })
 
 type Form = z.infer<typeof schema>
-export const LoginForm = () => {
+export const ForgotPasswordForm = () => {
   const { handleSubmit, control, formState } = useForm<Form>({
     resolver: zodResolver(schema),
     mode: 'onSubmit',
   })
 
+  console.log(formState.errors)
   const onSubmit = handleSubmit(data => console.log(data))
 
   return (
     <>
       <Card className={s.card}>
         <Typography variant={'large'} className={s.title}>
-          Sign In
+          Forgot your password?
         </Typography>
 
         <form onSubmit={onSubmit}>
@@ -44,42 +38,24 @@ export const LoginForm = () => {
             name={'email'}
             className={s.text_field}
           />
-          <ControlledInput
-            id={'password'}
-            label={'Password'}
-            type={'password'}
-            control={control}
-            name={'password'}
-            className={s.text_field}
-          />
-          <ControlledCheckbox
-            label={'Remember me'}
-            name={'rememberMe'}
-            control={control}
-            className={s.checkbox}
-          />
-          {/*link*/}
-          <div className={s.forgot_password_block}>
-            <Button variant={'link'}>
-              <Typography variant={'body2'} className={s.forgot_password}>
-                Forgot password?
-              </Typography>
-            </Button>
+          <div>
+            <Typography variant={'body2'} className={s.hint}>
+              Enter your email address and we will send you further instructions
+            </Typography>
           </div>
-          {/*link*/}
           <Button type={'submit'} fullWidth={true} className={s.submit_button}>
             <Typography variant={'subtitle2'} className={s.submit_button_text}>
-              Sign in
+              Send Instructions
             </Typography>
           </Button>
-          <Typography variant={'body2'} className={s.dont_have_account}>
-            {`Don't have an account?`}
+          <Typography variant={'body2'} className={s.remember_password}>
+            {'Did you remember your password?'}
           </Typography>
           {/*link*/}
-          <div className={s.sign_up_button_container}>
+          <div className={s.try_login_button_container}>
             <Button variant={'link'}>
-              <Typography variant={'subtitle1'} className={s.sign_up_button_text}>
-                Sign up
+              <Typography variant={'subtitle1'} className={s.try_login_button_text}>
+                Try logging in
               </Typography>
             </Button>
           </div>

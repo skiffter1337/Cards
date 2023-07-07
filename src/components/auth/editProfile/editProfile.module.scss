@@ -1,0 +1,97 @@
+@use 'src/styles/mixins';
+
+.card {
+  max-width: 420px;
+  padding: 33px 0 41px;
+
+  .title {
+    margin-bottom: 27px;
+    color: var(--color-light-100);
+    text-align: center;
+  }
+
+  .user_avatar_block {
+    @include mixins.flex(row, center, center);
+
+    margin-bottom: 6px;
+
+    .user_avatar_container {
+      @include mixins.flex(row, center, center);
+
+      position: relative;
+
+      .user_avatar {
+        width: 96px;
+        height: 96px;
+      }
+    }
+
+    .edit_image_icon_wrapper {
+      @include mixins.flex(row, center, center);
+
+      cursor: pointer;
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      width: 24px;
+      height: 24px;
+
+      background: var(--color-dark-300);
+      border-radius: 4px;
+      box-shadow: 0 2px 10px 0 rgb(109 109 109 / 25%);
+
+      &.disabled {
+        display: none;
+      }
+    }
+  }
+
+  .user_name_block {
+    @include mixins.flex(row, center, center);
+
+    .user_name_container {
+      position: relative;
+
+      .user_name {
+        color: var(--color-light-100);
+      }
+
+      .edit_name_icon {
+        cursor: pointer;
+
+        position: absolute;
+        top: 50%;
+        right: -25px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  .email {
+    margin-bottom: 13px;
+    color: var(--color-dark-100);
+    text-align: center;
+  }
+
+  .button_block {
+    @include mixins.flex(row, center, center);
+  }
+
+  .button_text {
+    color: var(--color-light-100);
+  }
+}
+
+.file {
+  display: none;
+}
+
+.form {
+  padding: 0 36px 43px;
+
+  .text_field {
+    margin-bottom: 36px;
+  }
+}

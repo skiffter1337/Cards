@@ -6,6 +6,6 @@ type CardPropsType = {
   className?: string
   children: ReactNode
 } & ComponentPropsWithoutRef<'div'>
-export const Card: FC<CardPropsType> = ({ className, children, ...rest }) => {
+export const Card: FC<CardPropsType> = ({ className, children }) => {
   return <div className={`${s.card} ${className ?? ''}`}>{children}</div>
 }
