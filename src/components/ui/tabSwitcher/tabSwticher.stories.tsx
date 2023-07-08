@@ -15,9 +15,11 @@ export const TabSwitcherDefault: Story = {
   args: {
     label: 'Title',
     tabs: [
-      { value: 'tab1', text: 'Switcher', disabled: false },
-      { value: 'tab2', text: 'Switcher', disabled: false },
-      { value: 'tab3', text: 'Switcher', disabled: false },
+      { value: 'tab1', title: 'Switcher', disabled: false },
+      { value: 'tab2', title: 'Switcher', disabled: false },
+      { value: 'tab3', title: 'Switcher', disabled: false },
     ],
+    ariaLabel: 'Tabs',
+    defaultValue: 'tab2',
   },
 }

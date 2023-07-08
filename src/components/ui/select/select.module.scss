@@ -35,6 +35,10 @@
     color: var(--color-light-100);
   }
 
+  .disabled {
+    color: var(--color-dark-300);
+  }
+
   &.large {
     width: 100%;
     max-width: 210px;

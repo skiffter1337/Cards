@@ -95,7 +95,7 @@ export const Pagination: FC<PaginationPropsType> = ({
               { id: '3', value: '30', title: '30', disabled: false },
               { id: '4', value: '40', title: '40', disabled: false },
               { id: '5', value: '50', title: '50', disabled: false },
-              { id: '5', value: '100', title: '100', disabled: false },
+              { id: '6', value: '100', title: '100', disabled: false },
             ]}
             size={'small'}
             callback={onPageSizeChangeHandler}

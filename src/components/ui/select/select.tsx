@@ -1,8 +1,9 @@
 import { FC, ReactNode, useState } from 'react'
 
-import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 
+import { ArrowDown } from '../../../images/svg/icons/arrowDown'
+import { ArrowUp } from '../../../images/svg/icons/arrowUp'
 import { Typography } from '../typography'
 
 import s from './select.module.scss'
@@ -56,14 +57,15 @@ export const Select: FC<SelectPropsType> = ({
           className={`${s.trigger}  ${!isOpen && s.opened} ${size && s[size]}`}
           aria-label={ariaLabel}
         >
-          <SelectRadix.Value placeholder={placeholderValue} />
+          <SelectRadix.Value
+            placeholder={placeholderValue}
+            className={disabled ? s.disabled : ''}
+          />
           <SelectRadix.Icon className={s.icon}>
             {isOpen ? (
-              <ChevronDownIcon
-                color={disabled ? 'var(--color-dark-300)' : 'var(--color-light-100)'}
-              />
+              <ArrowDown color={disabled ? 'var(--color-dark-300)' : 'var(--color-light-100)'} />
             ) : (
-              <ChevronUpIcon />
+              <ArrowUp />
             )}
           </SelectRadix.Icon>
         </SelectRadix.Trigger>

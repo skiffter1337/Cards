@@ -7,6 +7,7 @@ import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
 import { Table } from './components/ui/table/table.tsx'
+import { TableHeadRow } from './components/ui/tables/tableHeadRow'
 import { TabSwitcher } from './components/ui/tabSwitcher'
 import data from './data/mock-data.json'
 import AvatarImg from './images/png/Ellipse 54.png'
@@ -71,6 +72,15 @@ export function App() {
   }
 
   // select test logic
+
+  // TableHeadRow test logic
+
+  const [currentSort, setCurrentSort] = useState<'sortUp' | 'sortDown'>('sortUp')
+  const onClickSortHandler = () => {
+    currentSort === 'sortUp' ? setCurrentSort('sortDown') : setCurrentSort('sortUp')
+  }
+
+  // TableHeadRow test logic
   return (
     <div style={{ background: 'black' }}>
       <Header
@@ -189,6 +199,12 @@ export function App() {
           <Table data={data} />
         </div>
       </div>
+      <TableHeadRow
+        title={'Name'}
+        withIcon={true}
+        callback={onClickSortHandler}
+        currentSort={currentSort}
+      />
     </div>
   )
 }
