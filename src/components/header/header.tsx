@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { Logout } from '../../images/svg/icons/logout'
+import { ProfileIcon } from '../../images/svg/icons/profile'
 import { Logo } from '../../images/svg/incubator'
 import { Button } from '../ui/button'
 import { Dropdown } from '../ui/dropdown'
@@ -30,10 +32,22 @@ export const Header: FC<HeaderPropsType> = ({
         </div>
         {isLoggedIn ? (
           <Dropdown
-            changeIsLoggedIn={changeIsLoggedIn}
             email={email}
             userName={userName}
             avatar={avatar}
+            showUserBlock={true}
+            menuItems={[
+              {
+                icon: <ProfileIcon />,
+                text: 'My profile',
+                onClick: () => {},
+              },
+              {
+                icon: <Logout />,
+                text: 'Sign out',
+                onClick: changeIsLoggedIn,
+              },
+            ]}
           />
         ) : (
           <Button variant="primary" onClick={changeIsLoggedIn}>

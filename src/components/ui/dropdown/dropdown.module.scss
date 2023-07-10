@@ -1,79 +1,9 @@
 @use 'src/styles/mixins';
 
-.menu_content {
-  @include mixins.flex(column);
-
-  gap: 12px;
-
-  padding: 12px;
-
-  color: var(--color-light-100);
-
-  background-color: var(--color-dark-700);
-  border: 1px solid var(--color-dark-100);
-  border-radius: 4px;
-
-  .menu_block {
-    @include mixins.flex(column, flex-start, flex-start);
-
-    gap: 12px;
-
-    .menu_user_block {
-      @include mixins.flex(row, center, center);
-
-      gap: 10px;
-      color: var(--color-light-100);
-
-      .menu_user_avatar {
-        @include mixins.flex(null, flex-end);
-      }
-
-      .menu_user_name {
-        & * {
-          color: var(--color-light-100);
-        }
-      }
-
-      .menu_user_email {
-        & * {
-          color: var(--color-dark-100);
-        }
-      }
-    }
-
-    .menu_separator {
-      width: 12.0625rem;
-      height: 0.0625rem;
-      background-color: var(--color-dark-500);
-    }
-  }
-
-  .menu_arrow_box {
-    fill: var(--color-dark-700);
-    stroke: var(--color-dark-500);
-    stroke-width: 2px;
-  }
-}
-
-.menu_arrow {
-  position: absolute;
-  top: -4px;
-  right: 25px;
-  transform: rotate(45deg);
-
-  width: 7px;
-  height: 7px;
-
-  background-color: var(--color-dark-700);
-  border: 1px solid var(--color-dark-100);
-  border-top: none;
-  border-left: none;
-}
-
-.menu_trigger {
+.trigger {
   all: unset;
 
-  //@include mixins.flex(row, center, center);
+  //@include mixins.flex(column, center, center);
   cursor: pointer;
 
   display: flex;
@@ -87,21 +17,97 @@
   }
 }
 
-.menu_user_info {
-  display: flex;
-  flex-direction: column;
-}
+.content {
+  @include mixins.flex(column);
 
-.menu_item_icon {
-  @include mixins.flex(row, center, center);
+  gap: 12px;
 
-  cursor: pointer;
-  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+
   color: var(--color-light-100);
+
+  background-color: var(--color-dark-700);
+  border: 1px solid var(--color-dark-100);
+  border-radius: 4px;
+
+  .block {
+    @include mixins.flex(column, flex-start, flex-start);
+
+    gap: 12px;
+
+    .user_block {
+      @include mixins.flex(row, center, center);
+
+      gap: 10px;
+      color: var(--color-light-100);
+
+      .user_avatar {
+        @include mixins.flex(null, flex-end);
+      }
+
+      .user_info {
+        display: flex;
+        flex-direction: column;
+
+        .user_name {
+          & * {
+            color: var(--color-light-100);
+          }
+        }
+
+        .user_email {
+          & * {
+            color: var(--color-dark-100);
+          }
+        }
+      }
+    }
+
+    .separator {
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-dark-500);
+    }
+  }
+
+  .item {
+    &:hover {
+      outline: none;
+    }
+
+    .item_icon {
+      @include mixins.flex(row, center, center);
+
+      cursor: pointer;
+      gap: 10px;
+      color: var(--color-light-100);
+    }
+  }
+
+  .arrow_box {
+    fill: var(--color-dark-700);
+    stroke: var(--color-dark-500);
+    stroke-width: 2px;
+  }
 }
 
-.menu_item {
-  &:hover {
-    outline: none;
+.arrow {
+  position: absolute;
+  top: -4px;
+  right: 25px;
+  transform: rotate(45deg);
+
+  width: 7px;
+  height: 7px;
+
+  background-color: var(--color-dark-700);
+  border: 1px solid var(--color-dark-100);
+  border-top: none;
+  border-left: none;
+
+  &.table_arrow {
+    right: 0;
   }
 }
