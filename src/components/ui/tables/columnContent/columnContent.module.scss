@@ -3,8 +3,17 @@
   padding: 6px 24px;
   border-bottom: 1px solid var(--color-dark-500);
 
-  .values_block {
+  .block {
     display: flex;
     gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    .checkbox {
+    }
+
+    .row_text {
+      color: var(--color-light-100);
+    }
   }
 }

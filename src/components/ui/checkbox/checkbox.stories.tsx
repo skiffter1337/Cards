@@ -18,10 +18,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const CheckboxDefault: Story = {
-  args: {},
+  args: { size: 'default' },
 }
 export const CheckboxWithLabel: Story = {
   args: {
     label: 'Check me',
+    size: 'default',
   },
 }

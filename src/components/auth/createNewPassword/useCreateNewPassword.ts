@@ -15,6 +15,7 @@ type Form = z.infer<typeof schema>
 export const useCreateNewPassword = () => {
   return useForm<Form>({
     resolver: zodResolver(schema),
+    defaultValues: { password: '' },
     mode: 'onSubmit',
   })
 }

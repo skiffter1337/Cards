@@ -14,6 +14,7 @@ type Form = z.infer<typeof schema>
 export const useEditProfile = () => {
   return useForm<Form>({
     resolver: zodResolver(schema),
+    defaultValues: { nickName: '' },
     mode: 'onSubmit',
   })
 }

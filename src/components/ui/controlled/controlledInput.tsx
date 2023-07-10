@@ -6,19 +6,27 @@ type ControlledInputPropsType<T extends FieldValues> = Omit<
   UseControllerProps<T>,
   'rules' | 'defaultValue'
 > &
-  Omit<InputPropsType, 'onChange' | 'value'>
+  Omit<InputPropsType, 'onChange' | 'value' | 'ref'>
 export const ControlledInput = <T extends FieldValues>({
   control,
   name,
   ...rest
 }: ControlledInputPropsType<T>) => {
   const {
-    field,
+    field: { value, onChange, onBlur },
     fieldState: { error },
   } = useController({
     name,
     control,
   })
 
-  return <Input {...field} {...rest} errorMessage={error?.message} />
+  return (
+    <Input
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+      {...rest}
+      errorMessage={error?.message}
+    />
+  )
 }

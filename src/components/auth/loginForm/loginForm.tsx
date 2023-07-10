@@ -39,6 +39,7 @@ export const LoginForm = () => {
             name={'rememberMe'}
             control={control}
             className={s.checkbox}
+            size={'default'}
           />
           {/*link*/}
           <div className={s.forgot_password_block}>

@@ -3,11 +3,11 @@ import { ChangeEvent, useState } from 'react'
 import { Header } from './components/header'
 import { CheckboxItem } from './components/ui/checkbox'
 import { Input } from './components/ui/input'
+import { PaginationTestTable } from './components/ui/paginationTestTable/paginationTestTable.tsx'
 import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
-import { Table } from './components/ui/table/table.tsx'
-import { TableHeadRow } from './components/ui/tables/tableHeadRow'
+import { ColumnName } from './components/ui/tables/columnName'
 import { TabSwitcher } from './components/ui/tabSwitcher'
 import data from './data/mock-data.json'
 import AvatarImg from './images/png/Ellipse 54.png'
@@ -132,7 +132,13 @@ export function App() {
           />
         </div>
         <div>
-          <CheckboxItem onChange={onCheckedChange} checked={checked} label={'Check me'} />
+          <CheckboxItem
+            onChange={onCheckedChange}
+            disabled={false}
+            checked={checked}
+            label={'Check me'}
+            size={'small'}
+          />
         </div>
         <div
           style={{
@@ -196,10 +202,10 @@ export function App() {
             padding: '100px',
           }}
         >
-          <Table data={data} />
+          <PaginationTestTable data={data} />
         </div>
       </div>
-      <TableHeadRow
+      <ColumnName
         title={'Name'}
         withIcon={true}
         callback={onClickSortHandler}

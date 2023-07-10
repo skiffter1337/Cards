@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 
-import { TableDataType } from '../../table/table.tsx'
+import { TableDataType } from '../../paginationTestTable/paginationTestTable.tsx'
 
 export const usePaginationValues = (
   data: TableDataType[],

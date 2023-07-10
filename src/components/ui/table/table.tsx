@@ -1,55 +1,71 @@
-import { FC } from 'react'
+import { ComponentProps, FC } from 'react'
 
-import { Pagination } from '../pagination'
-import { usePaginationValues } from '../pagination/usePaginationValues/usePaginationValues.ts'
+import { Typography } from '../typography'
 
-type TableType = {
-  data: TableDataType[]
+import s from './table.module.scss'
+
+export type RootProps = ComponentProps<'table'>
+
+export const Root: FC<RootProps> = ({ className, ...rest }) => {
+  const classNames = `${className} ${s.table}`
+
+  return <table className={classNames} {...rest} />
 }
-export type TableDataType = {
-  id: number
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
+
+export type HeadProps = ComponentProps<'thead'>
+
+export const Head: FC<HeadProps> = props => {
+  return <thead {...props} />
 }
-export const Table: FC<TableType> = ({ data }) => {
-  const { currentTableData, setCurrentPage, setPageSize, pageSize, currentPage } =
-    usePaginationValues(data, 1, 10)
+
+export type BodyProps = ComponentProps<'tbody'>
+
+export const Body: FC<BodyProps> = props => {
+  return <tbody {...props} />
+}
+
+export type RowProps = ComponentProps<'tr'>
+
+export const Row: FC<RowProps> = props => {
+  return <tr {...props} />
+}
+
+export type HeadCellProps = ComponentProps<'th'>
+
+export const HeadCell: FC<HeadCellProps> = ({ className, ...rest }) => {
+  const classNames = `${className} ${s.head_cell}`
+
+  return <th className={classNames} {...rest} />
+}
+
+export type CellProps = ComponentProps<'td'>
+
+export const Cell: FC<CellProps> = ({ className, ...rest }) => {
+  const classNames = `${className} ${s.table_cell}`
+
+  return <td className={classNames} {...rest} />
+}
+
+export const Empty: FC<ComponentProps<'div'> & { mt?: string; mb?: string }> = ({
+  className,
+  mt = '89px',
+  mb,
+}) => {
+  const classNames = `${className} ${s.empty}`
 
   return (
-    <>
-      <table style={{ width: '600px', marginBottom: '60px' }}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>EMAIL</th>
-            <th>PHONE</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentTableData.map((item, index) => {
-            return (
-              <tr key={index}>
-                <td>{item.id}</td>
-                <td>{item.firstName}</td>
-                <td>{item.lastName}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      <Pagination
-        currentPage={currentPage}
-        totalCount={data.length}
-        pageSize={pageSize}
-        onPageChange={(page: number) => setCurrentPage(page)}
-        onPageSizeChange={(size: number) => setPageSize(size)}
-      />
-    </>
+    <Typography variant={'h2'} className={classNames} style={{ marginTop: mt, marginBottom: mb }}>
+      Пока тут еще нет данных! :(
+    </Typography>
   )
+}
+
+export const Table = {
+  Root,
+  Head,
+  Body,
+  Row,
+  HeadCell,
+  Cell,
+  Empty,
 }

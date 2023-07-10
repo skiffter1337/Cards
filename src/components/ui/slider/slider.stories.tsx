@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Meta, StoryObj } from '@storybook/react'
+import { Meta } from '@storybook/react'
 
 import { Slider } from './slider.tsx'
 
@@ -16,7 +16,6 @@ const meta = {
 } satisfies Meta<typeof Slider>
 
 export default meta
-type Story = StoryObj<typeof meta>
 
 export const Default = {
   render: () => {

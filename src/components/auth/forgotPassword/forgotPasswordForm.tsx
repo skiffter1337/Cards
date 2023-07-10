@@ -17,6 +17,7 @@ type Form = z.infer<typeof schema>
 export const ForgotPasswordForm = () => {
   const { handleSubmit, control, formState } = useForm<Form>({
     resolver: zodResolver(schema),
+    defaultValues: { email: '' },
     mode: 'onSubmit',
   })
 
