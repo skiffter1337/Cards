@@ -1,9 +1,11 @@
 import { useState } from 'react'
 
+import { Head, TableHeader } from './head/head.tsx'
+import s from './table.module.scss'
 import { Table } from './table.tsx'
 
 export default {
-  title: 'Components/Table',
+  title: 'Tables/Table',
   component: Table,
   tags: ['autodocs'],
   argTypes: {},
@@ -42,36 +44,66 @@ const data = [
   },
 ]
 
-type Sort = {
+export const columns: Column[] = [
+  {
+    key: 'name',
+    title: 'Name',
+    sortable: true,
+  },
+  {
+    key: 'cardsCount',
+    title: 'Cards',
+    sortable: true,
+  },
+  {
+    key: 'updated',
+    title: 'Last Updated',
+    sortable: true,
+  },
+  {
+    key: 'createdBy',
+    title: 'Created by',
+    sortable: true,
+  },
+  {
+    key: 'options',
+    title: '',
+    sortable: false,
+  },
+]
+
+export type Sort = {
   key: string
   direction: 'asc' | 'desc'
 } | null
 
+export type Column = {
+  key: string
+  title: string
+  sortable: boolean
+}
 export const WithSort = {
   render: () => {
+    const [sort, setSort] = useState<Sort>(null)
+    const sortedString = sort ? `${sort.key}-${sort.direction}` : null
+
+    console.log(sort, sortedString)
+
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Cards</th>
-            <th>Last Updated</th>
-            <th>Created by</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table.Root>
+        <TableHeader columns={columns} sort={sort} onSort={setSort} />
+        <Table.Body>
           {data.map(item => (
-            <tr key={item.title}>
-              <td>{item.title}</td>
-              <td>{item.cardsCount}</td>
-              <td>{item.updated}</td>
-              <td>{item.createdBy}</td>
-              <td>icons...</td>
-            </tr>
+            <Table.Row key={item.title}>
+              <Table.Cell>{item.title}</Table.Cell>
+              <Table.Cell>{item.cardsCount}</Table.Cell>
+              <Table.Cell>{item.updated}</Table.Cell>
+              <Table.Cell>{item.createdBy}</Table.Cell>
+              <Table.Cell>icons...</Table.Cell>
+            </Table.Row>
           ))}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table.Root>
     )
   },
 }

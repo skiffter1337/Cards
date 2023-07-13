@@ -2,7 +2,6 @@ import { FC, ReactNode } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
-import { PlayCircle } from '../../../images/svg/icons/playCircle'
 import { Avatar } from '../../header/avatar'
 import { Typography } from '../typography'
 

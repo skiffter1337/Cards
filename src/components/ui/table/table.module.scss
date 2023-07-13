@@ -6,13 +6,15 @@
 }
 
 .head_cell {
+  position: relative;
+
   padding: 6px 24px;
 
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-m);
 
-  background-color: var(--color-bg-dividers);
+  background-color: var(--color-dark-500);
 }
 
 .table_cell {
@@ -29,4 +31,30 @@
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+.title {
+  margin-right: 4px;
+  color: var(--color-light-100);
+}
+
+.head_cell_block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .chevron_down {
+    transform: rotate(180deg);
+  }
 }
