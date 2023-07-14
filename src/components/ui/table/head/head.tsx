@@ -18,26 +18,25 @@ export const TableHeader: FC<
     ComponentPropsWithoutRef<'thead'> & {
       columns: Column[]
       sort?: Sort
-      onSort?: (sort: Sort) => void
+      onSort: (sort: Sort) => void
     },
     'children'
   >
 > = ({ columns, sort, onSort, ...restProps }) => {
-  const handleSort: MouseEventHandler<HTMLTableHeaderCellElement> = event => {
+  const handleSort: MouseEventHandler<HTMLTableCellElement> = event => {
     const sortable = event.currentTarget.getAttribute(dataAttributes.sortable)
     const key = event.currentTarget.getAttribute(dataAttributes.name)
 
-    if (key === null) throw new Error('No data-name fround!')
-    if (!onSort || !sortable || sortable !== 'true') return
+    if (key === null) throw new Error('No data-name found!')
+    if (!sortable || sortable !== 'true') return
 
-    if (sort?.key !== key) return onSort({ key, direction: 'asc' })
+    if (key !== sort?.key) {
+      return onSort({ key, direction: 'asc' })
+    }
 
-    if (sort.direction === 'desc') return onSort(null)
+    if (sort.direction === 'asc') return onSort({ key, direction: 'desc' })
 
-    return onSort({
-      key,
-      direction: sort?.direction === 'asc' ? 'desc' : 'asc',
-    })
+    onSort(null)
   }
 
   console.log(sort)
@@ -51,7 +50,7 @@ export const TableHeader: FC<
           [dataAttributes.sortable]: sortable,
           [dataAttributes.name]: key,
         }}
-        key={key}
+        key={title}
         onClick={handleSort}
       >
         <div className={s.head_cell_block}>
@@ -63,7 +62,7 @@ export const TableHeader: FC<
               {sort.direction === 'asc' ? (
                 <ChevronUpIcon color={'var(--color-light-100)'} />
               ) : (
-                <ChevronUpIcon color={'var(--color-light-100)'} className={s.chevron_down} />
+                <ChevronDownIcon color={'var(--color-light-100)'} />
               )}
             </span>
           )}
