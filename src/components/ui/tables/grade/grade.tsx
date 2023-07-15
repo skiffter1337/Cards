@@ -22,6 +22,7 @@ export const Grade: FC<GradePropsType> = memo(({ initialGrade }) => {
   }, [initialGrade])
 
   const handleStarClick = (index: number) => {
+    // @ts-ignore
     const newStarState = starState.map((value, i) => i <= index)
 
     setStarState(newStarState)
