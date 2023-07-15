@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 
-import AvatarImg from '../../../images/png/Ellipse 54.png'
+import AvatarImg from '../../../images/png/avatar.png'
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { Logout } from '../../../images/svg/icons/logout'
 import { PlayCircle } from '../../../images/svg/icons/playCircle'
