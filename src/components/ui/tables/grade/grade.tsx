@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect, memo } from 'react'
 
 import { Star } from '../../../../images/svg/icons/star'
 import { StarOutlined } from '../../../../images/svg/icons/starOutlined'
@@ -6,32 +6,31 @@ import { StarOutlined } from '../../../../images/svg/icons/starOutlined'
 import s from './grade.module.scss'
 
 type GradePropsType = {
-  initialGrade: number
+  initialGrade: 1 | 2 | 3 | 4 | 5
 }
 
-export const Grade: FC<GradePropsType> = ({ initialGrade }) => {
-  const [starState, setStarState] = useState<any>(initialGrade)
+export const Grade: FC<GradePropsType> = memo(({ initialGrade }) => {
+  const [starState, setStarState] = useState<boolean[]>([])
+
+  useEffect(() => {
+    const stars = Array(5).fill(false)
+
+    for (let i = 0; i < initialGrade; i++) {
+      stars[i] = true
+    }
+    setStarState(stars)
+  }, [initialGrade])
 
   const handleStarClick = (index: number) => {
-    const newStarState = [...starState]
-
-    newStarState[index] = !newStarState[index]
-
-    for (let i = index + 1; i < starState.length; i++) {
-      newStarState[i] = false
-    }
-
-    for (let i = 0; i < index; i++) {
-      newStarState[i] = true
-    }
+    const newStarState = starState.map((value, i) => i <= index)
 
     setStarState(newStarState)
   }
 
   return (
     <div className={s.container}>
-      {[1, 2, 3, 4, 5].map((isFilled, index) => {
-        if (isFilled < initialGrade) {
+      {starState.map((isFilled, index) => {
+        if (isFilled) {
           return <Star key={index} onClick={() => handleStarClick(index)} />
         } else {
           return <StarOutlined key={index} onClick={() => handleStarClick(index)} />
@@ -39,4 +38,4 @@ export const Grade: FC<GradePropsType> = ({ initialGrade }) => {
       })}
     </div>
   )
-}
+})

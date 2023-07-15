@@ -3,9 +3,11 @@ import { useMemo, useState } from 'react'
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { PlayCircle } from '../../../images/svg/icons/playCircle'
 import { TrashOutlined } from '../../../images/svg/icons/trashOutlined'
+import { Header } from '../../header'
 import { Grade } from '../tables/grade'
 import { Typography } from '../typography'
 
+import AvatarImg from './../../../images/png/Ellipse 54.png'
 import { TableHeader } from './head/head.tsx'
 import s from './table.module.scss'
 import { Table } from './table.tsx'
@@ -227,16 +229,18 @@ export const columnsFriendsPack: Column[] = [
 export const FriendsPackTable = {
   render: () => {
     const [sort, setSort] = useState<Sort>(null)
-    const [data, setData] = useState<FriendsPackType[]>(friendsPackData)
-    // const sortedString = sort ? `${sort.key}-${sort.direction}` : null
 
-    const sortedData = (key: string) => {
+    const sortedString = sort ? `${sort.key}-${sort.direction}` : null
+
+    console.log(sortedString)
+
+    const sortedData = useMemo(() => {
       if (sort?.key) {
         return [...friendsPackData].sort((a, b) => {
-          if (a[key] < b[key]) {
+          if (a[sort.key] < b[sort.key]) {
             return sort.direction === 'asc' ? -1 : 1
           }
-          if (a[key] > b[key]) {
+          if (a[sort.key] > b[sort.key]) {
             return sort.direction === 'asc' ? 1 : -1
           }
 
@@ -245,19 +249,21 @@ export const FriendsPackTable = {
       }
 
       return friendsPackData
-    }
-
-    const onSortHandler = (sort: Sort) => {
-      setSort(sort)
-      setData(sortedData(sort!.key))
-    }
+    }, [sort?.key, sort?.direction, friendsPackData])
 
     return (
       <>
+        <Header
+          isLoggedIn={true}
+          changeIsLoggedIn={() => {}}
+          userName={'Ivan'}
+          email={'example@mail.ru'}
+          avatar={AvatarImg}
+        />
         <Table.Root className={s.root}>
-          <TableHeader columns={columnsFriendsPack} sort={sort} onSort={onSortHandler} />
+          <TableHeader columns={columnsFriendsPack} sort={sort} onSort={setSort} />
           <Table.Body>
-            {data?.map((item, index) => (
+            {sortedData.map((item, index) => (
               <Table.Row key={`${index}-${item.answer}`} className={s.row}>
                 <Table.Cell className={s.table_cell}>
                   <Typography variant={'body2'} className={s.table_cell_text}>
