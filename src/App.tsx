@@ -10,7 +10,7 @@ import { Slider } from './components/ui/slider'
 import { ColumnName } from './components/ui/tables/columnName'
 import { TabSwitcher } from './components/ui/tabSwitcher'
 import data from './data/mock-data.json'
-import AvatarImg from './images/png/Ellipse 54.png'
+import AvatarImg from './images/png/avatar.png'
 export function App() {
   // useState and onClickHandler are temporary logic to test UI
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
