@@ -3,11 +3,9 @@ import { useMemo, useState } from 'react'
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { PlayCircle } from '../../../images/svg/icons/playCircle'
 import { TrashOutlined } from '../../../images/svg/icons/trashOutlined'
-import { Header } from '../../header'
 import { Grade } from '../tables/grade'
 import { Typography } from '../typography'
 
-import AvatarImg from './../../../images/png/Ellipse 54.png'
 import { TableHeader } from './head/head.tsx'
 import s from './table.module.scss'
 import { Table } from './table.tsx'
@@ -253,13 +251,6 @@ export const FriendsPackTable = {
 
     return (
       <>
-        <Header
-          isLoggedIn={true}
-          changeIsLoggedIn={() => {}}
-          userName={'Ivan'}
-          email={'example@mail.ru'}
-          avatar={AvatarImg}
-        />
         <Table.Root className={s.root}>
           <TableHeader columns={columnsFriendsPack} sort={sort} onSort={setSort} />
           <Table.Body>
