@@ -3,6 +3,7 @@ import { ChangeEvent, useState } from 'react'
 import { Header } from './components/header'
 import { CheckboxItem } from './components/ui/checkbox'
 import { Input } from './components/ui/input'
+import { Modal } from './components/ui/modal/modal.tsx'
 import { PaginationTestTable } from './components/ui/paginationTestTable/paginationTestTable.tsx'
 import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Select } from './components/ui/select'
@@ -196,6 +197,7 @@ export function App() {
             // background: 'gray',
           }}
         ></div>
+        <Modal />
         <div
           style={{
             background: 'purple',
@@ -205,12 +207,6 @@ export function App() {
           <PaginationTestTable data={data} />
         </div>
       </div>
-      <ColumnName
-        title={'Name'}
-        withIcon={true}
-        callback={onClickSortHandler}
-        currentSort={currentSort}
-      />
     </div>
   )
 }
