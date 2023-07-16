@@ -5,7 +5,7 @@ import { Button } from '../button'
 import { Typography } from '../typography'
 
 import s from './modal.module.scss'
-
+//123
 export const Modal = () => {
   return (
     <Dialog.Root>
@@ -17,7 +17,7 @@ export const Modal = () => {
         <Dialog.Content className={s.content}>
           <Dialog.Title className={s.title}>Edit profile</Dialog.Title>
           <Dialog.Description className={s.description}>
-            Make changes to your profile here. Click save when you're done.
+            Make changes to your profile here. Click save when you re done.
           </Dialog.Description>
           <fieldset className={s.fieldset}>
             <label className={s.label} htmlFor="name">
