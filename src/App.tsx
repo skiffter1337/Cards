@@ -3,15 +3,14 @@ import { ChangeEvent, useState } from 'react'
 import { Header } from './components/header'
 import { CheckboxItem } from './components/ui/checkbox'
 import { Input } from './components/ui/input'
-import { Modal } from './components/ui/modal/modal.tsx'
 import { PaginationTestTable } from './components/ui/paginationTestTable/paginationTestTable.tsx'
 import { RadioGroup } from './components/ui/radioGroup/radioGroup.tsx'
 import { Select } from './components/ui/select'
 import { Slider } from './components/ui/slider'
-import { ColumnName } from './components/ui/tables/columnName'
 import { TabSwitcher } from './components/ui/tabSwitcher'
 import data from './data/mock-data.json'
 import AvatarImg from './images/png/avatarSmall.png'
+
 export function App() {
   // useState and onClickHandler are temporary logic to test UI
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -197,7 +196,6 @@ export function App() {
             // background: 'gray',
           }}
         ></div>
-        <Modal />
         <div
           style={{
             background: 'purple',
