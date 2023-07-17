@@ -13,6 +13,7 @@ type SliderPropsType = {
   sliderValues: [number, number]
   onValueCommit: (values: [number, number]) => void
   changeSliderValues: (values: [number, number]) => void
+  label?: string
 }
 
 export const Slider: FC<SliderPropsType> = ({
@@ -22,39 +23,45 @@ export const Slider: FC<SliderPropsType> = ({
   sliderValues,
   onValueCommit,
   changeSliderValues,
+  label,
 }) => {
   const changeSliderValuesHandler = (values: [number, number]) => {
     changeSliderValues(values)
   }
 
   return (
-    <div className={s.container}>
-      <Typography variant={'body1'} className={s.values}>
-        {sliderValues[0]}
+    <>
+      <Typography variant={'body2'} className={s.label}>
+        {label}
       </Typography>
-      <SliderRadix.Root
-        minStepsBetweenThumbs={1}
-        className={s.root}
-        defaultValue={[min, max]}
-        min={min}
-        max={max}
-        step={step}
-        onValueCommit={onValueCommit}
-        onValueChange={changeSliderValuesHandler}
-      >
-        <SliderRadix.Track className={s.track}>
-          <SliderRadix.Range className={s.range} />
-        </SliderRadix.Track>
-        <SliderRadix.Thumb className={s.thumb} aria-label="Slider">
-          <div className={s.thumb_inner} />
-        </SliderRadix.Thumb>
-        <SliderRadix.Thumb className={s.thumb} aria-label="Slider">
-          <div className={s.thumb_inner} />
-        </SliderRadix.Thumb>
-      </SliderRadix.Root>
-      <Typography variant={'body1'} className={s.values}>
-        {sliderValues[1]}
-      </Typography>
-    </div>
+      <div className={s.container}>
+        <Typography variant={'body1'} className={s.values}>
+          {sliderValues[0]}
+        </Typography>
+        <SliderRadix.Root
+          minStepsBetweenThumbs={1}
+          className={s.root}
+          defaultValue={[min, max]}
+          min={min}
+          max={max}
+          step={step}
+          onValueCommit={onValueCommit}
+          onValueChange={changeSliderValuesHandler}
+        >
+          <SliderRadix.Track className={s.track}>
+            <SliderRadix.Range className={s.range} />
+          </SliderRadix.Track>
+          <SliderRadix.Thumb className={s.thumb} aria-label="Slider">
+            <div className={s.thumb_inner} />
+          </SliderRadix.Thumb>
+          <SliderRadix.Thumb className={s.thumb} aria-label="Slider">
+            <div className={s.thumb_inner} />
+          </SliderRadix.Thumb>
+        </SliderRadix.Root>
+        <Typography variant={'body1'} className={s.values}>
+          {sliderValues[1]}
+        </Typography>
+      </div>
+    </>
   )
 }

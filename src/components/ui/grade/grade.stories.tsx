@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Grade } from './grade.tsx'
 
 const meta = {
-  title: 'Components/Table/Grade',
+  title: 'Components/Grade',
   component: Grade,
   tags: ['autodocs'],
 } satisfies Meta<typeof Grade>

@@ -26,8 +26,10 @@ export const Body: FC<BodyProps> = props => {
 
 export type RowProps = ComponentProps<'tr'>
 
-export const Row: FC<RowProps> = props => {
-  return <tr {...props} />
+export const Row: FC<RowProps> = ({ className, ...rest }) => {
+  const classNames = `${className} ${s.row}`
+
+  return <tr {...rest} className={classNames} />
 }
 
 export type HeadCellProps = ComponentProps<'th'>
@@ -40,10 +42,16 @@ export const HeadCell: FC<HeadCellProps> = ({ className, ...rest }) => {
 
 export type CellProps = ComponentProps<'td'>
 
-export const Cell: FC<CellProps> = ({ className, ...rest }) => {
+export const Cell: FC<CellProps> = ({ className, children, ...rest }) => {
   const classNames = `${className} ${s.table_cell}`
 
-  return <td className={classNames} {...rest} />
+  return (
+    <td className={classNames} {...rest}>
+      <Typography variant={'body2'} className={s.table_cell_text}>
+        {children}
+      </Typography>
+    </td>
+  )
 }
 
 export const Empty: FC<ComponentProps<'div'> & { mt?: string; mb?: string }> = ({

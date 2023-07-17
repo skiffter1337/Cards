@@ -6,8 +6,7 @@ import { Typography } from '../../typography'
 import { Column, Sort } from '../table.stories.tsx'
 import { Table } from '../table.tsx'
 
-import s from './../table.module.scss'
-
+import s from './tableHeader.module.scss'
 const dataAttributes = {
   sortable: 'data-sortable',
   name: 'data-name',
@@ -52,6 +51,7 @@ export const TableHeader: FC<
         }}
         key={title}
         onClick={handleSort}
+        className={s.head_cell}
       >
         <div className={s.head_cell_block}>
           <Typography variant={'subtitle2'} className={s.title}>
@@ -72,8 +72,8 @@ export const TableHeader: FC<
   })
 
   return (
-    <Table.Head {...restProps} className={s.container}>
-      <Table.Row className={s.head_row}>{mappedHeadCells}</Table.Row>
+    <Table.Head {...restProps}>
+      <Table.Row>{mappedHeadCells}</Table.Row>
     </Table.Head>
   )
 }

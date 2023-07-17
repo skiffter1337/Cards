@@ -1,0 +1,35 @@
+@use 'src/styles/mixins';
+
+.friend_decks {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 24px;
+  background-color: var(--color-dark-900);
+
+  .container {
+    width: 100%;
+    max-width: 1006px;
+    margin: 0 auto;
+
+    .back {
+      margin-bottom: 33px;
+    }
+
+    .header {
+      @include mixins.flex(row, space-between, center);
+
+      margin-bottom: 27px;
+
+      .title {
+        color: var(--color-light-100);
+      }
+
+      .button_text {
+        color: var(--color-light-100);
+      }
+    }
+  }
+  .input {
+    margin-bottom: 24px;
+  }
+}

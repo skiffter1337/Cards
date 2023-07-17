@@ -1,0 +1,6 @@
+@use 'src/styles/mixins';
+.icons {
+  @include mixins.flex(row, flex-end, center);
+
+  gap: 4px;
+}

@@ -1,0 +1,13 @@
+@use 'src/styles/mixins';
+
+.back_button {
+  display: inline-block;
+  padding: 0;
+
+  .back_button_text {
+    @include mixins.flex(row, center, center);
+
+    gap: 6px;
+    color: var(--color-light-100);
+  }
+}

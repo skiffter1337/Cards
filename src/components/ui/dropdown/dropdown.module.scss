@@ -10,15 +10,12 @@
   gap: 14px;
   align-items: center;
   justify-content: center;
-
-  .user_name {
-    color: var(--color-light-100);
-    border-bottom: 1px dashed var(--color-light-100);
-  }
 }
 
 .content {
   @include mixins.flex(column);
+
+  z-index: 999999;
 
   gap: 12px;
 
@@ -29,41 +26,13 @@
   color: var(--color-light-100);
 
   background-color: var(--color-dark-700);
-  border: 1px solid var(--color-dark-100);
+  border: 1px solid var(--color-dark-500);
   border-radius: 4px;
 
   .block {
     @include mixins.flex(column, flex-start, flex-start);
 
     gap: 12px;
-
-    .user_block {
-      @include mixins.flex(row, center, center);
-
-      gap: 10px;
-      color: var(--color-light-100);
-
-      .user_avatar {
-        @include mixins.flex(null, flex-end);
-      }
-
-      .user_info {
-        display: flex;
-        flex-direction: column;
-
-        .user_name {
-          & * {
-            color: var(--color-light-100);
-          }
-        }
-
-        .user_email {
-          & * {
-            color: var(--color-dark-100);
-          }
-        }
-      }
-    }
 
     .separator {
       width: 100%;

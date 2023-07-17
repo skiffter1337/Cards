@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { Avatar } from '../../header/avatar'
-import { Typography } from '../typography'
+import { Avatar } from '../../../../header/avatar'
+import { Typography } from '../../../typography'
 
-import s from './../../ui/dropdown/dropdown.module.scss'
+import s from './userInfo.module.scss'
 
 type UserInfoPropsType = {
   userName: string

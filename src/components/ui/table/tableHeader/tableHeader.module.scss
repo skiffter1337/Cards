@@ -1,0 +1,25 @@
+@use 'src/styles/mixins';
+
+.head_cell {
+  position: relative;
+  padding: 6px 24px;
+  background-color: var(--color-dark-500);
+
+  .head_cell_block {
+    user-select: none;
+    display: flex;
+    width: 100%;
+
+    .title {
+      margin-right: 4px;
+      color: var(--color-light-100);
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}

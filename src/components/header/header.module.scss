@@ -10,10 +10,15 @@
   .container {
     @include mixins.flex(row, space-between, center);
 
-    width: 80%;
+    width: 100%;
+    max-width: 1006px;
 
     .user_avatar {
       display: flex;
     }
+  }
+
+  .button_text {
+    color: var(--color-light-100);
   }
 }

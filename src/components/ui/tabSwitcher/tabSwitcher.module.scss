@@ -9,7 +9,7 @@
     .trigger {
       @include mixins.flex(row, center, center);
 
-      flex: 1;
+      flex-shrink: 0;
 
       padding: 6px 24px;
 
@@ -78,6 +78,6 @@
 
 .label {
   margin-bottom: 7px;
-  color: var(--color-light-900);
+  color: var(--color-light-100);
   white-space: nowrap;
 }

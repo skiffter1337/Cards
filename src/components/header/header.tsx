@@ -1,10 +1,9 @@
 import { FC } from 'react'
 
-import { Logout } from '../../images/svg/icons/logout'
-import { ProfileIcon } from '../../images/svg/icons/profile'
 import { Logo } from '../../images/svg/incubator'
 import { Button } from '../ui/button'
-import { Dropdown } from '../ui/dropdown'
+import { AvatarDropDown } from '../ui/dropdown/avatarDrowpDown'
+import { Typography } from '../ui/typography'
 
 import s from './header.module.scss'
 
@@ -31,27 +30,17 @@ export const Header: FC<HeaderPropsType> = ({
           <Logo />
         </div>
         {isLoggedIn ? (
-          <Dropdown
-            email={email}
+          <AvatarDropDown
             userName={userName}
-            avatar={avatar}
-            showUserBlock={true}
-            menuItems={[
-              {
-                icon: <ProfileIcon />,
-                text: 'My profile',
-                onClick: () => {},
-              },
-              {
-                icon: <Logout />,
-                text: 'Sign out',
-                onClick: changeIsLoggedIn,
-              },
-            ]}
+            email={email}
+            src={avatar}
+            logout={changeIsLoggedIn}
           />
         ) : (
           <Button variant="primary" onClick={changeIsLoggedIn}>
-            Sign in
+            <Typography variant={'subtitle2'} className={s.button_text}>
+              Sign in
+            </Typography>
           </Button>
         )}
       </div>

@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, memo } from 'react'
 
-import { Star } from '../../../../images/svg/icons/star'
-import { StarOutlined } from '../../../../images/svg/icons/starOutlined'
+import { Star } from '../../../images/svg/icons/star'
+import { StarOutlined } from '../../../images/svg/icons/starOutlined'
 
 import s from './grade.module.scss'
 

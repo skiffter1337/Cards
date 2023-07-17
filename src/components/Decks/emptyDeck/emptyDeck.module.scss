@@ -1,0 +1,37 @@
+@use 'src/styles/mixins';
+
+.empty_deck {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 24px;
+  background-color: var(--color-dark-900);
+
+  .container {
+    width: 100%;
+    max-width: 1006px;
+    margin: 0 auto;
+
+    .back {
+      margin-bottom: 33px;
+    }
+
+    .title {
+      margin-bottom: 69px;
+      color: var(--color-light-100);
+    }
+
+    .add_new_card_block {
+      @include mixins.flex(column, center, center);
+
+      gap: 30px;
+
+      .caption {
+        color: var(--color-dark-100);
+      }
+
+      .add_new_card_button_text {
+        color: var(--color-light-100);
+      }
+    }
+  }
+}

@@ -26,7 +26,12 @@ export const AvatarDropdownMenu = {
           height: '300px',
         }}
       >
-        <AvatarDropDown email={'j&johnson@gmail.com'} userName={'Ivan'} src={AvatarImg} />
+        <AvatarDropDown
+          email={'j&johnson@gmail.com'}
+          userName={'Ivan'}
+          src={AvatarImg}
+          logout={() => {}}
+        />
       </div>
     )
   },

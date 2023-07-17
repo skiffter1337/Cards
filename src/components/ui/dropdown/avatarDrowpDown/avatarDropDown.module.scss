@@ -1,0 +1,29 @@
+@use 'src/styles/mixins';
+
+.user_block {
+  @include mixins.flex(row, center, center);
+
+  gap: 10px;
+  color: var(--color-light-100);
+
+  .user_avatar {
+    @include mixins.flex(null, flex-end);
+  }
+
+  .user_info {
+    display: flex;
+    flex-direction: column;
+
+    .user_name {
+      & * {
+        color: var(--color-light-100);
+      }
+    }
+
+    .user_email {
+      & * {
+        color: var(--color-dark-100);
+      }
+    }
+  }
+}

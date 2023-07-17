@@ -1,0 +1,48 @@
+@use 'src/styles/mixins';
+
+.decks_list {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 36px;
+  background-color: var(--color-dark-900);
+
+  .container {
+    width: 100%;
+    max-width: 1006px;
+    margin: 0 auto;
+
+    .header {
+      @include mixins.flex(row, space-between, center);
+
+      margin-bottom: 7px;
+
+      .title {
+        color: var(--color-light-100);
+      }
+    }
+
+    .filter_panel {
+      @include mixins.flex(row, space-between, flex-end);
+
+      margin-bottom: 36px;
+
+      .input {
+        margin-right: 24px;
+      }
+
+      .tabs {
+        margin-right: 25px;
+      }
+
+      .slider {
+        margin-right: 26px;
+      }
+    }
+  }
+
+  .button_text {
+    color: var(--color-light-100);
+  }
+}
+
+// table

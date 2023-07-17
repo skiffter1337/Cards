@@ -21,7 +21,7 @@ export type InputPropsType = {
   disabled?: boolean
   placeholder?: string
   error?: boolean
-  id: string
+  id?: string
   className?: string
 } & ComponentPropsWithoutRef<'input'>
 

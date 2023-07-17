@@ -4,17 +4,18 @@ import { Logout } from '../../../../images/svg/icons/logout'
 import { ProfileIcon } from '../../../../images/svg/icons/profile'
 import { Avatar } from '../../../header/avatar'
 import { Typography } from '../../typography'
-import { UserInfo } from '../../userInfo/userInfo.tsx'
 
-import s from './../dropdown.module.scss'
 import { Dropdown, DropDownItem, DropDownItemWithIcon } from './../dropdown.tsx'
+import s from './avatarDropDown.module.scss'
+import { UserInfo } from './userInfo'
 
 type AvatarDropDownPropsType = {
   userName: string
   email: string
   src: string
+  logout: () => void
 }
-export const AvatarDropDown: FC<AvatarDropDownPropsType> = ({ userName, email, src }) => {
+export const AvatarDropDown: FC<AvatarDropDownPropsType> = ({ userName, email, src, logout }) => {
   return (
     <Dropdown showUserBlock={true} trigger={<UserInfo userName={userName} src={src} />}>
       <DropDownItem separator={true}>
@@ -38,7 +39,7 @@ export const AvatarDropDown: FC<AvatarDropDownPropsType> = ({ userName, email, s
         onClick={() => {}}
         separator={true}
       />
-      <DropDownItemWithIcon icon={<Logout />} text={'Sign out'} onClick={() => {}} />
+      <DropDownItemWithIcon icon={<Logout />} text={'Sign out'} onClick={logout} />
     </Dropdown>
   )
 }
