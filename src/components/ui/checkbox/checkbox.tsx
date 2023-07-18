@@ -15,7 +15,7 @@ export type CheckBoxPropsType = {
   disabled?: boolean
   onChange: (checked: boolean) => void
   className?: string
-  size: 'small' | 'default'
+  size?: 'small' | 'default'
 }
 export const CheckboxItem: FC<CheckBoxPropsType> = ({
   label,
@@ -24,7 +24,7 @@ export const CheckboxItem: FC<CheckBoxPropsType> = ({
   disabled,
   onChange,
   className,
-  size,
+  size = 'default',
 }) => {
   const color1 = disabled ? 'var(--color-light-900)' : '#000'
   const color2 = disabled ? 'var(--color-dark-100)' : '#fff'

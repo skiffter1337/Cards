@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { DecksList } from './decksList.tsx'
 
 const meta = {
-  title: 'Pages/DecksList',
+  title: 'Pages/decksList',
   component: DecksList,
   tags: ['autodocs'],
   argTypes: {},

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-import { DecksList } from './components/Decks/DecksList/decksList.tsx'
+import { DecksList } from './components/Decks/decksList/decksList.tsx'
 import { EmptyDeck } from './components/Decks/emptyDeck'
 import { FriendDecks } from './components/Decks/friendDecks'
-import { MyDecks } from './components/Decks/myDecks'
+import { MyDeck } from './components/Decks/myDeck'
 import { Header } from './components/header'
 import AvatarImg from './images/png/avatarSmall.png'
 
@@ -29,7 +29,7 @@ export function App() {
       <EmptyDeck />
       <DecksList />
       <FriendDecks />
-      <MyDecks />
+      <MyDeck />
     </div>
   )
 }

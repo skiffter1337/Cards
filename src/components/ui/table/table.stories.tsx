@@ -1,6 +1,12 @@
 import { useMemo, useState } from 'react'
 
-import { dataWithSort, friendsDeckData } from '../../../data/table-data-test.ts'
+import {
+  columnsFriendsDeck,
+  columnsMyDeck,
+  columnsWithSort,
+  dataWithSort,
+  friendsDeckData,
+} from '../../../data/table-data-test.ts'
 import { Grade } from '../grade'
 
 import s from './table.module.scss'
@@ -14,34 +20,6 @@ export default {
   tags: ['autodocs'],
   argTypes: {},
 }
-
-export const columnsWithSort: Column[] = [
-  {
-    key: 'title',
-    title: 'Name',
-    sortable: true,
-  },
-  {
-    key: 'cardsCount',
-    title: 'Cards',
-    sortable: true,
-  },
-  {
-    key: 'updated',
-    title: 'Last Updated',
-    sortable: true,
-  },
-  {
-    key: 'createdBy',
-    title: 'Created by',
-    sortable: true,
-  },
-  {
-    key: 'options',
-    title: '',
-    sortable: false,
-  },
-]
 
 export type Sort = {
   key: string
@@ -102,28 +80,6 @@ export const WithSort = {
   },
 }
 
-export const columnsFriendsDeck: Column[] = [
-  {
-    key: 'question',
-    title: 'Question',
-    sortable: true,
-  },
-  {
-    key: 'answer',
-    title: 'Answer',
-    sortable: true,
-  },
-  {
-    key: 'updated',
-    title: 'Last Updated',
-    sortable: true,
-  },
-  {
-    key: 'grade',
-    title: 'Grade',
-    sortable: true,
-  },
-]
 export const FriendsDeckTable = {
   render: () => {
     const [sort, setSort] = useState<Sort>(null)
@@ -171,33 +127,6 @@ export const FriendsDeckTable = {
   },
 }
 
-export const columnsMyDeck: Column[] = [
-  {
-    key: 'question',
-    title: 'Question',
-    sortable: true,
-  },
-  {
-    key: 'answer',
-    title: 'Answer',
-    sortable: true,
-  },
-  {
-    key: 'updated',
-    title: 'Last Updated',
-    sortable: true,
-  },
-  {
-    key: 'grade',
-    title: 'Grade',
-    sortable: true,
-  },
-  {
-    key: 'options',
-    title: '',
-    sortable: false,
-  },
-]
 export const MyDeckTable = {
   render: () => {
     const [sort, setSort] = useState<Sort>(null)

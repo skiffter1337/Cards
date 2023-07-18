@@ -1,3 +1,5 @@
+import { Column } from '../components/ui/table/table.stories.tsx'
+
 type DataWithSortType = {
   title: string
   cardsCount: number
@@ -77,5 +79,83 @@ export const friendsDeckData: FriendsDeckType[] = [
     answer: 'This is how "This" works in JavaScript 4',
     updated: '2023-07-04',
     grade: 2,
+  },
+]
+export const columnsWithSort: Column[] = [
+  {
+    key: 'title',
+    title: 'Name',
+    sortable: true,
+  },
+  {
+    key: 'cardsCount',
+    title: 'Cards',
+    sortable: true,
+  },
+  {
+    key: 'updated',
+    title: 'Last Updated',
+    sortable: true,
+  },
+  {
+    key: 'createdBy',
+    title: 'Created by',
+    sortable: true,
+  },
+  {
+    key: 'options',
+    title: '',
+    sortable: false,
+  },
+]
+
+export const columnsFriendsDeck: Column[] = [
+  {
+    key: 'question',
+    title: 'Question',
+    sortable: true,
+  },
+  {
+    key: 'answer',
+    title: 'Answer',
+    sortable: true,
+  },
+  {
+    key: 'updated',
+    title: 'Last Updated',
+    sortable: true,
+  },
+  {
+    key: 'grade',
+    title: 'Grade',
+    sortable: true,
+  },
+]
+
+export const columnsMyDeck: Column[] = [
+  {
+    key: 'question',
+    title: 'Question',
+    sortable: true,
+  },
+  {
+    key: 'answer',
+    title: 'Answer',
+    sortable: true,
+  },
+  {
+    key: 'updated',
+    title: 'Last Updated',
+    sortable: true,
+  },
+  {
+    key: 'grade',
+    title: 'Grade',
+    sortable: true,
+  },
+  {
+    key: 'options',
+    title: '',
+    sortable: false,
   },
 ]

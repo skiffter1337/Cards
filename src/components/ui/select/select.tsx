@@ -16,6 +16,7 @@ type SelectItemsType = {
 }
 
 type SelectPropsType = {
+  id?: string
   placeholder?: string
   ariaLabel: string
   label?: string
@@ -23,8 +24,10 @@ type SelectPropsType = {
   disabled?: boolean
   callback: (option: string) => void
   size: 'small' | 'large'
+  isFullWidth?: boolean
 }
 export const Select: FC<SelectPropsType> = ({
+  id,
   placeholder,
   ariaLabel,
   selectItems,
@@ -32,6 +35,7 @@ export const Select: FC<SelectPropsType> = ({
   disabled,
   callback,
   size,
+  isFullWidth = false,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
   const onChangeHandler = () => {
@@ -45,16 +49,24 @@ export const Select: FC<SelectPropsType> = ({
 
   return (
     <>
-      <div>
-        {label && (
-          <Typography variant={'body2'} className={`${s.label} ${disabled ? s.disabled : ''}`}>
+      {label && (
+        <div>
+          <Typography
+            as={'label'}
+            variant={'body2'}
+            className={`${s.label} ${disabled ? s.disabled : ''}`}
+            htmlFor={id}
+          >
             {label}
           </Typography>
-        )}
-      </div>
+        </div>
+      )}
       <SelectRadix.Root onOpenChange={onChangeHandler} disabled={disabled} onValueChange={callback}>
         <SelectRadix.Trigger
-          className={`${s.trigger}  ${!isOpen && s.opened} ${size && s[size]}`}
+          id={id}
+          className={`${s.trigger}  ${!isOpen && s.opened} ${size && s[size]} ${
+            isFullWidth && s.full_width
+          }`}
           aria-label={ariaLabel}
         >
           <SelectRadix.Value
@@ -63,9 +75,9 @@ export const Select: FC<SelectPropsType> = ({
           />
           <SelectRadix.Icon className={s.icon}>
             {isOpen ? (
-              <ArrowDown color={disabled ? 'var(--color-dark-300)' : 'var(--color-light-100)'} />
-            ) : (
               <ArrowUp />
+            ) : (
+              <ArrowDown color={disabled ? 'var(--color-dark-300)' : 'var(--color-light-100)'} />
             )}
           </SelectRadix.Icon>
         </SelectRadix.Trigger>

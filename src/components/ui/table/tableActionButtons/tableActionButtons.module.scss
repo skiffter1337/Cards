@@ -1,6 +1,8 @@
 @use 'src/styles/mixins';
+
 .icons {
   @include mixins.flex(row, flex-end, center);
 
+  cursor: pointer;
   gap: 4px;
 }

@@ -86,7 +86,7 @@ export const DecksList = () => {
             <TabSwitcher
               label={'Show decks'}
               tabs={[
-                { value: 'myDecks', title: 'My Decks', disabled: false },
+                { value: 'myDeck', title: 'My Decks', disabled: false },
                 { value: 'allDecks', title: 'All Decks', disabled: false },
               ]}
               ariaLabel={'My decks to all decks switcher'}

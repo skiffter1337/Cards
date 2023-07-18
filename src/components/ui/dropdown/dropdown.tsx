@@ -41,7 +41,7 @@ export const DropDownItemWithIcon: FC<DropDownItemWithIconPropsType> = ({
   return (
     <>
       <DropdownMenu.Item className={s.item}>
-        <Typography variant={'caption'} className={s.item_icon} onClick={onClick}>
+        <Typography variant={'caption'} className={s.item_icon} onSelect={onClick}>
           {icon} {text}
         </Typography>
       </DropdownMenu.Item>

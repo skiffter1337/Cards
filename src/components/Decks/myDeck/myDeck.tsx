@@ -1,20 +1,21 @@
 import { useMemo, useState } from 'react'
 
-import { friendsDeckData } from '../../../data/table-data-test.ts'
+import { columnsMyDeck, friendsDeckData } from '../../../data/table-data-test.ts'
 import { Button } from '../../ui/button'
 import { ToolsDropDown } from '../../ui/dropdown/toolsDropDown'
 import { Grade } from '../../ui/grade'
 import { Input } from '../../ui/input'
+import { AddNewDeckModal } from '../../ui/modal/addNewDeckModal/addNewDeckModal.tsx'
 import { Table } from '../../ui/table'
-import { columnsMyDeck, Sort } from '../../ui/table/table.stories.tsx'
+import { Sort } from '../../ui/table/table.stories.tsx'
 import { TableActionButtons } from '../../ui/table/tableActionButtons'
 import { TableHeader } from '../../ui/table/tableHeader'
 import { Typography } from '../../ui/typography'
 import { BackButton } from '../backButton/backButton.tsx'
 
-import s from './myDecks.module.scss'
+import s from './myDeck.module.scss'
 
-export const MyDecks = () => {
+export const MyDeck = () => {
   // table sort logic
   const [sort, setSort] = useState<Sort>(null)
   const sortedString = sort ? `${sort.key}-${sort.direction}` : null
@@ -68,11 +69,16 @@ export const MyDecks = () => {
               deleteHandler={() => {}}
             />
           </div>
-          <Button variant={'primary'}>
-            <Typography variant={'subtitle2'} className={s.button_text}>
-              Add New Card
-            </Typography>
-          </Button>
+          <AddNewDeckModal
+            width={'wide'}
+            trigger={
+              <Button variant={'primary'}>
+                <Typography variant={'subtitle2'} className={s.button_text}>
+                  Add New Card
+                </Typography>
+              </Button>
+            }
+          />
         </div>
         <Input placeholder={'Input search'} search={true} className={s.input} />
         <div className={s.table}>

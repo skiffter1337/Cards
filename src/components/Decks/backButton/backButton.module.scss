@@ -7,6 +7,7 @@
   .back_button_text {
     @include mixins.flex(row, center, center);
 
+    user-select: none;
     gap: 6px;
     color: var(--color-light-100);
   }
