@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
 
-import { friendsDeckData } from '../../../data/table-data-test.ts'
+import { columnsFriendsDeck, friendsDeckData } from '../../../data/table-data-test.ts'
 import { Button } from '../../ui/button'
 import { Grade } from '../../ui/grade'
 import { Input } from '../../ui/input'
 import { Table } from '../../ui/table'
-import { columnsFriendsDeck, Sort } from '../../ui/table/table.stories.tsx'
+import { Sort } from '../../ui/table/table.stories.tsx'
 import { TableHeader } from '../../ui/table/tableHeader'
 import { Typography } from '../../ui/typography'
 import { BackButton } from '../backButton/backButton.tsx'
