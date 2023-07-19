@@ -26,7 +26,7 @@ export const Dropdown: FC<DropdownType> = ({ showUserBlock, trigger, children })
 }
 
 type DropDownItemWithIconPropsType = {
-  onClick: () => void
+  onSelect: () => void
   icon: ReactNode
   text: string
   separator?: boolean
@@ -35,13 +35,13 @@ type DropDownItemWithIconPropsType = {
 export const DropDownItemWithIcon: FC<DropDownItemWithIconPropsType> = ({
   icon,
   text,
-  onClick,
+  onSelect,
   separator = false,
 }) => {
   return (
     <>
       <DropdownMenu.Item className={s.item}>
-        <Typography variant={'caption'} className={s.item_icon} onSelect={onClick}>
+        <Typography variant={'caption'} className={s.item_icon} onSelect={onSelect}>
           {icon} {text}
         </Typography>
       </DropdownMenu.Item>

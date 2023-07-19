@@ -4,6 +4,7 @@ import { columnsWithSort, dataWithSort } from '../../../data/table-data-test.ts'
 import { TrashOutlined } from '../../../images/svg/icons/trashOutlined'
 import { Button } from '../../ui/button'
 import { Input } from '../../ui/input'
+import { AddNewDeckModal } from '../../ui/modal/addNewDeckModal/addNewDeckModal.tsx'
 import { Slider } from '../../ui/slider'
 import { Table } from '../../ui/table'
 import { Sort } from '../../ui/table/table.stories.tsx'
@@ -72,11 +73,16 @@ export const DecksList = () => {
           <Typography variant={'large'} className={s.title}>
             Decks list
           </Typography>
-          <Button variant={'primary'} onClick={() => {}}>
-            <Typography variant={'subtitle2'} className={s.button_text}>
-              Add New Deck
-            </Typography>
-          </Button>
+          <AddNewDeckModal
+            width={'wide'}
+            trigger={
+              <Button variant={'primary'} onClick={() => {}}>
+                <Typography variant={'subtitle2'} className={s.button_text}>
+                  Add New Deck
+                </Typography>
+              </Button>
+            }
+          />
         </div>
         <div className={s.filter_panel}>
           <div className={s.input}>

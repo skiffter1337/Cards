@@ -1,4 +1,5 @@
 import { Button } from '../../ui/button'
+import { AddNewCardModal } from '../../ui/modal/addNewCardModal'
 import { Typography } from '../../ui/typography'
 import { BackButton } from '../backButton/backButton.tsx'
 
@@ -16,11 +17,16 @@ export const EmptyDeck = () => {
           <Typography variant={'body1'} className={s.caption}>
             This deck is empty. Click add new card to fill this deck
           </Typography>
-          <Button variant={'primary'} onClick={() => {}}>
-            <Typography variant={'body1'} className={s.add_new_card_button_text}>
-              Add New Card
-            </Typography>
-          </Button>
+          <AddNewCardModal
+            width={'wide'}
+            trigger={
+              <Button variant={'primary'} onClick={() => {}}>
+                <Typography variant={'body1'} className={s.add_new_card_button_text}>
+                  Add New Card
+                </Typography>
+              </Button>
+            }
+          />
         </div>
       </div>
     </div>

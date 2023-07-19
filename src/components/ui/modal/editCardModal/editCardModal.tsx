@@ -8,19 +8,19 @@ import { Select } from '../../select'
 import { Typography } from '../../typography'
 import { Modal } from '../modal.tsx'
 
-import s from './addNewCardModal.module.scss'
-import { useAddNewCardForm } from './useAddNewCardForm.ts'
+import s from './editCardModal.module.scss'
+import { useEditCardForm } from './useEditCardForm.ts'
 
-type AddNewCardModalPropsType = {
+type EditCardModalPropsType = {
   width: 'narrow' | 'wide'
   trigger: ReactNode
 }
-export const AddNewCardModal: FC<AddNewCardModalPropsType> = ({ width, trigger }) => {
+export const EditCardModal: FC<EditCardModalPropsType> = ({ width, trigger }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [questionFormat, setQuestionFormat] = useState('text')
   const onOpenChange = () => setIsOpen(!isOpen)
 
-  const { handleSubmit, control, reset } = useAddNewCardForm()
+  const { handleSubmit, control, reset } = useEditCardForm()
   const onSubmit = handleSubmit(data => {
     reset()
     console.log(data)
@@ -57,7 +57,7 @@ export const AddNewCardModal: FC<AddNewCardModalPropsType> = ({ width, trigger }
   return (
     <Modal.Root
       width={width}
-      title={'Add New Card'}
+      title={'Edit Card'}
       trigger={trigger}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
@@ -66,6 +66,7 @@ export const AddNewCardModal: FC<AddNewCardModalPropsType> = ({ width, trigger }
       <form onSubmit={onSubmit}>
         <Modal.Body>
           <Select
+            id={'selectFormat'}
             label={'Choose a question format'}
             ariaLabel={'Choose a question format'}
             selectItems={[
@@ -81,7 +82,7 @@ export const AddNewCardModal: FC<AddNewCardModalPropsType> = ({ width, trigger }
         </Modal.Body>
         <Modal.Footer>
           <Button variant={'primary'} type={'submit'}>
-            <Typography variant={'subtitle2'}>Add New Card</Typography>
+            <Typography variant={'subtitle2'}>Save Changes</Typography>
           </Button>
           <Button variant={'secondary'} onClick={() => setIsOpen(false)}>
             <Typography variant={'subtitle2'}>Cancel</Typography>
@@ -114,7 +115,7 @@ const ImageUploader = () => {
       <Typography variant={'subtitle2'} className={s.title}>
         Question:
       </Typography>
-      {questionImage && <img src={questionImage} className={s.image} alt={'question image'} />}
+      {questionImage && <img src={questionImage} className={s.image} />}
       <Button
         variant={'secondary'}
         className={s.button}
@@ -141,7 +142,7 @@ const ImageUploader = () => {
       <Typography variant={'subtitle2'} className={s.title}>
         Answer:
       </Typography>
-      {answerImage && <img src={answerImage} className={s.image} alt={'answer image'} />}
+      {answerImage && <img src={answerImage} className={s.image} />}
       <Button variant={'secondary'} className={s.button} onClick={handleAnswerButtonClick}>
         <Typography variant={'subtitle2'} className={s.button_text}>
           <ImageOutlined /> Change Cover

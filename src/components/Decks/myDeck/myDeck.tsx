@@ -55,13 +55,13 @@ export const MyDeck = () => {
   ))
 
   return (
-    <div className={s.my_decks}>
+    <div className={s.my_deck}>
       <div className={s.container}>
         <BackButton className={s.back} />
         <div className={s.header}>
           <div className={s.control_block}>
             <Typography variant={'large'} className={s.title}>
-              My Decks
+              My Deck
             </Typography>
             <ToolsDropDown
               learnHandler={() => {}}

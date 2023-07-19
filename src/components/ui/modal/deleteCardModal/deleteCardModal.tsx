@@ -9,6 +9,7 @@ import s from './deleteCardModal.module.scss'
 type DeleteDeckModalPropsType = {
   width: 'narrow' | 'wide'
   trigger: ReactNode
+  deleteCard?: () => void
 }
 export const DeleteCardModal: FC<DeleteDeckModalPropsType> = ({ width, trigger }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +31,7 @@ export const DeleteCardModal: FC<DeleteDeckModalPropsType> = ({ width, trigger }
         </Typography>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant={'primary'}>
+        <Button variant={'primary'} onClick={() => {}}>
           <Typography variant={'subtitle2'}>Delete Card</Typography>
         </Button>
         <Button variant={'secondary'} onClick={() => setIsOpen(false)}>

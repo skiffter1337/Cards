@@ -22,9 +22,10 @@ type SelectPropsType = {
   label?: string
   selectItems: SelectItemsType[]
   disabled?: boolean
-  callback: (option: string) => void
+  onSelect: (option: string) => void
   size: 'small' | 'large'
   isFullWidth?: boolean
+  defaultValue?: string
 }
 export const Select: FC<SelectPropsType> = ({
   id,
@@ -33,9 +34,10 @@ export const Select: FC<SelectPropsType> = ({
   selectItems,
   label,
   disabled,
-  callback,
+  onSelect,
   size,
   isFullWidth = false,
+  defaultValue,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
   const onChangeHandler = () => {
@@ -61,7 +63,12 @@ export const Select: FC<SelectPropsType> = ({
           </Typography>
         </div>
       )}
-      <SelectRadix.Root onOpenChange={onChangeHandler} disabled={disabled} onValueChange={callback}>
+      <SelectRadix.Root
+        onOpenChange={onChangeHandler}
+        disabled={disabled}
+        onValueChange={onSelect}
+        defaultValue={defaultValue}
+      >
         <SelectRadix.Trigger
           id={id}
           className={`${s.trigger}  ${!isOpen && s.opened} ${size && s[size]} ${
@@ -75,9 +82,9 @@ export const Select: FC<SelectPropsType> = ({
           />
           <SelectRadix.Icon className={s.icon}>
             {isOpen ? (
-              <ArrowUp />
-            ) : (
               <ArrowDown color={disabled ? 'var(--color-dark-300)' : 'var(--color-light-100)'} />
+            ) : (
+              <ArrowUp />
             )}
           </SelectRadix.Icon>
         </SelectRadix.Trigger>

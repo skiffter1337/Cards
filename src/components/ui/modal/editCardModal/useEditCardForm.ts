@@ -7,7 +7,7 @@ const schema = z.object({
     .string()
     .trim()
     .nonempty('Enter question')
-    .min(3, 'Question name must be at least 3 symbols')
+    .min(3, 'Question must be at least 3 symbols')
     .max(20, 'Max length of question must be less than 20 symbols'),
   answer: z
     .string()
@@ -18,7 +18,7 @@ const schema = z.object({
 
 type Form = z.infer<typeof schema>
 
-export const useAddNewCardForm = () => {
+export const useEditCardForm = () => {
   return useForm<Form>({
     resolver: zodResolver(schema),
     defaultValues: { question: '', answer: '' },

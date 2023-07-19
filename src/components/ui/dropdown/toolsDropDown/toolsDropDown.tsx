@@ -4,6 +4,7 @@ import { EditOutlined } from '../../../../images/svg/icons/editOutlined/editOutl
 import { PlayCircle } from '../../../../images/svg/icons/playCircle'
 import { TrashOutlined } from '../../../../images/svg/icons/trashOutlined'
 import { More } from '../../../../images/svg/more'
+import { DeleteDeckModal } from '../../modal/deleteDeckModal'
 
 import { Dropdown, DropDownItemWithIcon } from './../dropdown.tsx'
 
@@ -22,16 +23,21 @@ export const ToolsDropDown: FC<ToolsDropDownPropsType> = ({
       <DropDownItemWithIcon
         icon={<PlayCircle />}
         text={'Learn'}
-        onClick={learnHandler}
+        onSelect={learnHandler}
         separator={true}
       />
       <DropDownItemWithIcon
         icon={<EditOutlined />}
         text={'Edit'}
-        onClick={editHandler}
+        onSelect={editHandler}
         separator={true}
       />
-      <DropDownItemWithIcon icon={<TrashOutlined />} text={'Delete'} onClick={deleteHandler} />
+      <DeleteDeckModal
+        width={'wide'}
+        trigger={
+          <DropDownItemWithIcon icon={<TrashOutlined />} text={'Delete'} onSelect={deleteHandler} />
+        }
+      />
     </Dropdown>
   )
 }

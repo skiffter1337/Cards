@@ -3,6 +3,8 @@ import { FC } from 'react'
 import { EditOutlined } from '../../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { PlayCircle } from '../../../../images/svg/icons/playCircle'
 import { TrashOutlined } from '../../../../images/svg/icons/trashOutlined'
+import { DeleteCardModal } from '../../modal/deleteCardModal'
+import { EditCardModal } from '../../modal/editCardModal'
 
 import s from './tableActionButtons.module.scss'
 
@@ -21,8 +23,8 @@ export const TableActionButtons: FC<TableActionButtonsPropsType> = ({
   return (
     <div className={s.icons}>
       {isLearn && <PlayCircle onClick={learnHandler} />}
-      <EditOutlined onClick={editHandler} />
-      <TrashOutlined onClick={deleteHandler} />
+      <EditCardModal width={'wide'} trigger={<EditOutlined onClick={editHandler} />} />
+      <DeleteCardModal width={'wide'} trigger={<TrashOutlined onClick={deleteHandler} />} />
     </div>
   )
 }
