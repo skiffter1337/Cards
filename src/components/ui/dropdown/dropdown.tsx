@@ -35,7 +35,6 @@ type DropDownItemWithIconPropsType = {
 export const DropDownItemWithIcon: FC<DropDownItemWithIconPropsType> = ({
   icon,
   text,
-  onSelect,
   separator = false,
 }) => {
   const onSelectHandler = (e: Event) => {
