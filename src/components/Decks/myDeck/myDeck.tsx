@@ -6,6 +6,8 @@ import { ToolsDropDown } from '../../ui/dropdown/toolsDropDown'
 import { Grade } from '../../ui/grade'
 import { Input } from '../../ui/input'
 import { AddNewDeckModal } from '../../ui/modal/addNewDeckModal/addNewDeckModal.tsx'
+import { DeleteCardModal } from '../../ui/modal/deleteCardModal'
+import { DeleteDeckModal } from '../../ui/modal/deleteDeckModal'
 import { Table } from '../../ui/table'
 import { Sort } from '../../ui/table/table.stories.tsx'
 import { TableActionButtons } from '../../ui/table/tableActionButtons'
@@ -69,7 +71,7 @@ export const MyDeck = () => {
               deleteHandler={() => {}}
             />
           </div>
-          <AddNewDeckModal
+          <DeleteDeckModal
             width={'wide'}
             trigger={
               <Button variant={'primary'}>

@@ -38,10 +38,14 @@ export const DropDownItemWithIcon: FC<DropDownItemWithIconPropsType> = ({
   onSelect,
   separator = false,
 }) => {
+  const onSelectHandler = (e: Event) => {
+    e.preventDefault()
+  }
+
   return (
     <>
-      <DropdownMenu.Item className={s.item}>
-        <Typography variant={'caption'} className={s.item_icon} onSelect={onSelect}>
+      <DropdownMenu.Item className={s.item} onSelect={onSelectHandler}>
+        <Typography variant={'caption'} className={s.item_icon}>
           {icon} {text}
         </Typography>
       </DropdownMenu.Item>

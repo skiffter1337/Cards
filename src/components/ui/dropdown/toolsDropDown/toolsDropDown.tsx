@@ -32,6 +32,7 @@ export const ToolsDropDown: FC<ToolsDropDownPropsType> = ({
         onSelect={editHandler}
         separator={true}
       />
+
       <DeleteDeckModal
         width={'wide'}
         trigger={

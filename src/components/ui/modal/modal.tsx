@@ -27,7 +27,9 @@ const Root: FC<ModalPropsType> = ({
 }) => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
-      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+      <Dialog.Trigger asChild>
+        <div>{trigger}</div>
+      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={s.overlay} />
         <Dialog.Content className={`${s.content} ${width === 'narrow' && s.narrow}`}>

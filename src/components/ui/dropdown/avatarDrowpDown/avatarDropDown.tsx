@@ -36,10 +36,10 @@ export const AvatarDropDown: FC<AvatarDropDownPropsType> = ({ userName, email, s
       <DropDownItemWithIcon
         icon={<ProfileIcon />}
         text={'My profile'}
-        onClick={() => {}}
+        onSelect={() => {}}
         separator={true}
       />
-      <DropDownItemWithIcon icon={<Logout />} text={'Sign out'} onClick={logout} />
+      <DropDownItemWithIcon icon={<Logout />} text={'Sign out'} onSelect={logout} />
     </Dropdown>
   )
 }
