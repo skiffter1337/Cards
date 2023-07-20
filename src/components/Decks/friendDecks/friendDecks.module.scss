@@ -2,7 +2,6 @@
 
 .friend_decks {
   width: 100%;
-  min-height: 100vh;
   margin-top: 24px;
   background-color: var(--color-dark-900);
 
@@ -29,6 +28,7 @@
       }
     }
   }
+
   .input {
     margin-bottom: 24px;
   }

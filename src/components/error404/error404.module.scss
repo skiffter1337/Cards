@@ -2,9 +2,6 @@
 
 .container {
   @include mixins.flex(column, flex-start, center);
-
-  width: 100%;
-  min-height: 100vh;
   margin-top: 127px;
   background-color: var(--color-dark-900);
 

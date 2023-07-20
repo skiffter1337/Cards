@@ -15,6 +15,7 @@ type AddNewCardModalPropsType = {
   width: 'narrow' | 'wide'
   trigger: ReactNode
 }
+
 export const AddNewCardModal: FC<AddNewCardModalPropsType> = ({ width, trigger }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [questionFormat, setQuestionFormat] = useState('text')
@@ -149,7 +150,7 @@ const ImageUploader = () => {
       </Button>
       {answerErrors['answerFile'] && (
         <Typography variant={'body2'} className={s.error}>
-          {questionErrors['questionFile']}
+          {answerErrors['answerFile']}
         </Typography>
       )}
       <input

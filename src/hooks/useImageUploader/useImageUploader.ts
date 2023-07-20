@@ -15,6 +15,10 @@ export const useImageUploader = (initialValue = Placeholder) => {
   }
 
   const onImageChange = (event: ChangeEvent<HTMLInputElement>, name: string) => {
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      [name]: '',
+    }))
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0]
       const allowedTypes = ['image/jpeg', 'image/png']

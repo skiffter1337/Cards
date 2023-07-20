@@ -36,9 +36,11 @@ export const DropDownItemWithIcon: FC<DropDownItemWithIconPropsType> = ({
   icon,
   text,
   separator = false,
+  onSelect,
 }) => {
   const onSelectHandler = (e: Event) => {
     e.preventDefault()
+    onSelect && onSelect()
   }
 
   return (

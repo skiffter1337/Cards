@@ -1,5 +1,6 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
+import { useImageUploader } from '../../../hooks/useImageUploader'
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { Logout } from '../../../images/svg/icons/logout'
 import { Button } from '../../ui/button'
@@ -14,16 +15,39 @@ type EditProfilePropsType = {
   avatar: string
   userName: string
   email: string
+  changeName: (newNickName: string) => void
+  changeAvatar: (avatarImage: string) => void
 }
 
-export const EditProfile: FC<EditProfilePropsType> = ({ avatar, userName, email }) => {
+// FIXME input file double open
+// TODO input file errors UI
+// TODO logout button onClick redirect to sign in
+export const EditProfile: FC<EditProfilePropsType> = ({
+  avatar,
+  userName,
+  email,
+  changeName,
+  changeAvatar,
+}) => {
+  const {
+    image: avatarImage,
+    errors: avatarErrors,
+    onImageChange: onAvatarImageChange,
+    fileInputRef: avatarFileInputRef,
+    handleButtonClick: handleAvatarButtonClick,
+  } = useImageUploader()
+
   const { handleSubmit, control } = useEditProfile()
   const onSubmit = handleSubmit(data => {
     setEditMode(false)
     console.log(data)
+    changeName(data.nickName)
   })
-
   const [editMode, setEditMode] = useState<boolean>(false)
+
+  useEffect(() => {
+    changeAvatar(avatarImage)
+  }, [avatarImage])
 
   return (
     <Card className={s.card}>
@@ -35,12 +59,21 @@ export const EditProfile: FC<EditProfilePropsType> = ({ avatar, userName, email 
           <img src={avatar} alt={'user avatar'} className={s.user_avatar} />
           <label
             className={`${s.edit_image_icon_wrapper} ${editMode && s.disabled}`}
-            htmlFor={'edit_image'}
+            htmlFor={'avatar'}
+            onClick={handleAvatarButtonClick}
           >
             <EditOutlined className={s.edit_image_icon} />
           </label>
         </div>
-        <input type={'file'} id={'edit_image'} className={`${s.file} ${s.edit_user_image}`} />
+
+        <input
+          ref={avatarFileInputRef}
+          onChange={e => onAvatarImageChange(e, 'avatar')}
+          type={'file'}
+          id={'avatar'}
+          name={'avatar'}
+          className={`${s.file} ${s.edit_user_image}`}
+        />
       </div>
       {!editMode ? (
         <>
@@ -52,11 +85,9 @@ export const EditProfile: FC<EditProfilePropsType> = ({ avatar, userName, email 
               <EditOutlined className={s.edit_name_icon} onClick={() => setEditMode(true)} />
             </div>
           </div>
-
           <Typography variant={'body2'} className={s.email}>
             {email}
           </Typography>
-
           <div className={s.button_block}>
             <Button variant={'secondary'}>
               <Logout />{' '}

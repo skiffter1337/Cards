@@ -1,7 +1,9 @@
 @use 'src/styles/mixins';
 
 .card {
-  max-width: 420px;
+  width: 26.25rem;
+  height: max-content;
+  margin-top: 32px;
   padding: 37px 36px 44px;
 
   .title {

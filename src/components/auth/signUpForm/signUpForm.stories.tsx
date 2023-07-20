@@ -7,6 +7,13 @@ const meta = {
   component: SignUpForm,
   tags: ['autodocs'],
   argTypes: {},
+  decorators: [
+    Story => (
+      <div style={{ margin: '3em', display: 'flex', justifyContent: 'center' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof SignUpForm>
 
 export default meta

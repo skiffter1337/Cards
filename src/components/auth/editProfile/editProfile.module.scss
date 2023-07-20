@@ -1,7 +1,9 @@
 @use 'src/styles/mixins';
 
 .card {
-  max-width: 420px;
+  width: 26.25rem;
+  height: max-content;
+  margin-top: 36px;
   padding: 33px 0 41px;
 
   .title {
@@ -23,6 +25,7 @@
       .user_avatar {
         width: 96px;
         height: 96px;
+        border-radius: 50%;
       }
     }
 
@@ -94,4 +97,8 @@
   .text_field {
     margin-bottom: 36px;
   }
+}
+
+.error {
+  color: var(--color-danger-300);
 }
