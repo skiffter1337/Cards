@@ -26,7 +26,7 @@ export const Dropdown: FC<DropdownType> = ({ showUserBlock, trigger, children })
 }
 
 type DropDownItemWithIconPropsType = {
-  onSelect: () => void
+  onSelect?: () => void
   icon: ReactNode
   text: string
   separator?: boolean

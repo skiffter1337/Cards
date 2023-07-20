@@ -8,7 +8,7 @@ import { Table } from '../../ui/table'
 import { Sort } from '../../ui/table/table.stories.tsx'
 import { TableHeader } from '../../ui/table/tableHeader'
 import { Typography } from '../../ui/typography'
-import { BackButton } from '../backButton/backButton.tsx'
+import { BackButton } from '../myDeck/backButton/backButton.tsx'
 
 import s from './friendDecks.module.scss'
 

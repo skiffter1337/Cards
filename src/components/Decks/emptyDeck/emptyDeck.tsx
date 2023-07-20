@@ -1,7 +1,7 @@
 import { Button } from '../../ui/button'
 import { AddNewCardModal } from '../../ui/modal/addNewCardModal'
 import { Typography } from '../../ui/typography'
-import { BackButton } from '../backButton/backButton.tsx'
+import { BackButton } from '../myDeck/backButton/backButton.tsx'
 
 import s from './emptyDeck.module.scss'
 

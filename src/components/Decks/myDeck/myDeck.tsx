@@ -5,16 +5,14 @@ import { Button } from '../../ui/button'
 import { ToolsDropDown } from '../../ui/dropdown/toolsDropDown'
 import { Grade } from '../../ui/grade'
 import { Input } from '../../ui/input'
-import { AddNewDeckModal } from '../../ui/modal/addNewDeckModal/addNewDeckModal.tsx'
-import { DeleteCardModal } from '../../ui/modal/deleteCardModal'
 import { DeleteDeckModal } from '../../ui/modal/deleteDeckModal'
 import { Table } from '../../ui/table'
 import { Sort } from '../../ui/table/table.stories.tsx'
 import { TableActionButtons } from '../../ui/table/tableActionButtons'
 import { TableHeader } from '../../ui/table/tableHeader'
 import { Typography } from '../../ui/typography'
-import { BackButton } from '../backButton/backButton.tsx'
 
+import { BackButton } from './backButton/backButton.tsx'
 import s from './myDeck.module.scss'
 
 export const MyDeck = () => {
@@ -65,11 +63,7 @@ export const MyDeck = () => {
             <Typography variant={'large'} className={s.title}>
               My Deck
             </Typography>
-            <ToolsDropDown
-              learnHandler={() => {}}
-              editHandler={() => {}}
-              deleteHandler={() => {}}
-            />
+            <ToolsDropDown />
           </div>
           <DeleteDeckModal
             width={'wide'}

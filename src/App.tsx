@@ -4,6 +4,7 @@ import { DecksList } from './components/Decks/decksList/decksList.tsx'
 import { EmptyDeck } from './components/Decks/emptyDeck'
 import { FriendDecks } from './components/Decks/friendDecks'
 import { MyDeck } from './components/Decks/myDeck'
+import { Error404 } from './components/error404/error404.tsx'
 import { Header } from './components/header'
 import AvatarImg from './images/png/avatarSmall.png'
 
@@ -26,10 +27,11 @@ export function App() {
         userName={'Ivan'}
         avatar={AvatarImg}
       />
-      <EmptyDeck />
-      <DecksList />
-      <FriendDecks />
-      <MyDeck />
+      {/*<EmptyDeck />*/}
+      {/*<DecksList />*/}
+      {/*<FriendDecks />*/}
+      {/*<MyDeck />*/}
+      <Error404 />
     </div>
   )
 }
