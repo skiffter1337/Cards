@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { NavLink } from 'react-router-dom'
 import { z } from 'zod'
 
 import { Button } from '../../ui/button'
@@ -52,15 +53,13 @@ export const ForgotPasswordForm = () => {
           <Typography variant={'body2'} className={s.remember_password}>
             {'Did you remember your password?'}
           </Typography>
-          {/*link*/}
           <div className={s.try_login_button_container}>
-            <Button variant={'link'}>
+            <Button variant={'link'} as={NavLink} to={'/login'}>
               <Typography variant={'subtitle1'} className={s.try_login_button_text}>
                 Try logging in
               </Typography>
             </Button>
           </div>
-          {/*link*/}
         </form>
       </Card>
     </>

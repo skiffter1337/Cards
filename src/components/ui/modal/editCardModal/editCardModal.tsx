@@ -150,7 +150,7 @@ const ImageUploader = () => {
       </Button>
       {answerErrors['answerFile'] && (
         <Typography variant={'body2'} className={s.error}>
-          {questionErrors['questionFile']}
+          {answerErrors['answerFile']}
         </Typography>
       )}
       <input

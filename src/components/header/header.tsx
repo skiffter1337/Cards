@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 import { Logo } from '../../images/svg/incubator'
 import { Button } from '../ui/button'
 import { AvatarDropDown } from '../ui/dropdown/avatarDrowpDown'
@@ -26,8 +28,10 @@ export const Header: FC<HeaderPropsType> = ({
   return (
     <div className={s.header}>
       <div className={s.container}>
-        <div className={s.user_avatar}>
-          <Logo />
+        <div className={s.logo}>
+          <NavLink to={'/'}>
+            <Logo />
+          </NavLink>
         </div>
         {isLoggedIn ? (
           <AvatarDropDown
@@ -37,7 +41,7 @@ export const Header: FC<HeaderPropsType> = ({
             logout={changeIsLoggedIn}
           />
         ) : (
-          <Button variant="primary" onClick={changeIsLoggedIn}>
+          <Button variant="primary" as={NavLink} to={'/login'}>
             <Typography variant={'subtitle2'} className={s.button_text}>
               Sign in
             </Typography>

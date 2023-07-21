@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { Route, Routes } from 'react-router-dom'
+
 import { CheckEmail } from './components/auth/checkEmail'
 import { CreateNewPassword } from './components/auth/createNewPassword'
 import { EditProfile } from './components/auth/editProfile'
@@ -10,16 +12,16 @@ import { DecksList } from './components/Decks/decksList/decksList.tsx'
 import { EmptyDeck } from './components/Decks/emptyDeck'
 import { FriendDecks } from './components/Decks/friendDecks'
 import { MyDeck } from './components/Decks/myDeck'
-import { Error404 } from './components/error404/error404.tsx'
 import { Header } from './components/header'
 import { Button } from './components/ui/button'
 import { Container } from './components/ui/container/container.tsx'
 import { AddNewCardModal } from './components/ui/modal/addNewCardModal'
 import AvatarImg from './images/png/avatarSmall.png'
+import { Error404 } from './pages/error404/error404.tsx'
 
 export function App() {
   // useState and onClickHandler are temporary logic to test UI
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
 
   const changeIsLoggedIn = () => {
     setIsLoggedIn(!isLoggedIn)
@@ -51,23 +53,30 @@ export function App() {
       />
 
       <Container>
-        {/*<LoginForm />*/}
-        {/*<SignUpForm />*/}
-        {/*<CheckEmail />*/}
-        {/*<CreateNewPassword />*/}
-        <EditProfile
-          avatar={avatar}
-          userName={name}
-          changeName={changeName}
-          changeAvatar={changeAvatar}
-          email={'lalala@mail.com'}
-        />
-        {/*<AddNewCardModal width={'wide'} trigger={<Button>123123</Button>} />*/}
-        {/*<ForgotPasswordForm />*/}
-        {/*<DecksList />*/}
-        {/*<FriendDecks />*/}
-        {/*<MyDeck />*/}
-        {/*<Error404 />*/}
+        <Routes>
+          <Route path={'/login'} element={<LoginForm />} />
+          <Route path={'/signUp'} element={<SignUpForm />} />
+          {/*<CheckEmail />*/}
+          {/*<CreateNewPassword />*/}
+          <Route
+            path={'/editProfile'}
+            element={
+              <EditProfile
+                avatar={avatar}
+                userName={name}
+                changeName={changeName}
+                changeAvatar={changeAvatar}
+                email={'lalala@mail.com'}
+              />
+            }
+          />
+          {/*<AddNewCardModal width={'wide'} trigger={<Button>123123</Button>} />*/}
+          <Route path={'/forgotPassword'} element={<ForgotPasswordForm />} />
+          <Route path={'/'} element={<DecksList />} />
+          {/*<FriendDecks />*/}
+          {/*<MyDeck />*/}
+          <Route path={'/*'} element={<Error404 />} />
+        </Routes>
       </Container>
     </div>
   )

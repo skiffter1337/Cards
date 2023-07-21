@@ -8,6 +8,8 @@
 
   .user_avatar {
     @include mixins.flex(null, flex-end);
+
+    cursor: pointer;
   }
 
   .user_info {

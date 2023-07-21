@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom'
+
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
@@ -51,7 +53,7 @@ export const SignUpForm = () => {
           </Typography>
           {/*link*/}
           <div className={s.sign_in_button_container}>
-            <Button variant={'link'}>
+            <Button variant={'link'} as={NavLink} to={'/login'}>
               <Typography variant={'subtitle1'} className={s.sign_in_button_text}>
                 Sign in
               </Typography>

@@ -19,7 +19,6 @@ type EditProfilePropsType = {
   changeAvatar: (avatarImage: string) => void
 }
 
-// FIXME input file double open
 // TODO input file errors UI
 // TODO logout button onClick redirect to sign in
 export const EditProfile: FC<EditProfilePropsType> = ({
@@ -34,7 +33,6 @@ export const EditProfile: FC<EditProfilePropsType> = ({
     errors: avatarErrors,
     onImageChange: onAvatarImageChange,
     fileInputRef: avatarFileInputRef,
-    handleButtonClick: handleAvatarButtonClick,
   } = useImageUploader()
 
   const { handleSubmit, control } = useEditProfile()
@@ -57,23 +55,18 @@ export const EditProfile: FC<EditProfilePropsType> = ({
       <div className={s.user_avatar_block}>
         <div className={s.user_avatar_container}>
           <img src={avatar} alt={'user avatar'} className={s.user_avatar} />
-          <label
-            className={`${s.edit_image_icon_wrapper} ${editMode && s.disabled}`}
-            htmlFor={'avatar'}
-            onClick={handleAvatarButtonClick}
-          >
+          <label className={`${s.edit_image_icon_wrapper} ${editMode && s.disabled}`}>
+            <input
+              ref={avatarFileInputRef}
+              onChange={e => onAvatarImageChange(e, 'avatar')}
+              type={'file'}
+              id={'avatar'}
+              name={'avatar'}
+              className={`${s.file} ${s.edit_user_image}`}
+            />
             <EditOutlined className={s.edit_image_icon} />
           </label>
         </div>
-
-        <input
-          ref={avatarFileInputRef}
-          onChange={e => onAvatarImageChange(e, 'avatar')}
-          type={'file'}
-          id={'avatar'}
-          name={'avatar'}
-          className={`${s.file} ${s.edit_user_image}`}
-        />
       </div>
       {!editMode ? (
         <>

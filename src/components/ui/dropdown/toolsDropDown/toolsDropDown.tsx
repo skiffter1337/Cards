@@ -14,6 +14,8 @@ type ToolsDropDownPropsType = {
   editHandler?: () => void
   deleteHandler?: () => void
 }
+
+// FIXME DROPDOWN ITEM SEPARATOR POPIERDOLILO
 export const ToolsDropDown: FC<ToolsDropDownPropsType> = ({
   learnHandler,
   editHandler,
