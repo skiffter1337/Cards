@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { Logout } from '../../../../images/svg/icons/logout'
 import { ProfileIcon } from '../../../../images/svg/icons/profile'
-import { Avatar } from '../../../header/avatar'
+import { Avatar } from '../../../layout/header/avatar'
 import { Typography } from '../../typography'
 
 import { Dropdown, DropDownItem, DropDownItemWithIcon } from './../dropdown.tsx'

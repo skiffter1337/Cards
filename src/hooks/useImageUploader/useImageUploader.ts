@@ -1,8 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react'
 
-import Placeholder from '../../images/png/modalPlaceholder.png'
-
-export const useImageUploader = (initialValue = Placeholder) => {
+export const useImageUploader = (initialValue: string) => {
   const [image, setImage] = useState<string>(initialValue)
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
 

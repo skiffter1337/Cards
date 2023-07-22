@@ -2,16 +2,16 @@ import { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { Logo } from '../../images/svg/incubator'
-import { Button } from '../ui/button'
-import { AvatarDropDown } from '../ui/dropdown/avatarDrowpDown'
-import { Typography } from '../ui/typography'
+import { Logo } from '../../../images/svg/incubator'
+import { Button } from '../../ui/button'
+import { AvatarDropDown } from '../../ui/dropdown/avatarDrowpDown'
+import { Typography } from '../../ui/typography'
 
 import s from './header.module.scss'
 
 //todo: prop for logged in and
 
-type HeaderPropsType = {
+export type HeaderPropsType = {
   isLoggedIn: boolean
   changeIsLoggedIn: () => void
   userName: string

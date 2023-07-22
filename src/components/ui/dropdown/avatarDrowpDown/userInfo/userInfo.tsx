@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Avatar } from '../../../../header/avatar'
+import { Avatar } from '../../../../layout/header/avatar'
 import { Typography } from '../../../typography'
 
 import s from './userInfo.module.scss'

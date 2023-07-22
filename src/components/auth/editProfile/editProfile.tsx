@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 import { useImageUploader } from '../../../hooks/useImageUploader'
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { Logout } from '../../../images/svg/icons/logout'
@@ -33,7 +35,7 @@ export const EditProfile: FC<EditProfilePropsType> = ({
     errors: avatarErrors,
     onImageChange: onAvatarImageChange,
     fileInputRef: avatarFileInputRef,
-  } = useImageUploader()
+  } = useImageUploader(avatar)
 
   const { handleSubmit, control } = useEditProfile()
   const onSubmit = handleSubmit(data => {
@@ -82,12 +84,14 @@ export const EditProfile: FC<EditProfilePropsType> = ({
             {email}
           </Typography>
           <div className={s.button_block}>
-            <Button variant={'secondary'}>
-              <Logout />{' '}
-              <Typography variant={'subtitle2'} className={s.button_text}>
-                Logout
-              </Typography>
-            </Button>
+            <NavLink to={'/login'}>
+              <Button variant={'secondary'}>
+                <Logout />{' '}
+                <Typography variant={'subtitle2'} className={s.button_text}>
+                  Logout
+                </Typography>
+              </Button>
+            </NavLink>
           </div>
         </>
       ) : (

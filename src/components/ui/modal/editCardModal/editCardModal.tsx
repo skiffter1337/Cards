@@ -8,6 +8,7 @@ import { Select } from '../../select'
 import { Typography } from '../../typography'
 import { Modal } from '../modal.tsx'
 
+import Placeholder from './../../../../images/png/modalPlaceholder.png'
 import s from './editCardModal.module.scss'
 import { useEditCardForm } from './useEditCardForm.ts'
 
@@ -100,7 +101,7 @@ const ImageUploader = () => {
     onImageChange: onQuestionImageChange,
     fileInputRef: questionFileInputRef,
     handleButtonClick: handleQuestionButtonClick,
-  } = useImageUploader()
+  } = useImageUploader(Placeholder)
 
   const {
     image: answerImage,
@@ -108,7 +109,7 @@ const ImageUploader = () => {
     onImageChange: onAnswerImageChange,
     fileInputRef: answerFileInputRef,
     handleButtonClick: handleAnswerButtonClick,
-  } = useImageUploader()
+  } = useImageUploader(Placeholder)
 
   return (
     <>

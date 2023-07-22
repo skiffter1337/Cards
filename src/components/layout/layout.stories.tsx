@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import AvatarImg from '../../images/png/avatarSmall.png'
-
-import { Header } from './'
+import AvatarImg from './../../images/png/avatar.png'
+import { Layout } from './layout.tsx'
 
 const meta = {
-  title: 'Components/Header',
-  component: Header,
+  title: 'Components/Layout',
+  component: Layout,
   tags: ['autodocs'],
   args: {
     userName: 'Ivan',
@@ -15,10 +14,9 @@ const meta = {
     changeIsLoggedIn: () => {},
     isLoggedIn: true,
   },
-} satisfies Meta<typeof Header>
+} satisfies Meta<typeof Layout>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const LoggedInHeader: Story = {}
-export const LoggedOutHeader: Story = { args: { isLoggedIn: false } }
+export const LayoutDefault: Story = {}

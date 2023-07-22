@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 
-import AvatarImg from '../../../images/png/avatarSmall.png'
+import AvatarImg from '../../../images/png/avatar.png'
 
 import { AvatarDropDown } from './avatarDrowpDown'
 import { Dropdown } from './dropdown.tsx'
