@@ -9,10 +9,10 @@ const range = (start: number, end: number) => {
 }
 
 type PropsType = {
-  totalCount: number
-  pageSize: number
-  siblingCount: number
-  currentPage: number
+  totalCount: number //totalItems
+  pageSize: number // itemsPerPage
+  siblingCount: number // totalPages
+  currentPage: number // currentPage
 }
 
 export const usePagination = (props: PropsType) => {

@@ -32,7 +32,7 @@ export const EditProfile: FC<EditProfilePropsType> = ({
 }) => {
   const {
     image: avatarImage,
-    errors: avatarErrors,
+    // errors: avatarErrors,
     onImageChange: onAvatarImageChange,
     fileInputRef: avatarFileInputRef,
   } = useImageUploader(avatar)

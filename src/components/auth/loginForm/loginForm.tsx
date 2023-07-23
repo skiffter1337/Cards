@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
+import { useLoginMutation } from '../../../app/services'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput, ControlledCheckbox } from '../../ui/controlled'
@@ -9,9 +10,12 @@ import s from './loginForm.module.scss'
 import { useLoginForm } from './useLoginForm.ts'
 
 export const LoginForm = () => {
+  const [login, result] = useLoginMutation()
+
+  console.log(result)
   const { handleSubmit, control } = useLoginForm()
 
-  const onSubmit = handleSubmit(data => console.log(data))
+  const onSubmit = handleSubmit(data => login(data))
 
   return (
     <>
@@ -43,7 +47,6 @@ export const LoginForm = () => {
             className={s.checkbox}
             size={'default'}
           />
-          {/*link*/}
           <div className={s.forgot_password_block}>
             <Button variant={'link'} as={NavLink} to={'/forgotPassword'}>
               <Typography variant={'body2'} className={s.forgot_password}>
@@ -66,7 +69,6 @@ export const LoginForm = () => {
               </Typography>
             </Button>
           </div>
-          {/*link*/}
         </form>
       </Card>
     </>

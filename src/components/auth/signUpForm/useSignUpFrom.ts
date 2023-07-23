@@ -9,8 +9,9 @@ const schema = z
       .string()
       .trim()
       .nonempty('Enter password')
-      .min(8, 'Password must be at least 8 symbols'),
-    confirmPassword: z.string().trim().min(8),
+      .min(3, 'Password must be at least 3 symbols')
+      .max(30, 'Max password length is 30 symbols'),
+    confirmPassword: z.string().trim(),
   })
   .refine(data => data.password === data.confirmPassword, {
     message: 'The passwords did not match',

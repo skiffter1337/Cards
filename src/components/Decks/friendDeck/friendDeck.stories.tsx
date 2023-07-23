@@ -1,13 +1,13 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { FriendDecks } from './friendDecks.tsx'
+import { FriendDeck } from './friendDeck.tsx'
 
 const meta = {
-  title: 'Pages/FriendDecks',
-  component: FriendDecks,
+  title: 'Pages/FriendDeck',
+  component: FriendDeck,
   tags: ['autodocs'],
   argTypes: {},
-} satisfies Meta<typeof FriendDecks>
+} satisfies Meta<typeof FriendDeck>
 
 export default meta
 type Story = StoryObj<typeof meta>

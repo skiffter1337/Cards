@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
+import 'react-toastify/dist/ReactToastify.css'
+import { useSignUpMutation } from '../../../app/services'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
@@ -9,8 +12,25 @@ import s from './signUpForm.module.scss'
 import { useSignUpFrom } from './useSignUpFrom.ts'
 
 export const SignUpForm = () => {
+  const [signUp, { error }] = useSignUpMutation()
+
   const { handleSubmit, control } = useSignUpFrom()
-  const onSubmit = handleSubmit(data => console.log(data))
+  const onSubmit = handleSubmit(data => {
+    signUp(data)
+    if (isBadRequestError(error)) {
+      return toast(error.data.errorMessages[0], {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+        type: 'error',
+      })
+    }
+  })
 
   return (
     <>
@@ -27,6 +47,7 @@ export const SignUpForm = () => {
             name={'email'}
             className={s.text_field}
           />
+
           <ControlledInput
             id={'password'}
             label={'Password'}
@@ -51,7 +72,6 @@ export const SignUpForm = () => {
           <Typography variant={'body2'} className={s.have_account}>
             {'Already have an account?'}
           </Typography>
-          {/*link*/}
           <div className={s.sign_in_button_container}>
             <Button variant={'link'} as={NavLink} to={'/login'}>
               <Typography variant={'subtitle1'} className={s.sign_in_button_text}>
@@ -59,9 +79,27 @@ export const SignUpForm = () => {
               </Typography>
             </Button>
           </div>
-          {/*link*/}
         </form>
+        <ToastContainer />
       </Card>
     </>
   )
+}
+
+export function isBadRequestError(error: unknown): error is BadRequestError {
+  return (
+    !!error &&
+    typeof error === 'object' &&
+    'data' in error &&
+    typeof error.data === 'object' &&
+    !!error.data &&
+    'errorMessages' in error.data &&
+    Array.isArray(error.data.errorMessages)
+  )
+}
+
+type BadRequestError = {
+  data: {
+    errorMessages: Array<string>
+  }
 }

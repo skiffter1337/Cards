@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 import { columnsWithSort, dataWithSort } from '../../../data/table-data-test.ts'
 import { TrashOutlined } from '../../../images/svg/icons/trashOutlined'
 import { Button } from '../../ui/button'
@@ -21,16 +23,13 @@ export const DecksList = () => {
   const [sliderValues, setSliderValues] = useState<[number, number]>([1, 100])
 
   const changeSliderValues = (values: [number, number]) => setSliderValues(values)
-  const showSliderValues = (values: [number, number]) => {
-    console.log(`Slider values are: ${values}`)
-  }
+  const showSliderValues = (values: [number, number]) => {}
   // slider test logic
 
   // table sort logic
   const [sort, setSort] = useState<Sort>(null)
   const sortedString = sort ? `${sort.key}-${sort.direction}` : null
 
-  console.log(sortedString)
   const sortedData = useMemo(() => {
     if (sort?.key) {
       return [...dataWithSort].sort((a, b) => {
@@ -52,7 +51,9 @@ export const DecksList = () => {
 
   const tableData = sortedData.map(item => (
     <Table.Row key={item.title}>
-      <Table.Cell>{item.title}</Table.Cell>
+      <Table.Cell className={s.deck_title}>
+        <NavLink to={'/deck'}>{item.title}</NavLink>
+      </Table.Cell>
       <Table.Cell>{item.cardsCount}</Table.Cell>
       <Table.Cell>{item.updated}</Table.Cell>
       <Table.Cell>{item.createdBy}</Table.Cell>
@@ -118,7 +119,7 @@ export const DecksList = () => {
             </Typography>
           </Button>
         </div>
-        <div className={s.table}>
+        <div>
           <Table.Root>
             <TableHeader columns={columnsWithSort} sort={sort} onSort={setSort} />
             <Table.Body>{tableData}</Table.Body>

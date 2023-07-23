@@ -10,9 +10,9 @@ import { TableHeader } from '../../ui/table/tableHeader'
 import { Typography } from '../../ui/typography'
 import { BackButton } from '../myDeck/backButton/backButton.tsx'
 
-import s from './friendDecks.module.scss'
+import s from './friendDeck.module.scss'
 
-export const FriendDecks = () => {
+export const FriendDeck = () => {
   // table sort logic
   const [sort, setSort] = useState<Sort>(null)
   const sortedString = sort ? `${sort.key}-${sort.direction}` : null

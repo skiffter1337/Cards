@@ -38,8 +38,6 @@ export const TableHeader: FC<
     onSort(null)
   }
 
-  console.log(sort)
-
   const mappedHeadCells = columns.map(({ title, key, sortable }) => {
     const showSort = sortable && sort && sort.key === key
 

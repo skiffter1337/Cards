@@ -47,9 +47,9 @@ export const Cell: FC<CellProps> = ({ className, children, ...rest }) => {
 
   return (
     <td className={classNames} {...rest}>
-      <Typography variant={'body2'} className={s.table_cell_text}>
-        {children}
-      </Typography>
+      {/*<Typography variant={'body2'} className={s.table_cell_text}>*/}
+      {children}
+      {/*</Typography>*/}
     </td>
   )
 }
