@@ -1,21 +1,24 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { useLoginMutation } from '../../../app/services'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
-import { ControlledInput, ControlledCheckbox } from '../../ui/controlled'
+import { ControlledCheckbox, ControlledInput } from '../../ui/controlled'
 import { Typography } from '../../ui/typography'
 
 import s from './loginForm.module.scss'
 import { useLoginForm } from './useLoginForm.ts'
 
 export const LoginForm = () => {
-  const [login, result] = useLoginMutation()
+  const navigate = useNavigate()
 
-  console.log(result)
+  const [login] = useLoginMutation()
+
   const { handleSubmit, control } = useLoginForm()
-
-  const onSubmit = handleSubmit(data => login(data))
+  const onSubmit = handleSubmit(async data => {
+    await login(data)
+    navigate('/')
+  })
 
   return (
     <>

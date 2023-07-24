@@ -1,29 +1,32 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { NavLink } from 'react-router-dom'
-import { z } from 'zod'
+import { NavLink, useNavigate } from 'react-router-dom'
 
+import { useRecoverPasswordMutation } from '../../../app/services'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
 import { Typography } from '../../ui/typography'
 
 import s from './forgotPasswordForm.module.scss'
+import { useForgotPassword } from './useForgotPassword.ts'
 
-const schema = z.object({
-  email: z.string().trim().email('Invalid email').nonempty('Enter email'),
-})
-
-type Form = z.infer<typeof schema>
 export const ForgotPasswordForm = () => {
-  const { handleSubmit, control, formState } = useForm<Form>({
-    resolver: zodResolver(schema),
-    defaultValues: { email: '' },
-    mode: 'onSubmit',
-  })
+  const [recoverPassword] = useRecoverPasswordMutation()
+  const { handleSubmit, control } = useForgotPassword()
+  const navigate = useNavigate()
+  const html =
+    '<h1>Hi, ##name##</h1><p>Click <a href="http://localhost:5173/create-new-password>here</a> to recover your password</p>'
+  const onSubmit = handleSubmit(data => {
+    const { email } = data
 
-  console.log(formState.errors)
-  const onSubmit = handleSubmit(data => console.log(data))
+    recoverPassword({ html, email })
+      .unwrap()
+      .then(() => {
+        navigate('/check-email')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  })
 
   return (
     <>

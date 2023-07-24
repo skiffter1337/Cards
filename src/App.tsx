@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
 import { useMeQuery } from './app/services'
+import { CheckEmail } from './components/auth/checkEmail'
+import { CreateNewPassword } from './components/auth/createNewPassword'
 import { EditProfile } from './components/auth/editProfile'
 import { ForgotPasswordForm } from './components/auth/forgotPassword'
 import { LoginForm } from './components/auth/loginForm'
@@ -39,15 +41,7 @@ export function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: (
-        <Layout
-          avatar={avatar}
-          userName={'Ivan'}
-          email={'example@mail.ru'}
-          changeIsLoggedIn={changeIsLoggedIn}
-          isLoggedIn={isLoggedIn}
-        />
-      ),
+      element: <Layout />,
       children: [
         {
           element: <ProtectedRoutes />,
@@ -73,36 +67,44 @@ export function App() {
               ),
             },
             {
-              path: '/forgotPassword',
-              element: <ForgotPasswordForm />,
-            },
-            {
-              path: '/signUp',
-              element: <SignUpForm />,
-            },
-            {
               path: '/*',
               element: <Error404 />,
             },
           ],
         },
         {
+          path: '/signUp',
+          element: <SignUpForm />,
+        },
+        {
           path: '/login',
           element: <LoginForm />,
+        },
+        {
+          path: '/forgotPassword',
+          element: <ForgotPasswordForm />,
+        },
+        {
+          path: '/check-email',
+          element: <CheckEmail />,
+        },
+        {
+          path: '/create-new-password',
+          element: <CreateNewPassword />,
         },
       ],
     },
   ])
 
-  const { data, isLoading, isError, error } = useMeQuery()
-
-  console.log({ data, isLoading, isError, error })
-
   return <RouterProvider router={router} />
 }
 
 const ProtectedRoutes = () => {
-  const isLoggedIn = true
+  const { data, isLoading, error } = useMeQuery()
 
-  return isLoggedIn ? <Outlet /> : <Navigate to={'/login'} />
+  console.log(data)
+  console.log(error)
+  if (isLoading) return <div>Loading...</div>
+
+  return data ? <Outlet /> : <Navigate to={'/login'} />
 }

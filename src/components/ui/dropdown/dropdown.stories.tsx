@@ -28,7 +28,7 @@ export const AvatarDropdownMenu = {
       >
         <AvatarDropDown
           email={'j&johnson@gmail.com'}
-          userName={'Ivan'}
+          name={'Ivan'}
           src={AvatarImg}
           logout={() => {}}
         />

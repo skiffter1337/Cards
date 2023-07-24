@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom'
+
 import { CheckEmailIcon } from '../../../images/svg/checkEmail'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
@@ -16,7 +18,7 @@ export const CheckEmail = () => {
       <Typography variant={'body2'} className={s.hint}>
         We’ve sent an Email with instructions to example@mail.com
       </Typography>
-      <Button as={'a'} fullWidth={true} className={s.button}>
+      <Button as={NavLink} to={'/login'} className={s.button}>
         <Typography variant={'subtitle2'} className={s.button_text}>
           Back to Sign In
         </Typography>

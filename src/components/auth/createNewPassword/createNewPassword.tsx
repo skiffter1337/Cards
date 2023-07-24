@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom'
+
+import { useResetPasswordMutation } from '../../../app/services'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
@@ -7,9 +10,18 @@ import s from './createNewPassword.module.scss'
 import { useCreateNewPassword } from './useCreateNewPassword.ts'
 
 export const CreateNewPassword = () => {
+  const [resetPassword] = useResetPasswordMutation()
+  const navigate = useNavigate()
   const { handleSubmit, control } = useCreateNewPassword()
 
-  const onSubmit = handleSubmit(data => console.log(data))
+  const onSubmit = handleSubmit(data => {
+    resetPassword(data)
+      .unwrap()
+      .then(() => navigate('/login'))
+      .catch(error => {
+        console.log(error)
+      })
+  })
 
   return (
     <Card className={s.card}>

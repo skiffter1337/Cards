@@ -1,30 +1,27 @@
 import { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
+import { useLogoutMutation } from '../../../app/services'
+import { User } from '../../../app/services/auth/types.ts'
 import { Logo } from '../../../images/svg/incubator'
 import { Button } from '../../ui/button'
 import { AvatarDropDown } from '../../ui/dropdown/avatarDrowpDown'
 import { Typography } from '../../ui/typography'
 
+import avatarPlaceHolder from './../../../images/png/avatar.png'
 import s from './header.module.scss'
 
 //todo: prop for logged in and
 
 export type HeaderPropsType = {
   isLoggedIn: boolean
-  changeIsLoggedIn: () => void
-  userName: string
-  email: string
-  avatar: string
+  userInfo?: User | null
+  logout: () => void
 }
-export const Header: FC<HeaderPropsType> = ({
-  isLoggedIn,
-  changeIsLoggedIn,
-  userName,
-  email,
-  avatar,
-}) => {
+export const Header: FC<HeaderPropsType> = ({ isLoggedIn, logout, userInfo }) => {
+  const handleLogout = () => logout()
+
   return (
     <div className={s.header}>
       <div className={s.container}>
@@ -35,10 +32,10 @@ export const Header: FC<HeaderPropsType> = ({
         </div>
         {isLoggedIn ? (
           <AvatarDropDown
-            userName={userName}
-            email={email}
-            src={avatar}
-            logout={changeIsLoggedIn}
+            name={userInfo?.name}
+            email={userInfo?.email}
+            src={userInfo?.avatar ?? avatarPlaceHolder}
+            logout={handleLogout}
           />
         ) : (
           <Button variant="primary" as={NavLink} to={'/login'}>

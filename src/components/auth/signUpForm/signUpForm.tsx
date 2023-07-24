@@ -1,8 +1,9 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css'
 import { useSignUpMutation } from '../../../app/services'
+import { isBadRequestError } from '../../../helpers/isBadRequestError'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
@@ -12,11 +13,15 @@ import s from './signUpForm.module.scss'
 import { useSignUpFrom } from './useSignUpFrom.ts'
 
 export const SignUpForm = () => {
+  const navigate = useNavigate()
   const [signUp, { error }] = useSignUpMutation()
 
   const { handleSubmit, control } = useSignUpFrom()
   const onSubmit = handleSubmit(data => {
-    signUp(data)
+    const { email, password } = data
+
+    signUp({ email, password })
+    navigate('/login')
     if (isBadRequestError(error)) {
       return toast(error.data.errorMessages[0], {
         position: 'bottom-left',
@@ -84,22 +89,4 @@ export const SignUpForm = () => {
       </Card>
     </>
   )
-}
-
-export function isBadRequestError(error: unknown): error is BadRequestError {
-  return (
-    !!error &&
-    typeof error === 'object' &&
-    'data' in error &&
-    typeof error.data === 'object' &&
-    !!error.data &&
-    'errorMessages' in error.data &&
-    Array.isArray(error.data.errorMessages)
-  )
-}
-
-type BadRequestError = {
-  data: {
-    errorMessages: Array<string>
-  }
 }

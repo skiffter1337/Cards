@@ -6,15 +6,15 @@ import { Typography } from '../../../typography'
 import s from './userInfo.module.scss'
 
 type UserInfoPropsType = {
-  userName: string
+  name: string
   src: string
 }
 
-export const UserInfo: FC<UserInfoPropsType> = ({ userName, src }) => {
+export const UserInfo: FC<UserInfoPropsType> = ({ name, src }) => {
   return (
     <>
       <Typography variant={'subtitle1'} className={s.user_name}>
-        {userName}
+        {name}
       </Typography>
       <Avatar src={src} />
     </>
