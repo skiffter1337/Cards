@@ -10,11 +10,27 @@ export const authApi = createApi({
   }),
   tagTypes: ['Me'],
   endpoints: builder => ({
-    me: builder.query<User, void>({
+    me: builder.query<User | null, void>({
       query: () => ({
         url: 'v1/auth/me',
       }),
       providesTags: ['Me'],
+    }),
+    updateUserInfo: builder.mutation<User, any>({
+      query: body => ({
+        url: 'v1/auth/me',
+        method: 'PATCH',
+        body,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled
+
+        dispatch(
+          authApi.util.updateQueryData('me', undefined, () => {
+            return data
+          })
+        )
+      },
     }),
     login: builder.mutation<void, { email: string; password: string }>({
       query: body => ({
@@ -36,6 +52,13 @@ export const authApi = createApi({
         url: 'v1/auth/logout',
         method: 'POST',
       }),
+      async onQueryStarted(_, { dispatch }) {
+        dispatch(
+          authApi.util.updateQueryData('me', undefined, () => {
+            return null
+          })
+        )
+      },
     }),
     recoverPassword: builder.mutation<void, { html: string; email: string }>({
       query: ({ html, email }) => ({
@@ -44,11 +67,11 @@ export const authApi = createApi({
         body: { html, email },
       }),
     }),
-    resetPassword: builder.mutation<void, { password: string }>({
-      query: body => ({
+    resetPassword: builder.mutation<void, { password: string; token: string }>({
+      query: ({ password, token }) => ({
         url: `v1/auth/reset-password/${token}`,
         method: 'POST',
-        body,
+        body: { password },
       }),
     }),
   }),
@@ -56,6 +79,7 @@ export const authApi = createApi({
 
 export const {
   useMeQuery,
+  useUpdateUserInfoMutation,
   useLoginMutation,
   useSignUpMutation,
   useLogoutMutation,

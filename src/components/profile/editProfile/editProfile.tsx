@@ -2,7 +2,9 @@ import { FC, useEffect, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
+import { useMeQuery, useUpdateUserInfoMutation } from '../../../app/services'
 import { useImageUploader } from '../../../hooks/useImageUploader'
+import AvatarPlaceholder from '../../../images/png/avatar.png'
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
 import { Logout } from '../../../images/svg/icons/logout'
 import { Button } from '../../ui/button'
@@ -13,41 +15,29 @@ import { Typography } from '../../ui/typography'
 import s from './editProfile.module.scss'
 import { useEditProfile } from './useEditProfile.ts'
 
-type EditProfilePropsType = {
-  avatar: string
-  userName: string
-  email: string
-  changeName: (newNickName: string) => void
-  changeAvatar: (avatarImage: string) => void
-}
-
 // TODO input file errors UI
-// TODO logout button onClick redirect to sign in
-export const EditProfile: FC<EditProfilePropsType> = ({
-  avatar,
-  userName,
-  email,
-  changeName,
-  changeAvatar,
-}) => {
+export const EditProfile = () => {
   const {
-    image: avatarImage,
+    image: avatar,
     // errors: avatarErrors,
     onImageChange: onAvatarImageChange,
     fileInputRef: avatarFileInputRef,
-  } = useImageUploader(avatar)
+  } = useImageUploader(AvatarPlaceholder)
 
-  const { handleSubmit, control } = useEditProfile()
+  // TODO FIX AVATAR CHANGE (need trigger from input interface, not useEffect)
+  // useEffect(() => {
+  //   updateUserInfo({ avatar })
+  // }, [avatar])
+
+  const { data } = useMeQuery()
+  const [updateUserInfo] = useUpdateUserInfoMutation()
+  const { handleSubmit, control, reset } = useEditProfile()
   const onSubmit = handleSubmit(data => {
     setEditMode(false)
-    console.log(data)
-    changeName(data.nickName)
+    updateUserInfo(data)
+    reset()
   })
   const [editMode, setEditMode] = useState<boolean>(false)
-
-  useEffect(() => {
-    changeAvatar(avatarImage)
-  }, [avatarImage])
 
   return (
     <Card className={s.card}>
@@ -56,10 +46,15 @@ export const EditProfile: FC<EditProfilePropsType> = ({
       </Typography>
       <div className={s.user_avatar_block}>
         <div className={s.user_avatar_container}>
-          <img src={avatar} alt={'user avatar'} className={s.user_avatar} />
+          <img
+            src={data?.avatar ?? AvatarPlaceholder}
+            alt={'user avatar'}
+            className={s.user_avatar}
+          />
           <label className={`${s.edit_image_icon_wrapper} ${editMode && s.disabled}`}>
             <input
               ref={avatarFileInputRef}
+              placeholder={data?.name}
               onChange={e => onAvatarImageChange(e, 'avatar')}
               type={'file'}
               id={'avatar'}
@@ -75,13 +70,13 @@ export const EditProfile: FC<EditProfilePropsType> = ({
           <div className={s.user_name_block}>
             <div className={s.user_name_container}>
               <Typography variant={'h1'} className={s.user_name}>
-                {userName}
+                {data?.name}
               </Typography>
               <EditOutlined className={s.edit_name_icon} onClick={() => setEditMode(true)} />
             </div>
           </div>
           <Typography variant={'body2'} className={s.email}>
-            {email}
+            {data?.email}
           </Typography>
           <div className={s.button_block}>
             <NavLink to={'/login'}>
@@ -97,10 +92,10 @@ export const EditProfile: FC<EditProfilePropsType> = ({
       ) : (
         <form onSubmit={onSubmit} className={s.form}>
           <ControlledInput
-            id="nickName"
+            id="name"
             label="NickName"
             control={control}
-            name={'nickName'}
+            name={'name'}
             className={s.text_field}
           />
           <Button fullWidth={true}>

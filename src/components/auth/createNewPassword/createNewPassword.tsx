@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { useResetPasswordMutation } from '../../../app/services'
 import { Button } from '../../ui/button'
@@ -9,18 +10,38 @@ import { Typography } from '../../ui/typography'
 import s from './createNewPassword.module.scss'
 import { useCreateNewPassword } from './useCreateNewPassword.ts'
 
+type Token = {
+  token: string
+}
+
 export const CreateNewPassword = () => {
   const [resetPassword] = useResetPasswordMutation()
   const navigate = useNavigate()
   const { handleSubmit, control } = useCreateNewPassword()
 
-  const onSubmit = handleSubmit(data => {
-    resetPassword(data)
-      .unwrap()
-      .then(() => navigate('/login'))
-      .catch(error => {
-        console.log(error)
-      })
+  const { token } = useParams<Token>()
+
+  const onSubmit = handleSubmit(({ password }) => {
+    if (token) {
+      resetPassword({ password, token })
+        .unwrap()
+        .then(() => {
+          navigate('/login')
+          toast('Password changes successfully', {
+            position: 'bottom-left',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    } else console.log("Token doesn't exist")
   })
 
   return (

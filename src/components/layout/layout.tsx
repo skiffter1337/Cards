@@ -8,16 +8,16 @@ export const Layout = () => {
   const { data } = useMeQuery()
   const [logout] = useLogoutMutation()
   const navigate = useNavigate()
-  const logoutHandler = async () => {
-    await logout()
-    navigate('/login')
-  }
 
-  console.log(!!data)
+  const logoutHandler = () => {
+    logout().then(() => {
+      navigate('/login')
+    })
+  }
 
   return (
     <>
-      <Header isLoggedIn={!!data} userInfo={data} logout={logoutHandler} />
+      <Header userInfo={data} logout={logoutHandler} />
       <div className={s.outlet}>
         <Outlet />
       </div>

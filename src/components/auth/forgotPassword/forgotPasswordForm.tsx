@@ -14,7 +14,7 @@ export const ForgotPasswordForm = () => {
   const { handleSubmit, control } = useForgotPassword()
   const navigate = useNavigate()
   const html =
-    '<h1>Hi, ##name##</h1><p>Click <a href="http://localhost:5173/create-new-password>here</a> to recover your password</p>'
+    '<h1>Hi, ##name##</h1><p>Click <a href="http://localhost:5173/create-new-password/##token##">here</a> to recover your password</p>'
   const onSubmit = handleSubmit(data => {
     const { email } = data
 

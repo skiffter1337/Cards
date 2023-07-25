@@ -1,8 +1,7 @@
 import { FC } from 'react'
 
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-import { useLogoutMutation } from '../../../app/services'
 import { User } from '../../../app/services/auth/types.ts'
 import { Logo } from '../../../images/svg/incubator'
 import { Button } from '../../ui/button'
@@ -15,12 +14,13 @@ import s from './header.module.scss'
 //todo: prop for logged in and
 
 export type HeaderPropsType = {
-  isLoggedIn: boolean
   userInfo?: User | null
   logout: () => void
 }
-export const Header: FC<HeaderPropsType> = ({ isLoggedIn, logout, userInfo }) => {
+export const Header: FC<HeaderPropsType> = ({ logout, userInfo }) => {
   const handleLogout = () => logout()
+
+  console.log('render')
 
   return (
     <div className={s.header}>
@@ -30,7 +30,7 @@ export const Header: FC<HeaderPropsType> = ({ isLoggedIn, logout, userInfo }) =>
             <Logo />
           </NavLink>
         </div>
-        {isLoggedIn ? (
+        {userInfo ? (
           <AvatarDropDown
             name={userInfo?.name}
             email={userInfo?.email}
