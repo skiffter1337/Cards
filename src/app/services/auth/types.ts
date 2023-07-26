@@ -13,3 +13,8 @@ export type SignUpData = {
   name: string
   email: string
 }
+
+export type UpdateProfileType = {
+  name?: string
+  avatar?: string
+}

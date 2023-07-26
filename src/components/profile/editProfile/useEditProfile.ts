@@ -12,10 +12,10 @@ const schema = z.object({
 })
 
 type Form = z.infer<typeof schema>
-export const useEditProfile = () => {
+export const useEditProfile = (defaultValue: string | undefined) => {
   return useForm<Form>({
     resolver: zodResolver(schema),
-    defaultValues: { name: '' },
+    defaultValues: { name: defaultValue ?? '' },
     mode: 'onSubmit',
   })
 }

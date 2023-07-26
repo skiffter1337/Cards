@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { SignUpData, User } from './types.ts'
+import { SignUpData, UpdateProfileType, User } from './types.ts'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -16,21 +16,13 @@ export const authApi = createApi({
       }),
       providesTags: ['Me'],
     }),
-    updateUserInfo: builder.mutation<User, any>({
+    updateUserInfo: builder.mutation<User, UpdateProfileType>({
       query: body => ({
         url: 'v1/auth/me',
         method: 'PATCH',
         body,
       }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled
-
-        dispatch(
-          authApi.util.updateQueryData('me', undefined, () => {
-            return data
-          })
-        )
-      },
+      invalidatesTags: ['Me'],
     }),
     login: builder.mutation<void, { email: string; password: string }>({
       query: body => ({

@@ -4,6 +4,7 @@ import './styles/index.scss'
 
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
 
 import { store } from './app/store.ts'
 import { App } from './App.tsx'
@@ -11,5 +12,6 @@ import { App } from './App.tsx'
 createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <App />
+    <ToastContainer />
   </Provider>
 )

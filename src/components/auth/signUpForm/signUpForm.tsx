@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useSignUpMutation } from '../../../app/services'
 import { isBadRequestError } from '../../../helpers/isBadRequestError'
+import { toastError } from '../../../helpers/toastVariants/error'
+import { toastSuccess } from '../../../helpers/toastVariants/success'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
@@ -14,27 +16,24 @@ import { useSignUpFrom } from './useSignUpFrom.ts'
 
 export const SignUpForm = () => {
   const navigate = useNavigate()
-  const [signUp, { error }] = useSignUpMutation()
+  const [signUp] = useSignUpMutation()
 
   const { handleSubmit, control } = useSignUpFrom()
   const onSubmit = handleSubmit(data => {
     const { email, password } = data
 
+    debugger
     signUp({ email, password })
-    navigate('/login')
-    if (isBadRequestError(error)) {
-      return toast(error.data.errorMessages[0], {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-        type: 'error',
+      .unwrap()
+      .then(() => {
+        navigate('/login')
+        toast.success('You are successfully signed up!', toastSuccess)
       })
-    }
+      .catch(error => {
+        if (isBadRequestError(error)) {
+          toast(error.data.errorMessages[0], toastError)
+        }
+      })
   })
 
   return (
@@ -85,7 +84,6 @@ export const SignUpForm = () => {
             </Button>
           </div>
         </form>
-        <ToastContainer />
       </Card>
     </>
   )

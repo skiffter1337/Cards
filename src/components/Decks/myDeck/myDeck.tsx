@@ -5,6 +5,7 @@ import { Button } from '../../ui/button'
 import { ToolsDropDown } from '../../ui/dropdown/toolsDropDown'
 import { Grade } from '../../ui/grade'
 import { Input } from '../../ui/input'
+import { AddNewCardModal } from '../../ui/modal/addNewCardModal'
 import { DeleteDeckModal } from '../../ui/modal/deleteDeckModal'
 import { Table } from '../../ui/table'
 import { Sort } from '../../ui/table/table.stories.tsx'
@@ -65,7 +66,7 @@ export const MyDeck = () => {
             </Typography>
             <ToolsDropDown />
           </div>
-          <DeleteDeckModal
+          <AddNewCardModal
             width={'wide'}
             trigger={
               <Button variant={'primary'}>

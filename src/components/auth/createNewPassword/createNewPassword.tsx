@@ -2,6 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { useResetPasswordMutation } from '../../../app/services'
+import { toastError } from '../../../helpers/toastVariants/error'
+import { toastSuccess } from '../../../helpers/toastVariants/success'
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledInput } from '../../ui/controlled'
@@ -27,21 +29,12 @@ export const CreateNewPassword = () => {
         .unwrap()
         .then(() => {
           navigate('/login')
-          toast('Password changes successfully', {
-            position: 'bottom-left',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'dark',
-          })
+          toast.success('Password changed successfully', toastSuccess)
         })
         .catch(error => {
-          console.log(error)
+          toast.error(error, toastError)
         })
-    } else console.log("Token doesn't exist")
+    } else console.warn("Token doesn't exist")
   })
 
   return (

@@ -20,8 +20,6 @@ export type HeaderPropsType = {
 export const Header: FC<HeaderPropsType> = ({ logout, userInfo }) => {
   const handleLogout = () => logout()
 
-  console.log('render')
-
   return (
     <div className={s.header}>
       <div className={s.container}>

@@ -4,6 +4,8 @@ type BadRequestError = {
   }
 }
 export function isBadRequestError(error: unknown): error is BadRequestError {
+  debugger
+
   return (
     !!error &&
     typeof error === 'object' &&

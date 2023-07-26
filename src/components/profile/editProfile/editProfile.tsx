@@ -1,8 +1,11 @@
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { useMeQuery, useUpdateUserInfoMutation } from '../../../app/services'
+import { toastError } from '../../../helpers/toastVariants/error'
+import { toastSuccess } from '../../../helpers/toastVariants/success'
 import { useImageUploader } from '../../../hooks/useImageUploader'
 import AvatarPlaceholder from '../../../images/png/avatar.png'
 import { EditOutlined } from '../../../images/svg/icons/editOutlined/editOutlined.tsx'
@@ -15,29 +18,35 @@ import { Typography } from '../../ui/typography'
 import s from './editProfile.module.scss'
 import { useEditProfile } from './useEditProfile.ts'
 
-// TODO input file errors UI
 export const EditProfile = () => {
   const {
     image: avatar,
-    // errors: avatarErrors,
+    errors: avatarErrors,
     onImageChange: onAvatarImageChange,
     fileInputRef: avatarFileInputRef,
   } = useImageUploader(AvatarPlaceholder)
 
   // TODO FIX AVATAR CHANGE (need trigger from input interface, not useEffect)
-  // useEffect(() => {
-  //   updateUserInfo({ avatar })
-  // }, [avatar])
+  useEffect(() => {
+    updateUserInfo({ avatar })
+  }, [avatar])
 
   const { data } = useMeQuery()
   const [updateUserInfo] = useUpdateUserInfoMutation()
-  const { handleSubmit, control, reset } = useEditProfile()
-  const onSubmit = handleSubmit(data => {
+  const { handleSubmit, control } = useEditProfile(data?.name)
+  const onSubmit = handleSubmit(name => {
     setEditMode(false)
-    updateUserInfo(data)
-    reset()
+    updateUserInfo(name)
+      .unwrap()
+      .then(() => {
+        toast.success('Name successfully changed', toastSuccess)
+      })
   })
   const [editMode, setEditMode] = useState<boolean>(false)
+
+  if (avatarErrors.avatar) {
+    toast(avatarErrors.avatar, toastError)
+  }
 
   return (
     <Card className={s.card}>
